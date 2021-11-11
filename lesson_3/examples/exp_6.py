@@ -1,5 +1,11 @@
 """ORM с помощью Алхимии. Традиционный стиль"""
 
+""" 
+ВНИМАНИЕ!!!!
+Необходима предварительная установка SQL Алхимии: 
+pip install sqlalchemy
+"""
+
 from sqlalchemy import __version__, create_engine, Table, Column, \
     Integer, String, MetaData, ForeignKey
 from sqlalchemy.orm import mapper, sessionmaker
@@ -22,13 +28,14 @@ print(ENGINE)  # -> Engine(sqlite:///traditional_style_base.db3)
 # -----------------------------Создание таблиц------------------------------------ #
 METADATA = MetaData()
 users_table = Table('users', METADATA,
-    Column('id', Integer, primary_key=True),
-    Column('name', String),
-    Column('fullname', String),
-    Column('password', String)
-)
+                    Column('id', Integer, primary_key=True),
+                    Column('name', String),
+                    Column('fullname', String),
+                    Column('password', String)
+                    )
 
 METADATA.create_all(ENGINE)
+
 
 # ----------------------Определение класса Python для отображения в таблицу--------------------- #
 # т.е. создаем шаблон записи таблицы БД
@@ -41,6 +48,7 @@ class User:
 
     def __repr__(self):
         return f'<User({self.name}, {self.fullname}, {self.password})>'
+
 
 # ---------------------------------Настройка отображения----------------------------------------- #
 # Создание отображения

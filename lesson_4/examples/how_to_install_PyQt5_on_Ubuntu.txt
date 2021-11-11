@@ -1,0 +1,5 @@
+how to install:
+https://stackoverflow.com/questions/36757752/how-to-install-pyqt5-in-python-3-ubuntu-14-04
+
+how to open with double click:
+https://stackoverflow.com/questions/27591207/pycharm-4-wont-open-qt-designer-on-double-click-of-ui-file-linux

@@ -177,9 +177,7 @@ def main():
     listen_address, listen_port = arg_parser()
 
     # Инициализация базы данных
-    path_dir = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(path_dir, 'server_base.db3')
-    database = ServerStorage(path)
+    database = ServerStorage()
 
     # Создание экземпляра класса - сервера и его запуск:
     server = Server(listen_address, listen_port, database)

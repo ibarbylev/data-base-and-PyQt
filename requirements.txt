@@ -1,2 +1,4 @@
 greenlet==1.1.2
 SQLAlchemy==1.4.26
+
+PyQt5~=5.15.6

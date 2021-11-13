@@ -1,7 +1,7 @@
 # ========================= Аспекты безопасности ==============================
 
 # ------------- Простая аутентификация клиента. Реализация сервера -------------
-
+import hashlib
 import os
 import hmac
 from socket import socket, AF_INET, SOCK_STREAM
@@ -59,7 +59,7 @@ def server_authenticate(connection, secret_key):
 
     # 2. Вычисляется HMAC-функция (локальный результат) от послания с использованием секретного ключа
     # secret_key - b'our_secret_key'
-    hash = hmac.new(secret_key, message)
+    hash = hmac.new(secret_key, message, hashlib.sha256)
     # hash - <hmac.HMAC object at 0x00000055E6EAF518>
     # type(hash) - <class 'hmac.HMAC'>
     digest = hash.digest()

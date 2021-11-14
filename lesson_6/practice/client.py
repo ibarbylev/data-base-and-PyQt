@@ -40,7 +40,8 @@ def arg_parser():
     # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         logger.critical(
-            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. Допустимы адреса с 1024 до 65535. Клиент завершается.')
+            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. '
+            f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
         exit(1)
 
     return server_address, server_port, client_name, client_passwd
@@ -83,8 +84,8 @@ if __name__ == '__main__':
         with open(key_file, 'rb') as key:
             keys = RSA.import_key(key.read())
 
-    #!!!keys.publickey().export_key()
-    logger.debug("Keys sucsessfully loaded.")
+    # !!!keys.publickey().export_key()
+    logger.debug("Keys successfully loaded.")
     # Создаём объект базы данных
     database = ClientDatabase(client_name)
     # Создаём объект - транспорт и запускаем транспортный поток

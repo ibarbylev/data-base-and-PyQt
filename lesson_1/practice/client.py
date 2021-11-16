@@ -154,17 +154,17 @@ def main():
         client_name = input('Введите имя пользователя: ')
 
     logger.info(
-        f'Запущен клиент с парамертами: адрес сервера: {server_address} , порт: {server_port}, имя пользователя: {client_name}')
+        f'Запущен клиент с парамертами: адрес сервера: {server_address} , порт: {server_port}, '
+        f'имя пользователя: {client_name}')
 
     # Инициализация сокета и сообщение серверу о нашем появлении
     try:
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        transport.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         transport.connect((server_address, server_port))
         send_message(transport, create_presence(client_name))
         answer = process_response_ans(get_message(transport))
         logger.info(f'Установлено соединение с сервером. Ответ сервера: {answer}')
-        print(f'Установлено соединение с сервером.')
+        print(f'Установлено соединение с сервером для пользователя: {client_name}')
     except json.JSONDecodeError:
         logger.error('Не удалось декодировать полученную Json строку.')
         exit(1)
@@ -176,7 +176,8 @@ def main():
         exit(1)
     except (ConnectionRefusedError, ConnectionError):
         logger.critical(
-            f'Не удалось подключиться к серверу {server_address}:{server_port}, конечный компьютер отверг запрос на подключение.')
+            f'Не удалось подключиться к серверу {server_address}:{server_port}, '
+            f'конечный компьютер отверг запрос на подключение.')
         exit(1)
     else:
         # Если соединение с сервером установлено корректно, запускаем клиенский процесс приёма сообщний

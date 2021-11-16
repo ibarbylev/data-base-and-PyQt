@@ -90,9 +90,12 @@ def main():
     listen_address, listen_port = arg_parser()
 
     logger.info(
-        f'Запущен сервер, порт для подключений: {listen_port} , адрес с которого принимаются подключения: {listen_address}. Если адрес не указан, принимаются соединения с любых адресов.')
+        f'Запущен сервер, порт для подключений: {listen_port} , '
+        f'адрес с которого принимаются подключения: {listen_address}. '
+        f'Если адрес не указан, принимаются соединения с любых адресов.')
     # Готовим сокет
     transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    transport.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     transport.bind((listen_address, listen_port))
     transport.settimeout(0.5)
 
@@ -132,7 +135,8 @@ def main():
                 try:
                     process_client_message(get_message(client_with_message), messages, client_with_message, clients,
                                            names)
-                except:
+                except Exception as e:
+                    print(e)
                     logger.info(f'Клиент {client_with_message.getpeername()} отключился от сервера.')
                     clients.remove(client_with_message)
 
@@ -140,7 +144,8 @@ def main():
         for i in messages:
             try:
                 process_message(i, names, send_data_lst)
-            except:
+            except Exception as e:
+                print(e)
                 logger.info(f'Связь с клиентом с именем {i[DESTINATION]} была потеряна')
                 clients.remove(names[i[DESTINATION]])
                 del names[i[DESTINATION]]

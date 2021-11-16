@@ -1,5 +1,5 @@
 """Дочерний процесс запуска стороннего приложения"""
-
+import platform
 from subprocess import call
 
 # call - выполняет указанную команду.
@@ -10,8 +10,9 @@ from subprocess import call
 # (а Popen не ждет)
 # проверяем код возврата
 
-RETURNCODE = call("notepad.exe")
-if RETURNCODE == 0:
+command = 'notepad.exe' if platform.system() == 'Windows' else 'libreoffice'
+return_code = call(command)
+if return_code == 0:
     print("Все хорошо!")
 else:
     print("Ошибка!")

@@ -12,14 +12,14 @@ from subprocess import Popen
 # VARIANT 1
 # сравните = не ждать закрытия приложения
 COMMAND = 'regedit.exe' if platform.system() == 'Windows' else 'libreoffice'
-PROCESS = Popen(COMMAND)
+process = Popen(COMMAND)
 
-print(PROCESS)
+print(process)
 
 # VARIANT 2
 # и это = ждать закрытия приллжения
-PROCESS = Popen(COMMAND)
-CODE = PROCESS.wait()
+process = Popen(COMMAND)
+code = process.wait()
 
-print(PROCESS)
-print(CODE)
+print(process)
+print(code)

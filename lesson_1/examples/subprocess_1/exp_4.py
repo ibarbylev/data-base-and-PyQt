@@ -1,15 +1,18 @@
 """Связь с дочерним процессом"""
-
-from subprocess import Popen, PIPE
+import platform
+from subprocess import Popen, PIPE, STDOUT
 import chardet
 
-ARGS = ["ping", "www.google.ru"]
-PROCESS = Popen(ARGS, stdout=PIPE)
+PARAM = "-n" if platform.system() == 'Windows' else "-c"
+ARGS = ["ping", PARAM, "2", "google.com"]
+process = Popen(ARGS, stdout=PIPE, stderr=STDOUT)
 
 # communicate - связь с созданным процессом
 # None – это результат stderr, а это значит, что ошибок не найдено
-DATA = PROCESS.communicate()
-print(DATA)  # -> вернет кортеж (stdout, stderr)
-RESULT = chardet.detect(DATA[0])
-OUT = DATA[0].decode(RESULT['encoding'])
-print(OUT)
+stdout_data, stderr_data = process.communicate()
+print('stdout_data: ', stdout_data)
+print('stderr_data: ', stderr_data)
+
+result = chardet.detect(stdout_data)
+out = stdout_data.decode(result['encoding'])
+print(out)

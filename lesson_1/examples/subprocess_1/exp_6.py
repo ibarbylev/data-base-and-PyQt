@@ -1,6 +1,10 @@
 """Пинг ресурса"""
 
+import locale
+import platform
 from subprocess import Popen, PIPE
+
+ENCODING = locale.getpreferredencoding()
 
 
 def ping_ip(ip_address):
@@ -13,16 +17,17 @@ def ping_ip(ip_address):
         * False
         * error output (stderr)
     """
-    args = ['ping', ip_address]
+    param = '-n' if platform.system() == 'Windows' else '-c'
+    args = ['ping', param, '2', ip_address]
     reply = Popen(args, stdout=PIPE, stderr=PIPE)
 
     print(reply)
-    CODE = reply.wait()
-    if CODE == 0:
-        return True, reply.stdout
+    code = reply.wait()
+    if code == 0:
+        return True, reply.stdout.read().decode(ENCODING)
     else:
-        return False, reply.stderr
+        return False, reply.stderr.read().decode(ENCODING)
 
 
-print(ping_ip('192.168.1.2'))
+print(ping_ip('yandex.ru'))
 print(ping_ip('a'))

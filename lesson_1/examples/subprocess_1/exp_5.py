@@ -1,16 +1,18 @@
 """Запуск скрипта-дочернего процесса"""
 
+import platform
 from subprocess import Popen, PIPE
 
-PROC = Popen(
-    "python test_ex.py",
+PROGRAM = 'regedit.exe' if platform.system() == 'Windows' else 'libreoffice'
+process = Popen(
+    PROGRAM,
     shell=True,
     stdout=PIPE, stderr=PIPE
 )
 
 # получить tuple('stdout', 'stderr')
-RES = PROC.communicate()
-print(PROC.returncode)
-if PROC.returncode == 0:
-    print(RES)
-print('result:', RES[0])
+result = process.communicate()
+print(process.returncode)
+if process.returncode == 0:
+    print(result)
+print('result:', result[0])

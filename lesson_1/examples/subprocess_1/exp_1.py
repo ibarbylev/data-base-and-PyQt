@@ -13,11 +13,11 @@ import chardet
 
 # shell=True - выполнение кода через оболочку
 
-command = 'dir' if platform.system() == 'Windows' else 'ls'
+COMMAND = 'dir' if platform.system() == 'Windows' else 'ls'
 
 # мы не знаем в чем нужно декодировать
 # но нам помогает модуль chardet
-PROC = Popen(command, shell=True, stdout=PIPE)
+PROC = Popen(COMMAND, shell=True, stdout=PIPE)
 DATA = PROC.stdout.read()
 RESULT = chardet.detect(DATA)
 print(RESULT)
@@ -25,6 +25,6 @@ OUT = DATA.decode(RESULT['encoding'])
 print(OUT)
 
 # Popen поддерживает менеджеры контекста
-with Popen(command, shell=True, stdout=PIPE) as p:
+with Popen(COMMAND, shell=True, stdout=PIPE) as p:
     out = p.stdout.read().decode(RESULT['encoding'])
     print(out)

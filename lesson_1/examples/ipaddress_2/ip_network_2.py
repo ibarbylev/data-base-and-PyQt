@@ -8,6 +8,7 @@ from ipaddress import ip_network
 
 # атрибут получения широковещательного адреса для сети - broadcast_address
 # пакет посланный по этому адресу получат все машины в этой сети
+# https://ru.wikipedia.org/wiki/Бесклассовая_адресация
 SUBNET = ip_network('80.0.1.0/28')
 BA = SUBNET.broadcast_address
 print(BA)

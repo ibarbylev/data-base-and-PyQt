@@ -8,7 +8,9 @@ Python для сетевых инженеров
 связанных с IP-адресами. Например, проверка находятся ли два хоста в одной подсети,
 возможность перебрать хосты в подсети, преобразование строки в IP-адрес.
 """
-
+import locale
+import socket
+import subprocess
 from ipaddress import ip_address
 
 # Функция ipaddress.ip_address()
@@ -26,7 +28,18 @@ from ipaddress import ip_address
 а через дробь обозначается длина маски подсети. Пример: 192.168.0.0/16
 """
 
-IPV4 = ip_address('192.168.0.1')
+# Finding Your Public IP Address
+proc = subprocess.Popen('curl -sS ifconfig.me/ip'.split(), stdout=subprocess.PIPE)
+my_public_ip = proc.stdout.read().decode(locale.getpreferredencoding())
+print(my_public_ip)
+
+# Finding Your Local IP Address
+my_local_ip = socket.gethostbyname(socket.gethostname())
+print(my_local_ip)
+
+ip_for_testing = '198.186.1.0'
+IPV4 = ip_address(ip_for_testing)
+print(type(IPV4))
 print(IPV4)
 
 # набор специальных методов и атрибутов
@@ -34,10 +47,13 @@ print(IPV4)
 # также называемый «localhost». Адрес используется для установления
 # соединения с тем же компьютером, который используется конечным пользователем.
 # is_loopback - возвращает True, если находит loopback-адрес
+# https://ru.wikipedia.org/wiki/Loopback
 print(IPV4.is_loopback)
 
 # is_multicast - возвращает True, если находит multicast-адрес
-# групповой адрес адрес, определяющий группу станций локальной сети, одновременно получающих сообщение
+# групповой адрес адрес, определяющий группу станций локальной сети,
+# одновременно получающих сообщение
+# https://ru.wikipedia.org/wiki/Мультивещание
 print(IPV4.is_multicast)
 
 # is_reserved - возвращает True, если находит IETF-зарезервированный адрес
@@ -53,18 +69,28 @@ print(IPV4.is_reserved)
 # распределение таких адресов никем не контролируется. В связи с дефицитом свободных IP-адресов,
 # провайдеры всё чаще раздают своим абонентам именно внутрисетевые адреса,
 # а не внешние, при этом один внешний айпи выдаётся нескольким клиентам.
-print(IPV4.is_private)
+# https://ru.wikipedia.org/wiki/%D0%A7%D0%B0%D1%81%D1%82%D0%BD%D1%8B%D0%B9_IP-%D0%B0%D0%B4%D1%80%D0%B5%D1%81
+print('is_private: ', IPV4.is_private)
 
 # операции с объектами-адресами
 IP1 = ip_address('192.168.1.0')
 IP2 = ip_address('192.168.1.255')
 # сравнение ip-адресов
 if IP2 > IP1:
-    print(True)
+    print('IP2 > IP1: ', True)
 # конвертация ip-адреса в строку
 print(str(IP1))
 # конвертация ip-адреса в целое число
 print(int(IP1))
+# альтернативный способ вычисления ip-адреса как целого числа
+address_bytes = [int(x) for x in '192.168.1.0'.split('.')]
+ip_int = (
+    address_bytes[0] * (256 ** 3) +
+    address_bytes[1] * (256 ** 2) +
+    address_bytes[2] * (256 ** 1) +
+    address_bytes[3] * (256 ** 0)
+)
+print(ip_int)
 # изменение идентификатора узла в сети
 print(IP1 + 5)
 print(IP1 - 5)

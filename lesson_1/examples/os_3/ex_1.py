@@ -1,6 +1,7 @@
 """Функции модуля os"""
 
 import os
+import platform
 
 # информация о платформе
 # ‘posix’, ‘nt’, ‘os2’, ‘ce’, ‘java’, ‘riscos’
@@ -10,24 +11,47 @@ print(os.name)
 # дает вам полезную информацию, такую как количество процессоров
 # , тип ОЗУ, имя компьютера, и так далее
 print(os.environ)
+print(list(os.environ.keys()))
 
 # узнать, сколько процессорных ядер в системе
-print(os.environ["NUMBER_OF_PROCESSORS"])
+if platform.system() == 'Windows':
+    print(os.environ["NUMBER_OF_PROCESSORS"])
+else:
+    print('cpu_count: ', os.cpu_count())
 
 # какой путь вы в данный момент используете
-print(os.getcwd())
+print('current directory: ', os.getcwd())
 
 # изменяем текущий путь
-os.chdir("new_dir")
-print(os.getcwd())
+# NEW_PATH = os.path.join(os.getcwd(), 'lesson_1/examples/os_3/new_dir')
+NEW_PATH = os.path.join(os.getcwd(), 'new_dir')
+print('new_dir: ', NEW_PATH)
+os.chdir(NEW_PATH)
+print('current directory: ', os.getcwd())
 
 # создаем папку в новом текущем каталоге new_dir
 # это папка my_dir
-PATH = "my_dir"
-os.mkdir(PATH)
+# но сначала проверяем, вдруг эта папка уже существует
+if not os.path.exists(os.path.join(NEW_PATH, 'my_dir')):
+    PATH = "my_dir"
+    os.mkdir(PATH)
+    print('The dir "my_dir" was created!')
 
 # удаление папки
-os.rmdir("my_dir")
+# но сначала проверяем, существует ли эта папка
+if os.path.exists(os.path.join(NEW_PATH, 'my_dir')):
+    os.rmdir("my_dir")
+    print('The dir "my_dir" was removed!')
+
+
+# добавление файла
+# но сначала проверяем, существует ли этот файл
+if not os.path.exists(os.path.join(NEW_PATH, 'test.txt')):
+    os.mknod("test.txt")
+    print('The file "test.txt" was created!')
 
 # удаление файла
-os.remove("test.txt")
+# если файл существует, мы его удаляем
+if os.path.exists(os.path.join(NEW_PATH, 'test.txt')):
+    os.remove("test.txt")
+    print('The file "test.txt" was removed!')

@@ -42,7 +42,7 @@ print(os.path.join(
 print(os.path.split(
     "/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_1/examples/os_3/ex_3.py"))
 
-# Метод listdir выдаёт список файлов и папок текущей директории.
+# Метод listdir выдаёт список файлов и папок ('.' - означает текущую директорию)
 DIR_STRUCT = os.listdir('.')
 print('current dir: ', os.getcwd())
 print(DIR_STRUCT)

@@ -10,9 +10,9 @@ import platform
 
 if platform.system() == 'Windows':
     os.startfile("Сложность алгоритмов.png")
-else:
-    file_path = os.path.join(os.getcwd(), 'Сложность алгоритмов.png')
-    os.system(f"eog '{file_path}'")
+# else:
+#     file_path = os.path.join(os.getcwd(), 'Сложность алгоритмов.png')
+#     os.system(f"eog '{file_path}'")
 
 PATH = "dirs"
 
@@ -27,6 +27,12 @@ PATH = "dirs"
 # dirs - список папок в каждом пути root
 # files - список файлов в каждом пути root
 for root, dirs, files in os.walk(PATH):
+    print('-' * 50)
     print(root)
     print(dirs)
     print(files)
+
+print()
+print('=' * 50)
+for root, dirs, files in os.walk(PATH):
+    print(root, dirs, files)

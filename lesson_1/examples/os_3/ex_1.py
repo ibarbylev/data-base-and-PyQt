@@ -33,8 +33,7 @@ print('current directory: ', os.getcwd())
 # это папка my_dir
 # но сначала проверяем, вдруг эта папка уже существует
 if not os.path.exists(os.path.join(NEW_PATH, 'my_dir')):
-    PATH = "my_dir"
-    os.mkdir(PATH)
+    os.mkdir("my_dir")
     print('The dir "my_dir" was created!')
 
 # удаление папки
@@ -46,6 +45,7 @@ if os.path.exists(os.path.join(NEW_PATH, 'my_dir')):
 
 # добавление файла
 # но сначала проверяем, существует ли этот файл
+# ВАЖНО! для этой операции необходимы права root
 if not os.path.exists(os.path.join(NEW_PATH, 'test.txt')):
     os.mknod("test.txt")
     print('The file "test.txt" was created!')

@@ -6,8 +6,13 @@ import os
 
 # Метод os.startfile() позволяет нам «запустить»
 # файл в привязанной к нему программе.
-os.startfile("Сложность алгоритмов.png")
+import platform
 
+if platform.system() == 'Windows':
+    os.startfile("Сложность алгоритмов.png")
+else:
+    file_path = os.path.join(os.getcwd(), 'Сложность алгоритмов.png')
+    os.system(f"eog '{file_path}'")
 
 PATH = "dirs"
 
@@ -18,7 +23,7 @@ PATH = "dirs"
 \dirs\d3\f3.txt
 """
 
-# root - очередно внутренний путь к папке включая текущую
+# root - очередной внутренний путь к папке включая текущую
 # dirs - список папок в каждом пути root
 # files - список файлов в каждом пути root
 for root, dirs, files in os.walk(PATH):

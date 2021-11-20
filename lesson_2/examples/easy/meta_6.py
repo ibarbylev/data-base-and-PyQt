@@ -43,6 +43,8 @@ class MyClass(metaclass=AttrOptim):
 
 # Ура!!!
 MC = MyClass(param_1=100, param_2=200)
+print(MC.__dict__)
+print(MC.param_1)
 print(MC.param_1)
 
 

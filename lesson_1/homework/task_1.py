@@ -19,7 +19,7 @@ result = {'Доступные узлы': "", "Недоступные узлы": 
 DNULL = open(os.devnull, 'w')  # заглшка, чтобы поток не выводился на экран
 
 
-def check_is_ip_address(value):
+def check_is_ipaddress(value):
     """
     Проверка является ли введённое значение IP адресом
     :param value: присланные значения
@@ -43,9 +43,23 @@ def host_ping(hosts_list, get_list=False):
     print("Начинаю проверку доступности узлов...")
     for host in hosts_list:  # проверяем, является ли значение ip-адресом
         try:
-            ipv4 = check_is_ip_address(host)
+            ipv4 = check_is_ipaddress(host)
         except Exception as e:
             print({host} - {e}, 'воспринимаю как доменное имя')
             ipv4 = host
+        response = subprocess.Popen(["ping", str(ipv4)], stdout=DNULL)
+        if response == 0:
+            result["Доступные узлы"] += f"{str(ipv4)}\n"
+            res_string = f"{str(ipv4)} - Узел доступен"
+        else:
+            result["Недоступные узлы"] += f"{ipv4}\n"
+            res_string = f"{str(ipv4)} - Узел недоступен"
+        if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
+            print(res_string)
+    if get_list:        # если требуется вернуть словарь (для задачи №3), то возвращаем
+        return result
 
 
+if __name__ == '__main__':
+    host_ping(hosts_list)
+    print(result)

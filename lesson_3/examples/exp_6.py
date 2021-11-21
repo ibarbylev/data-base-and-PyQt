@@ -69,6 +69,7 @@ SESSION = sessionmaker(bind=ENGINE)
 SESS_OBJ = SESSION()
 
 # вот теперь все хорошо
-SESS_OBJ.add(USER)
-SESS_OBJ.commit()
-print(USER.id)  # -> 2
+if __name__ == '__main__':
+    SESS_OBJ.add(USER)
+    SESS_OBJ.commit()
+    print(USER.id)  # -> 2

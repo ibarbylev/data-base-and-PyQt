@@ -7,9 +7,9 @@ import sqlite3
 
 db_file = 'strong.sqlite3'
 
-auth_data = {'admin':'21232f297a57a5a743894a0e4a801fc3',
+auth_data = {'admin': '21232f297a57a5a743894a0e4a801fc3',
              'user': 'ee11cbb19052e40b07aac0ca060c23ee',
-             'guest':'084e0343a0486ff05530df6c705c8bb4'}
+             'guest': '084e0343a0486ff05530df6c705c8bb4'}
 
 sql_create_user = """CREATE TABLE IF NOT EXISTS USER
                (id INTEGER PRIMARY KEY,

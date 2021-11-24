@@ -19,18 +19,6 @@ pickle.loads(b"cos\nsystem\n(S'echo I am Evil Pickle-module!'\ntR.")
 
 # ------------------------------------------------------------------------------
 # А что, если передать pickle-объект по сети? Хорошая идея!
-
-
-# subprocess for Linux
-def get_subprocess(file_with_args):
-    PYTHON_PATH = sys.executable
-    BASE_PATH = os.path.dirname(os.path.abspath(__file__))
-    file_full_path = f"{PYTHON_PATH} {BASE_PATH}/{file_with_args}"
-    # args = ["gnome-terminal", "--disable-factory", "--", "bash", "-c", file_full_path]
-    args = ["gnome-terminal", "--", "bash", "-c", file_full_path]
-    return subprocess.Popen(args, preexec_fn=os.setpgrp)
-
-
 # Другой вариант - создать свой класс,
 # метод __reduce__ которого должен будет осуществлять десериализацию
 class EvilPayload:

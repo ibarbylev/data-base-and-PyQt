@@ -1,5 +1,5 @@
 Bandit
 
 pip install bandit
-bandit -r путь/к/файлу
+bandit -r path/to/file
 bandit -r ex_5

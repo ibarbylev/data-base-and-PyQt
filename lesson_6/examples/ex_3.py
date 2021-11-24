@@ -75,6 +75,8 @@ def _decrypt(ciphertext, key):
     # 16: - само сообщение
     msg = cipher.decrypt(ciphertext[16:])
     # msg - b'The rain in Spain               '
+    msg = msg.decode().strip().encode()
+    # msg - b'The rain in Spain'
     return msg
 
 

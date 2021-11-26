@@ -16,8 +16,17 @@ like_this
 
 # Имена функций и методов
 like_this
-likeThis
 
 # Константы
 MAX_OVERFLOW
 TOTAL
+
+# Антипример - транслитерация
+uprazhnenie
+zadacha
+
+# Антипример - использование имён системных функций для собственных переменных
+list
+sum
+str
+

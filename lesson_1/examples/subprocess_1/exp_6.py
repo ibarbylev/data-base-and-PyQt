@@ -17,8 +17,8 @@ def ping_ip(ip_address):
         * False
         * error output (stderr)
     """
-    param = '-n' if platform.system() == 'Windows' else '-c'
-    args = ['ping', param, '2', ip_address]
+    param = '-n' if platform.system().lower() == 'windows' else '-c'
+    args = ['ping', param, '5', ip_address]
     reply = Popen(args, stdout=PIPE, stderr=PIPE)
 
     print(reply)

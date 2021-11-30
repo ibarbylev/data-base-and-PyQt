@@ -1,14 +1,13 @@
-"""Запуск скрипта-дочернего процесса"""
+"""
+Запуск скрипта-дочернего процесса
+1. Создаём процесс в модуле test_ex.py
+2. Запускаем этот процесс (т.е. запускаем другой модуль!) как подпроцесс текущего модуля
+"""
 
 import platform
 from subprocess import Popen, PIPE
 
-PROGRAM = 'regedit.exe' if platform.system().lower() == 'windows' else 'libreoffice'
-process = Popen(
-    PROGRAM,
-    shell=True,
-    stdout=PIPE, stderr=PIPE
-)
+process = Popen('python test_ex.py', shell=True, stdout=PIPE, stderr=PIPE)
 
 # получить tuple('stdout', 'stderr')
 result = process.communicate()

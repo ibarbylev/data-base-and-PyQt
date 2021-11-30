@@ -13,7 +13,7 @@ import chardet
 
 # shell=True - выполнение кода через оболочку
 
-COMMAND = 'dir' if platform.system() == 'Windows' else 'ls'
+COMMAND = 'dir' if platform.system().lower() == 'windows' else 'ls'
 
 # мы не знаем в чем нужно декодировать
 # но нам помогает модуль chardet

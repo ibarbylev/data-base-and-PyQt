@@ -3,7 +3,7 @@ import platform
 from subprocess import Popen, PIPE, STDOUT
 import chardet
 
-PARAM = "-n" if platform.system() == 'Windows' else "-c"
+PARAM = "-n" if platform.system().lower() == 'windows' else "-c"
 ARGS = ["ping", PARAM, "2", "google.com"]
 process = Popen(ARGS, stdout=PIPE, stderr=STDOUT)
 

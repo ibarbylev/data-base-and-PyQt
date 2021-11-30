@@ -3,5 +3,5 @@
 import platform
 from subprocess import Popen
 
-PROGRAM = 'regedit.exe' if platform.system() == 'Windows' else 'libreoffice'
+PROGRAM = 'regedit.exe' if platform.system().lower() == 'windows' else 'libreoffice'
 PROCESS = Popen(PROGRAM)

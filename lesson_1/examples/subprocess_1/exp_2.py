@@ -10,7 +10,7 @@ from subprocess import call
 # (а Popen не ждет)
 # проверяем код возврата
 
-COMMAND = 'notepad.exe' if platform.system() == 'Windows' else 'libreoffice'
+COMMAND = 'notepad.exe' if platform.system().lower() == 'windows' else 'libreoffice'
 return_code = call(COMMAND)
 if return_code == 0:
     print("Все хорошо!")

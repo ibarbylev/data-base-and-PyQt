@@ -3,7 +3,7 @@
 import platform
 from subprocess import Popen, PIPE
 
-PROGRAM = 'regedit.exe' if platform.system() == 'Windows' else 'libreoffice'
+PROGRAM = 'regedit.exe' if platform.system().lower() == 'windows' else 'libreoffice'
 process = Popen(
     PROGRAM,
     shell=True,

@@ -1,4 +1,7 @@
-"""Получение кода завершения подпроцесса"""
+"""
+Получение кода завершения подпроцесса
+Вариант 1: процесс запускается и программа выполняется дальше
+"""
 
 import platform
 from subprocess import Popen
@@ -9,17 +12,9 @@ from subprocess import Popen
 что он мгновенно вернет объект subprocess.Popen, а вызванное приложение будет выполняться. 
 '''
 
-# VARIANT 1
 # сравните = не ждать закрытия приложения
-COMMAND = 'regedit.exe' if platform.system() == 'Windows' else 'libreoffice'
+COMMAND = 'regedit.exe' if platform.system().lower() == 'windows' else 'libreoffice'
 process = Popen(COMMAND)
 
 print(process)
 
-# VARIANT 2
-# и это = ждать закрытия приллжения
-process = Popen(COMMAND)
-code = process.wait()
-
-print(process)
-print(code)

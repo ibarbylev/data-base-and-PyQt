@@ -3,18 +3,21 @@
 import os
 import platform
 
+from pprint import pprint
+
 # информация о платформе
 # ‘posix’, ‘nt’, ‘os2’, ‘ce’, ‘java’, ‘riscos’
 # ответ: nt для Windows
+
 print(os.name)
 
 # дает вам полезную информацию, такую как количество процессоров
 # , тип ОЗУ, имя компьютера, и так далее
 print(os.environ)
-print(list(os.environ.keys()))
+pprint(list(os.environ.keys()))
 
 # узнать, сколько процессорных ядер в системе
-if platform.system() == 'Windows':
+if platform.system().lower() == 'windows':
     print(os.environ["NUMBER_OF_PROCESSORS"])
 else:
     print('cpu_count: ', os.cpu_count())

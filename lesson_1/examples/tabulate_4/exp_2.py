@@ -14,20 +14,28 @@ DICTS_LIST = [{'programming language': 'Python',
                'year': '1972'}]
 
 # grid-формат
+print('============ grid-формат ============')
+print()
 print(tabulate(DICTS_LIST, headers='keys', tablefmt="grid"))
 
 print()
 
 # markdown-формат
+print('============ markdown-формат ============')
+print()
 print(tabulate(DICTS_LIST, headers='keys', tablefmt="pipe"))
 
 print()
 
 # html-формат
+print('============ html-формат ============')
+print()
 print(tabulate(DICTS_LIST, headers='keys', tablefmt="html"))
 
 print()
 
 # Выравнивание столбцов
 # Выравнивание по центру
+print('=== markdown-формат с выравниванием по центру ===')
+print()
 print(tabulate(DICTS_LIST, headers='keys', tablefmt="pipe", stralign="center"))

@@ -8,11 +8,11 @@ import os
 # файл в привязанной к нему программе.
 import platform
 
-if platform.system() == 'Windows':
+if platform.system().lower() == 'windows':
     os.startfile("Сложность алгоритмов.png")
-# else:
-#     file_path = os.path.join(os.getcwd(), 'Сложность алгоритмов.png')
-#     os.system(f"eog '{file_path}'")
+else:
+    file_path = os.path.join(os.getcwd(), 'Сложность алгоритмов.png')
+    os.system(f"eog '{file_path}'")
 
 PATH = "dirs"
 

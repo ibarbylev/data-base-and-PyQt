@@ -17,8 +17,10 @@ class MyMetaClass(type):
         print(f'__call__({args}, {kwargs}) -> {obj}')
         return obj
 
+
 class Test(metaclass=MyMetaClass):
     pass
+
 
 T_OBJ = Test()
 

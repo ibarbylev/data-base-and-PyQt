@@ -124,13 +124,14 @@ class Server(threading.Thread, metaclass=ServerMaker):
             logger.error(
                 f'Пользователь {message[DESTINATION]} не зарегистрирован на сервере, отправка сообщения невозможна.')
 
-    # Обработчик сообщений от клиентов, принимает словарь - сообщение от клиента, проверяет корректность, отправляет
-    #     словарь-ответ в случае необходимости.
+    # Обработчик сообщений от клиентов, принимает словарь - сообщение от клиента, проверяет корректность,
+    # и отправляет словарь-ответ в случае необходимости.
     def process_client_message(self, message, client):
         logger.debug(f'Разбор сообщения от клиента : {message}')
-        # Если это сообщение о присутствии, принимаем и отвечаем
+        # Если это сообщение о присутствии, то принимаем и отвечаем
         if ACTION in message and message[ACTION] == PRESENCE and TIME in message and USER in message:
-            # Если такой пользователь ещё не зарегистрирован, регистрируем, иначе отправляем ответ и завершаем соединение.
+            # Если такой пользователь ещё не зарегистрирован, то регистрируем,
+            # иначе отправляем ответ и завершаем соединение.
             if message[USER][ACCOUNT_NAME] not in self.names.keys():
                 self.names[message[USER][ACCOUNT_NAME]] = client
                 client_ip, client_port = client.getpeername()
@@ -173,7 +174,7 @@ def print_help():
 
 
 def main():
-    # Загрузка параметров командной строки, если нет параметров, то задаём значения по умоланию.
+    # Загрузка параметров командной строки, если нет параметров, то задаём значения по умолчанию.
     listen_address, listen_port = arg_parser()
 
     # Инициализация базы данных
@@ -189,7 +190,7 @@ def main():
 
     # Основной цикл сервера:
     while True:
-        command = input('Введите комманду: ')
+        command = input('Введите команду: ')
         if command == 'help':
             print_help()
         elif command == 'exit':
@@ -201,7 +202,8 @@ def main():
             for user in sorted(database.active_users_list()):
                 print(f'Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}')
         elif command == 'loghist':
-            name = input('Введите имя пользователя для просмотра истории. Для вывода всей истории, просто нажмите Enter: ')
+            name = input('Введите имя пользователя для просмотра истории. '
+                         'Для вывода всей истории, просто нажмите Enter: ')
             for user in sorted(database.login_history(name)):
                 print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
         else:

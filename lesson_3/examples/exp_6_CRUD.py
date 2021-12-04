@@ -2,7 +2,7 @@ from sqlalchemy import __version__, create_engine, Table, Column, \
     Integer, String, MetaData, ForeignKey
 from sqlalchemy.orm import mapper, sessionmaker
 
-from exp_6 import User, METADATA, ENGINE, SESS_OBJ
+from exp_6 import User, SESS_OBJ
 
 # ******************* C R U D ******************
 # ******************* Create *******************

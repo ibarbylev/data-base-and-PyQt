@@ -5,10 +5,10 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-ENGINE = create_engine('sqlite:///declarative_style_base.db3', echo=False)
+ENGINE = create_engine('sqlite:///declarative_style_base.db3', echo=True)
 
 # Функция declarative_base(), что определяет новый класс,
-# который мы назвали Base, от которого будет унаследованы все наши ORM-классы.
+# который мы назвали Base, от которого будут унаследованы все наши ORM-классы.
 BASE = declarative_base()
 
 

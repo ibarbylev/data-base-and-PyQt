@@ -30,12 +30,12 @@ print(RESULTS)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 
 # А можно ли выполнить несколько запросов за раз???
 
-'''
-CURSOR.execute("""
-    INSERT INTO Artist VALUES (Null, 'A Aagrh!');
-    INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
-""")
-'''
+
+# CURSOR.execute("""
+#     INSERT INTO Artist VALUES (Null, 'A Aagrh!');
+#     INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
+# """)
+
 
 # Будет ошибка
 # sqlite3.Warning: You can only execute one statement at a time.
@@ -43,9 +43,9 @@ CURSOR.execute("""
 # Что же делать?
 # Вариант есть!
 
-'''
+
 CURSOR.executescript("""
     INSERT INTO Artist VALUES (Null, 'A Aagrh!');
     INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
 """)
-'''
+

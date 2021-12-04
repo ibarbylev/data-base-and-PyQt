@@ -36,9 +36,9 @@ print(CURSOR.fetchone())
 
 # почему такой результат ?
 """
-('A Aagrh!',)
-('A Aagrh!',)
-('A Aagrh!',)
+('A Cor Do Som',)
+('AC/DC',)
+('Aaron Copland & London Symphony Orchestra',)
 None
 """
 

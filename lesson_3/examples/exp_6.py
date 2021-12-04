@@ -19,7 +19,7 @@ ENGINE = create_engine('sqlite:///traditional_style_base.db3', echo=False)
 # Создание подключения к локальной базе данных PostgreSQL
 # ENGINE_1 = create_engine('postgresql+psycopg2://username:password@localhost:5432/mydb')
 
-# Создание подключения к удаленной базе данных MySQL
+# Создание подключения к удалённой базе данных MySQL
 # ENGINE_2 = create_engine('mysql+pymysql://cookiemonster:chocolatechip@mysql01.monster.internal/cookies',
 # pool_recycle=3600)
 
@@ -38,7 +38,7 @@ METADATA.create_all(ENGINE)
 
 
 # ----------------------Определение класса Python для отображения в таблицу--------------------- #
-# т.е. создаем шаблон записи таблицы БД
+# т.е. создаём шаблон записи таблицы БД
 
 class User:
     def __init__(self, name, fullname, password):

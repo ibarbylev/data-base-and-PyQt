@@ -17,12 +17,18 @@ CURSOR = CONN.cursor()
 
 # ---------------------------Курсор как итератор-------------------------- #
 # Использование курсора как итератора
+FETCH = CURSOR.execute('SELECT Name FROM Artist ORDER BY Name LIMIT 3')
+print(FETCH)
+print(list(FETCH))
+print('=' * 50)
+
+# Извлечеие элементов из CURSOR с помощью цикла for
 for row in CURSOR.execute('SELECT Name FROM Artist ORDER BY Name LIMIT 3'):
     print(row)
 
 # Полученный результат:
 '''
-('A Aagrh!',)
-('A Aagrh!',)
-('A Aagrh!',)
+('A Cor Do Som',)
+('AC/DC',)
+('Aaron Copland & London Symphony Orchestra',)
 '''

@@ -22,17 +22,17 @@ CURSOR = CONN.cursor()
 # 1. C подстановкой по порядку на места знаков вопросов:
 CURSOR.execute("SELECT Name FROM Artist ORDER BY Name LIMIT ?", '2')
 RESULTS = CURSOR.fetchall()
-print(RESULTS)  # -> [('A Aagrh!',), ('A Aagrh!',)]
+print(RESULTS)  # -> [('A Cor Do Som',), ('AC/DC',)]
 
 # 2. C использованием именованных замен:
 CURSOR.execute("SELECT Name from Artist ORDER BY Name LIMIT :limit", {"limit": 2})
 RESULTS = CURSOR.fetchall()
-print(RESULTS)  # -> [('A Aagrh!',), ('A Aagrh!',)]
+print(RESULTS)  # -> [('A Cor Do Som',), ('AC/DC',)]
 
 # 3. С использованием подстановки через %:
 CURSOR.execute("SELECT Name FROM Artist ORDER BY Name LIMIT %s" % '2')
 RESULTS = CURSOR.fetchall()
-print(RESULTS)  # -> [('A Aagrh!',), ('A Aagrh!',)]
+print(RESULTS)  # -> [('A Cor Do Som',), ('AC/DC',)]
 
 
 # Вариант 1 - параметризованный запрос защитит нас от SQL-инъекций

@@ -25,3 +25,8 @@ except sqlite3.DatabaseError as err:
     print("Error: ", err)  # -> Error:  UNIQUE constraint failed: Artist.ArtistId
 else:
     CONN.commit()
+
+"""
+ВАЖНО!!!
+Дополнительная информация по типам исключений находится в методичке!
+"""

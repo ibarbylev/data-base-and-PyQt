@@ -38,18 +38,14 @@ print(MC.__class__)
 
 # Получается каждый из этих объектов относится к классу
 # это мы знаем
-# а теперь самое интересное
+
+
 print('=' * 50)
-
 print(AGE.__class__.__class__)
-
 print(NAME.__class__.__class__)
-
 print(my_func.__class__.__class__)
-
 print(MC.__class__.__class__)
 
-# запускаем. вот это да!
 """
 <class 'int'>
 <class 'str'>

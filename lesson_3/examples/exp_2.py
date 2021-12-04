@@ -28,8 +28,10 @@ CURSOR.execute("SELECT Name FROM Artist ORDER BY Name LIMIT 3")
 RESULTS = CURSOR.fetchall()
 print(RESULTS)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 
-# А можно ли выполнить несколько запросов за раз???
 
+# ==============================================================
+
+# А можно ли выполнить несколько запросов за раз???
 
 # CURSOR.execute("""
 #     INSERT INTO Artist VALUES (Null, 'A Aagrh!');
@@ -40,12 +42,15 @@ print(RESULTS)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 # Будет ошибка
 # sqlite3.Warning: You can only execute one statement at a time.
 
+
+# ==============================================================
+
 # Что же делать?
 # Вариант есть!
 
 
-CURSOR.executescript("""
-    INSERT INTO Artist VALUES (Null, 'A Aagrh!');
-    INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
-""")
+# CURSOR.executescript("""
+#     INSERT INTO Artist VALUES (Null, 'A Aagrh!');
+#     INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
+# """)
 

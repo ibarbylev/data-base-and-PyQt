@@ -112,7 +112,7 @@ class HistoryWindow(QDialog):
         self.setFixedSize(600, 700)
         self.setAttribute(Qt.WA_DeleteOnClose)
 
-        # Кнапка закрытия окна
+        # Кнопка закрытия окна
         self.close_button = QPushButton('Закрыть', self)
         self.close_button.move(250, 650)
         self.close_button.clicked.connect(self.close)

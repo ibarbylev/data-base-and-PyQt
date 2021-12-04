@@ -255,7 +255,7 @@ def main():
     server.daemon = True
     server.start()
 
-    # Создаём графическое окуружение для сервера:
+    # Создаём графическое окружение для сервера:
     server_app = QApplication(sys.argv)
     main_window = MainWindow()
 
@@ -265,7 +265,7 @@ def main():
     main_window.active_clients_table.resizeColumnsToContents()
     main_window.active_clients_table.resizeRowsToContents()
 
-    # Функция обновляющяя список подключённых, проверяет флаг подключения, и
+    # Функция обновляющая список подключённых, проверяет флаг подключения, и
     # если надо обновляет список
     def list_update():
         global new_connection
@@ -277,7 +277,7 @@ def main():
             with conflag_lock:
                 new_connection = False
 
-    # Функция создающяя окно со статистикой клиентов
+    # Функция создающая окно со статистикой клиентов
     def show_statistics():
         global stat_window
         stat_window = HistoryWindow()

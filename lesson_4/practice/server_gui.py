@@ -19,7 +19,7 @@ def gui_create_model(database):
         ip.setEditable(False)
         port = QStandardItem(str(port))
         port.setEditable(False)
-        # Уберём милисекунды из строки времени, т.к. такая точность не требуется.
+        # Уберём миллисекунды из строки времени, т.к. такая точность не требуется.
         time = QStandardItem(str(time.replace(microsecond=0)))
         time.setEditable(False)
         list.appendRow([user, ip, port, time])

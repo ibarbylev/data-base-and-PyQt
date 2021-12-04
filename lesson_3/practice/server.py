@@ -58,7 +58,9 @@ class Server(threading.Thread, metaclass=ServerMaker):
 
     def init_socket(self):
         logger.info(
-            f'Запущен сервер, порт для подключений: {self.port} , адрес с которого принимаются подключения: {self.addr}. Если адрес не указан, принимаются соединения с любых адресов.')
+            f'Запущен сервер, порт для подключений: {self.port}, '
+            f'адрес с которого принимаются подключения: {self.addr}.'
+            f' Если адрес не указан, принимаются соединения с любых адресов.')
         # Готовим сокет
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.bind((self.addr, self.port))
@@ -167,7 +169,7 @@ class Server(threading.Thread, metaclass=ServerMaker):
 def print_help():
     print('Поддерживаемые комманды:')
     print('users - список известных пользователей')
-    print('connected - список подключенных пользователей')
+    print('connected - список подключённых пользователей')
     print('loghist - история входов пользователя')
     print('exit - завершение работы сервера.')
     print('help - вывод справки по поддерживаемым командам')

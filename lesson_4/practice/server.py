@@ -24,13 +24,13 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 # Инициализация логирования сервера.
 logger = logging.getLogger('server')
 
-# Флаг что был подключён новый пользователь, нужен чтобы не мучать BD
+# Флаг, что был подключён новый пользователь, нужен чтобы не мучать BD
 # постоянными запросами на обновление
 new_connection = False
 conflag_lock = threading.Lock()
 
 
-# Парсер аргументов коммандной строки.
+# Парсер аргументов командной строки.
 @log
 def arg_parser(default_port, default_address):
     parser = argparse.ArgumentParser()
@@ -47,7 +47,7 @@ class Server(threading.Thread, metaclass=ServerMaker):
     port = Port()
 
     def __init__(self, listen_address, listen_port, database):
-        # Параментры подключения
+        # Параметры подключения
         self.addr = listen_address
         self.port = listen_port
 
@@ -105,15 +105,15 @@ class Server(threading.Thread, metaclass=ServerMaker):
             except OSError as err:
                 logger.error(f'Ошибка работы с сокетами: {err}')
 
-            # принимаем сообщения и если ошибка, исключаем клиента.
+            # принимаем сообщения, и если ошибка, исключаем клиента.
             if recv_data_lst:
                 for client_with_message in recv_data_lst:
                     try:
                         self.process_client_message(
                             get_message(client_with_message), client_with_message)
-                    except (OSError):
+                    except OSError:
                         # Ищем клиента в словаре клиентов и удаляем его из него
-                        # и  базы подключённых
+                        # и базы подключённых
                         logger.info(
                             f'Клиент {client_with_message.getpeername()} отключился от сервера.')
                         for name in self.names:
@@ -135,8 +135,8 @@ class Server(threading.Thread, metaclass=ServerMaker):
                     del self.names[message[DESTINATION]]
             self.messages.clear()
 
-    # Функция адресной отправки сообщения определённому клиенту. Принимает словарь сообщение, список зарегистрированых
-    # пользователей и слушающие сокеты. Ничего не возвращает.
+    # Функция адресной отправки сообщения определённому клиенту. Принимает словарь:
+    # сообщение, список зарегистрированых пользователей и слушающие сокеты. Ничего не возвращает.
     def process_message(self, message, listen_socks):
         if message[DESTINATION] in self.names and self.names[message[DESTINATION]
                                                              ] in listen_socks:
@@ -149,8 +149,9 @@ class Server(threading.Thread, metaclass=ServerMaker):
             logger.error(
                 f'Пользователь {message[DESTINATION]} не зарегистрирован на сервере, отправка сообщения невозможна.')
 
-    # Обработчик сообщений от клиентов, принимает словарь - сообщение от клиента, проверяет корректность, отправляет
-    #     словарь-ответ в случае необходимости.
+    # Обработчик сообщений от клиентов, принимает словарь: сообщение от клиента,
+    # проверяет: корректность,
+    # отправляет: словарь-ответ в случае необходимости.
     def process_client_message(self, message, client):
         global new_connection
         logger.debug(f'Разбор сообщения от клиента : {message}')
@@ -175,8 +176,8 @@ class Server(threading.Thread, metaclass=ServerMaker):
                 client.close()
             return
 
-        # Если это сообщение, то добавляем его в очередь сообщений. Ответ не
-        # требуется.
+        # Если это сообщение, то добавляем его в очередь сообщений.
+        # Ответ не требуется.
         elif ACTION in message and message[ACTION] == MESSAGE and DESTINATION in message and TIME in message \
                 and SENDER in message and MESSAGE_TEXT in message and self.names[message[SENDER]] == client:
             self.messages.append(message)
@@ -265,7 +266,7 @@ def main():
     main_window.active_clients_table.resizeColumnsToContents()
     main_window.active_clients_table.resizeRowsToContents()
 
-    # Функция обновляющая список подключённых, проверяет флаг подключения, и
+    # Функция, обновляющая список подключённых, проверяет флаг подключения, и
     # если надо обновляет список
     def list_update():
         global new_connection
@@ -277,7 +278,7 @@ def main():
             with conflag_lock:
                 new_connection = False
 
-    # Функция создающая окно со статистикой клиентов
+    # Функция, создающая окно со статистикой клиентов
     def show_statistics():
         global stat_window
         stat_window = HistoryWindow()

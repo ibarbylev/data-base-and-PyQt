@@ -19,3 +19,7 @@ query = QSqlQuery()
 query.exec("INSERT INTO Artist (Name) VALUES ('The New Artist')")
 con1.close()
 
+"""
+Смотрим результат в БД через DB Browser
+"""
+

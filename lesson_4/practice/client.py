@@ -143,7 +143,8 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
             else:
                 history_list = self.database.get_history()
                 for message in history_list:
-                    print(f'\nСообщение от пользователя: {message[0]}, пользователю {message[1]} от {message[3]}\n{message[2]}')
+                    print(f'\nСообщение от пользователя: {message[0]}, пользователю {message[1]} '
+                          f'от {message[3]}\n{message[2]}')
 
     # Функция изменеия контактов
     def edit_contacts(self):

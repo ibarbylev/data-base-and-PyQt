@@ -16,7 +16,7 @@ print(con1.isOpen())
 print(con1.databaseName())
 query = QSqlQuery()
 # Добавляем нового артиста
-query.exec("INSERT INTO Artist (Name) VALUES ('The New Artist')")
+query.exec("INSERT INTO Artist (Name) VALUES ('---The New Artist---')")
 con1.close()
 
 """

@@ -59,7 +59,7 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
 
         # Сохраняем сообщения для истории
         with database_lock:
-            self.database.save_message(self.account_name , to , message)
+            self.database.save_message(self.account_name, to, message)
 
         # Необходимо дождаться освобождения сокета для отправки сообщения
         with sock_lock:
@@ -91,7 +91,8 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
                 with sock_lock:
                     try:
                         send_message(self.sock, self.create_exit_message())
-                    except:
+                    except Exception as e:
+                        print(e)
                         pass
                     print('Завершение соединения.')
                     logger.info('Завершение работы по команде пользователя.')
@@ -117,7 +118,7 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
             else:
                 print('Команда не распознана, попробойте снова. help - вывести поддерживаемые команды.')
 
-    # Функция выводящяя справку по использованию.
+    # Функция, выводящяя справку по использованию.
     def print_help(self):
         print('Поддерживаемые команды:')
         print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
@@ -167,12 +168,7 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
                         logger.error('Не удалось отправить информацию на сервер.')
 
 
-
-
-
-
-
-# Класс-приёмник сообщений с сервера. Принимает сообщения, выводит в консоль , сохраняет в базу.
+# Класс-приёмник сообщений с сервера. Принимает сообщения, выводит в консоль, сохраняет в базу.
 class ClientReader(threading.Thread, metaclass=ClientMaker):
     def __init__(self, account_name, sock, database):
         self.account_name = account_name
@@ -206,12 +202,13 @@ class ClientReader(threading.Thread, metaclass=ClientMaker):
                 else:
                     if ACTION in message and message[ACTION] == MESSAGE and SENDER in message and DESTINATION in message \
                             and MESSAGE_TEXT in message and message[DESTINATION] == self.account_name:
-                        print(f'\nПолучено сообщение от пользователя {message[SENDER]}:\n{message[MESSAGE_TEXT]}')
+                        print(f'\n Получено сообщение от пользователя {message[SENDER]}:\n{message[MESSAGE_TEXT]}')
                         # Захватываем работу с базой данных и сохраняем в неё сообщение
                         with database_lock:
                             try:
                                 self.database.save_message(message[SENDER], self.account_name, message[MESSAGE_TEXT])
-                            except:
+                            except Exception as e:
+                                print(e)
                                 logger.error('Ошибка взаимодействия с базой данных')
 
                         logger.info(f'Получено сообщение от пользователя {message[SENDER]}:\n{message[MESSAGE_TEXT]}')
@@ -261,7 +258,8 @@ def arg_parser():
     # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         logger.critical(
-            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. Допустимы адреса с 1024 до 65535. Клиент завершается.')
+            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. '
+            f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
         exit(1)
 
     return server_address, server_port, client_name
@@ -269,7 +267,7 @@ def arg_parser():
 
 # Функция запрос контакт листа
 def contacts_list_request(sock, name):
-    logger.debug(f'Запрос контакт листа для пользователся {name}')
+    logger.debug(f'Запрос контакт листа для пользователя {name}')
     req = {
         ACTION: GET_CONTACTS,
         TIME: time.time(),
@@ -361,7 +359,7 @@ def main():
     # Сообщаем о запуске
     print('Консольный месседжер. Клиентский модуль.')
 
-    # Загружаем параметы коммандной строки
+    # Загружаем параметры коммандной строки
     server_address, server_port, client_name = arg_parser()
 
     # Если имя пользователя не было задано, необходимо запросить пользователя.
@@ -371,7 +369,8 @@ def main():
         print(f'Клиентский модуль запущен с именем: {client_name}')
 
     logger.info(
-        f'Запущен клиент с парамертами: адрес сервера: {server_address} , порт: {server_port}, имя пользователя: {client_name}')
+        f'Запущен клиент с параметрами: адрес сервера: {server_address} , порт: {server_port}, '
+        f'имя пользователя: {client_name}')
 
     # Инициализация сокета и сообщение серверу о нашем появлении
     try:
@@ -396,7 +395,8 @@ def main():
         exit(1)
     except (ConnectionRefusedError, ConnectionError):
         logger.critical(
-            f'Не удалось подключиться к серверу {server_address}:{server_port}, конечный компьютер отверг запрос на подключение.')
+            f'Не удалось подключиться к серверу {server_address}:{server_port}, '
+            f'конечный компьютер отверг запрос на подключение.')
         exit(1)
     else:
 

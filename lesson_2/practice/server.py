@@ -28,12 +28,13 @@ def arg_parser():
     listen_port = namespace.p
     return listen_address, listen_port
 
+
 # Основной класс сервера
 class Server(metaclass=ServerMaker):
     port = Port()
 
     def __init__(self, listen_address, listen_port):
-        # Параментры подключения
+        # Параметры подключения
         self.addr = listen_address
         self.port = listen_port
 
@@ -48,7 +49,9 @@ class Server(metaclass=ServerMaker):
 
     def init_socket(self):
         logger.info(
-            f'Запущен сервер, порт для подключений: {self.port} , адрес с которого принимаются подключения: {self.addr}. Если адрес не указан, принимаются соединения с любых адресов.')
+            f'Запущен сервер, порт для подключений: {self.port}, '
+            f'адрес с которого принимаются подключения: {self.addr}. '
+            f'Если адрес не указан, принимаются соединения с любых адресов.')
         # Готовим сокет
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.bind((self.addr, self.port))
@@ -120,7 +123,8 @@ class Server(metaclass=ServerMaker):
         logger.debug(f'Разбор сообщения от клиента : {message}')
         # Если это сообщение о присутствии, принимаем и отвечаем
         if ACTION in message and message[ACTION] == PRESENCE and TIME in message and USER in message:
-            # Если такой пользователь ещё не зарегистрирован, регистрируем, иначе отправляем ответ и завершаем соединение.
+            # Если такой пользователь ещё не зарегистрирован, регистрируем,
+            # иначе отправляем ответ и завершаем соединение.
             if message[USER][ACCOUNT_NAME] not in self.names.keys():
                 self.names[message[USER][ACCOUNT_NAME]] = client
                 send_message(client, RESPONSE_200)

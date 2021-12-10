@@ -8,15 +8,15 @@ from PyQt5 import QtCore
 
 APP = QApplication(sys.argv)
 
-# Устанавливаем соединение с базой данных
-conn = QSqlDatabase.addDatabase('QSQLITE')
-# Определяем путь до базы данных
-conn.setDatabaseName('test.sqlite3')
-# Открываем базу данных
-conn.open()
-
 T_WIND = QTableView()
 T_WIND.setWindowTitle("Виджет-таблица на основе модели-запроса")
+
+# Устанавливаем соединение с базой данных
+CONN = QSqlDatabase.addDatabase('QSQLITE')
+# Определяем путь до базы данных
+CONN.setDatabaseName('test.sqlite3')
+# Открываем базу данных
+CONN.open()
 
 # Создаем модель
 T_QUERY = QSqlQueryModel(parent=T_WIND)

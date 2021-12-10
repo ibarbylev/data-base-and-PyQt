@@ -1,16 +1,18 @@
-# ======================= Потоки и многозадачность ============================
-# ----------------------------- GUI и потоки ----------------------------------
+"""
+ ======================= Потоки и многозадачность ============================
+ ----------------------------- GUI и потоки ----------------------------------
 
-# ------------------- Основное приложение "Поисковика" ------------------------
+ ------------------- Основное приложение "Поисковика" ------------------------
 
-# Библиотека Qt имеет специальный класс QThread, представляющий собой "обёртку"
-# над потоками, специфичными для конкретной платформы.
+ Библиотека Qt имеет специальный класс QThread, представляющий собой "обёртку"
+ над потоками, специфичными для конкретной платформы.
 
-# При использовании QThread возможны два варианта:
-#  - создать класс-наследник QObject со всеми необходимыми функциями, а затем 
-#    выполнить метод moveToThread(), чтобы поместить экземпляра класса в поток
-#     (предпочтительное решение)
-#  - создать класс-наследник QThread и реализовать метод run (не универсальное решение)
+ При использовании QThread возможны два варианта:
+  - создать класс-наследник QObject со всеми необходимыми функциями, а затем
+    выполнить метод moveToThread(), чтобы поместить экземпляр класса в поток
+     (предпочтительное решение)
+  - создать класс-наследник QThread и реализовать метод run (не универсальное решение)
+"""
 
 import sys
 
@@ -22,10 +24,13 @@ from queue import Queue
 from finder import Finder
 from search_form import Ui_FinderForm
 
+
 class FinderMonitor(QObject):
-    ''' Класс-монитор, принимающий результаты поиска из очереди результатов
-        Данный класс будет помещён в отдельный поток QThread
-    '''
+    """
+    Класс-монитор, принимающий результаты поиска из очереди результатов
+    Данный класс будет помещён в отдельный поток QThread
+    """
+
     gotData = pyqtSignal(tuple)
     finished = pyqtSignal(int)
 
@@ -38,9 +43,11 @@ class FinderMonitor(QObject):
         self.finder = Finder(self.text, self.res_queue)
 
     def search_text(self):
-        ''' Запуск поиска.
-            Поиск будет выполняться в отдельном потоке
-        '''
+        """
+        Запуск поиска.
+        Поиск будет выполняться в отдельном потоке
+        """
+
         self.finder.search_in_urls(self.urls)
         # Текущая функция будет: 
         #    - принимать результаты из очереди;
@@ -60,8 +67,10 @@ class FinderMonitor(QObject):
 
 
 class ProgressDialog(QtWidgets.QDialog):
-    ''' Класс GUI-формы "Поисковика"
-    '''
+    """
+    Класс GUI-формы "Поисковика"
+    """
+
     def __init__(self, parent=None):
         QtWidgets.QDialog.__init__(self, parent)
         self.ui = Ui_FinderForm()
@@ -75,8 +84,8 @@ class ProgressDialog(QtWidgets.QDialog):
 
     @pyqtSlot(tuple)
     def update_results(self, data):
-        ''' Отображение результатов поиска
-        '''
+        """ Отображение результатов поиска """
+
         self.ui.plainTextEdit.appendPlainText("++ {} ++".format(data[0]))
         for text in data[1]:
             self.ui.plainTextEdit.appendPlainText(" " + text)
@@ -84,33 +93,34 @@ class ProgressDialog(QtWidgets.QDialog):
 
     @pyqtSlot()
     def update_progress(self):
-        ''' Изменение строки прогресса
-        '''
+        """ Изменение строки прогресса """
+
         self.progress += self.prog_val
         self.ui.progressBar.setValue(self.progress)
 
     def stop_search(self):
-        ''' Остановка поиска
-        '''
+        """ Остановка поиска """
+
         if self.monitor is not None:
             self.is_active = False
             self.monitor.stop()
 
     def finished(self):
-        ''' Действия при завершении поиска
-        '''
+        """ Действия при завершении поиска """
+
         self.is_active = False
         self.ui.pushButton_2.setEnabled(False)
         self.ui.pushButton.setEnabled(True)
             
     def start_search(self):
-        ''' Запуск поиска
-        '''
+        """ Запуск поиска """
+
         if not self.is_active:
             self.ui.plainTextEdit.clear()
             self.is_active = True
             urls = self.ui.plainTextEdit_2.toPlainText().split('\n')
             text = self.ui.lineEdit.text()
+
             # Сброс значения прогресса и вычисление единицы прогресса
             self.progress = 0
             self.prog_val = 100 / len(urls)

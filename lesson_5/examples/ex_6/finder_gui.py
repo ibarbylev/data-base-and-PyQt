@@ -96,7 +96,7 @@ class ProgressDialog(QtWidgets.QDialog):
         """ Изменение строки прогресса """
 
         self.progress += self.prog_val
-        self.ui.progressBar.setValue(self.progress)
+        self.ui.progressBar.setValue(int(self.progress))
 
     def stop_search(self):
         """ Остановка поиска """

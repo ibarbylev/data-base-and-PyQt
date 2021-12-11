@@ -1,10 +1,10 @@
 import socket
 import logging
+import sys
+sys.path.append('../')
 import logs.config_client_log
 import logs.config_server_log
-import sys
 
-sys.path.append('../')
 
 # метод определения модуля, источника запуска.
 if sys.argv[0].find('client') == -1:
@@ -16,12 +16,12 @@ else:
 
 
 def log(func_to_log):
-    '''
+    """
     Декоратор, выполняющий логирование вызовов функций.
     Сохраняет события типа debug, содержащие
     информацию о имени вызываемой функиции, параметры с которыми
     вызывается функция, и модуль, вызывающий функцию.
-    '''
+    """
 
     def log_saver(*args, **kwargs):
         logger.debug(
@@ -34,14 +34,14 @@ def log(func_to_log):
 
 
 def login_required(func):
-    '''
+    """
     Декоратор, проверяющий, что клиент авторизован на сервере.
     Проверяет, что передаваемый объект сокета находится в
     списке авторизованных клиентов.
     За исключением передачи словаря-запроса
     на авторизацию. Если клиент не авторизован,
     генерирует исключение TypeError
-    '''
+    """
 
     def checker(*args, **kwargs):
         # проверяем, что первый аргумент - экземпляр MessageProcessor

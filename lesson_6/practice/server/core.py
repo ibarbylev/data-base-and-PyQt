@@ -6,6 +6,8 @@ import json
 import hmac
 import binascii
 import os
+import sys
+sys.path.append('../')
 from common.metaclasses import ServerMaker
 from common.descryptors import Port
 from common.variables import *
@@ -25,7 +27,7 @@ class MessageProcessor(threading.Thread):
     port = Port()
 
     def __init__(self, listen_address, listen_port, database):
-        # Параментры подключения
+        # Параметры подключения
         self.addr = listen_address
         self.port = listen_port
 

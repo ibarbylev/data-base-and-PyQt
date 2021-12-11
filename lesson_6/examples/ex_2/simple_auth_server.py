@@ -6,6 +6,7 @@ import os
 import hmac
 from socket import socket, AF_INET, SOCK_STREAM
 
+SECRET_KEY = b'our_secret_key'
 
 # HMAC - Keyed-Hashing for Message Authentication.
 # Модуль hmac служит для вычисления хэш-функции с ключом от сообщения. 
@@ -84,8 +85,6 @@ def server_authenticate(connection, secret_key):
 
 # ---------------------------- Эхо-сервер ----------------------------- #
 
-secret_key = b'our_secret_key'
-
 
 def echo_handler(client_sock):
     """
@@ -93,7 +92,7 @@ def echo_handler(client_sock):
     Проводит аутентификацию клиента и отсылает его же запрос обратно (эхо).
     """
 
-    if not server_authenticate(client_sock, secret_key):
+    if not server_authenticate(client_sock, SECRET_KEY):
         client_sock.close()
         return
     while True:

@@ -6,6 +6,8 @@ import os
 import hmac
 from socket import socket, AF_INET, SOCK_STREAM
 
+SECRET_KEY = b'our_secret_key'
+
 
 def client_authenticate(connection, secret_key):
     """
@@ -32,13 +34,11 @@ def client_authenticate(connection, secret_key):
 
 # ------------------------------ Клиент ----------------------------- #
 
-secret_key = b'our_secret_key'
-
 sock = socket(AF_INET, SOCK_STREAM)
 sock.connect(('localhost', 9999))
 
 # проходим аутентификацию
-client_authenticate(sock, secret_key)
+client_authenticate(sock, SECRET_KEY)
 
 sock.send(b'Hello, my secure server!')
 resp = sock.recv(4096)

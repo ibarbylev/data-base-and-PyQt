@@ -1,7 +1,8 @@
-"""Хэширование"""
+""" Хэширование """
 
 # Для шифрования строк предназначен модуль hashlib
 import hashlib
+
 # Для конвертации данных в бинарный вид и в различные
 # представления строк: 16-ричное, 64-ричное
 import binascii
@@ -11,15 +12,22 @@ import binascii
 
 # Создание объекта хэш-суммы
 # <class '_hashlib.HASH'>
-HASH_OBJ = hashlib.md5()
-print(type(HASH_OBJ))
+HASH_OBJ_1 = hashlib.md5()
+HASH_OBJ_2 = hashlib.md5()
+print('HASH_OBJ_1: ', HASH_OBJ_1)
+print('type(HASH_OBJ_1): ', type(HASH_OBJ_1))
 
 # Добавление данных для расчета суммы - можно добавлять только строку байтов
-HASH_OBJ.update(b'Python')
+HASH_OBJ_1.update(b'Python')
+HASH_OBJ_2.update(b'my_Python')
+
 # Вывод хэш-суммы
 # Получить зашифрованную последовательность байтов
 # и строку позволяют два метода — digest() и hexdigest()
-print(HASH_OBJ.hexdigest())
+print('HASH_OBJ_1.digest(): ', HASH_OBJ_1.digest())
+print('HASH_OBJ_2.digest(): ', HASH_OBJ_2.digest())
+print('HASH_OBJ_1.hexdigest(): ', HASH_OBJ_1.hexdigest())
+print('HASH_OBJ_2.hexdigest(): ', HASH_OBJ_2.hexdigest())
 
 # ------------------------- Хэш для пароля ----------------------------- #
 

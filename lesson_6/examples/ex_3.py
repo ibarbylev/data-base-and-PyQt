@@ -9,7 +9,7 @@
 # PyCryptodome (PyCryptoDomeEx) - это fork библиотеки PyCrypto, развивается.
 # Код проекта: https://github.com/Legrandin/pycryptodome
 
-# Установка:  pip install pycryptodomex
+# УСТАНОВКА ПАКЕТА:  pip install pycryptodomex
 
 # PyCryptodome совместима по API с PyCrypto, 
 # PyCryptoDomeEx - дополняет/изменяет исходный API.
@@ -37,7 +37,7 @@ def padding_text(text: bytes):
     return text + b' ' * pad_len
 
 
-def _encrypt(plaintext, key):
+def _encrypt(plaintext: bytes, key: bytes):
     """
     Шифрование сообщения plaintext ключом key.
 
@@ -75,22 +75,26 @@ def _decrypt(ciphertext, key):
     # 16: - само сообщение
     msg = cipher.decrypt(ciphertext[16:])
     # msg - b'The rain in Spain               '
+
+    # убираем пробелы, добавленные ранее для соблюдения условия кратности 16-ти
     msg = msg.decode().strip().encode()
     # msg - b'The rain in Spain'
     return msg
 
 
-# Осуществим шифрование сообщения алгоритмом AES
-# key (строка байтов) - секретный ключ для симметричного шифрования.
-# Ключ должен быть длиной 16 (AES-128), 24 (AES-192) или 32 (AES-256) байта.
-key = b'Super Secret Key'
+if __name__ == '__main__':
+    # Осуществим шифрование сообщения алгоритмом AES
+    # key (строка байтов) - секретный ключ для симметричного шифрования.
+    # Ключ должен быть длиной 16 (AES-128), 24 (AES-192) или 32 (AES-256) байта.
+    key = b'Super Secret Key'
 
-# Длина сообщения должна быть кратна 16, поэтому выполним выравнивание.
-plaintext = padding_text(plaintext)
+    # Длина сообщения должна быть кратна 16, поэтому выполним выравнивание.
+    plaintext = padding_text(plaintext)
 
-# Выполним шифрование
-cipher = _encrypt(plaintext, key)
+    # Выполним шифрование
+    cipher = _encrypt(plaintext, key)
+    print('encrypted message: ', cipher)
 
-# Выполним дешифрование
-msg = _decrypt(cipher, key)
-print(msg)
+    # Выполним дешифрование
+    msg = _decrypt(cipher, key)
+    print('decrypted message: ', msg)

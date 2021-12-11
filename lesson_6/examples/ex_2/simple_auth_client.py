@@ -9,7 +9,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 
 def client_authenticate(connection, secret_key):
     """
-    Аутентификация клиента на удаленном сервисе.
+    Аутентификация клиента на удалённом сервисе.
     Параметр connection - сетевое соединение (сокет)
     secret_key - ключ шифрования, известный клиенту и серверу
     """

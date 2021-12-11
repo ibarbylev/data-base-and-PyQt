@@ -21,11 +21,11 @@ logger = logging.getLogger('client')
 # Парсер аргументов коммандной строки
 @log
 def arg_parser():
-    '''
+    """
     Парсер аргументов командной строки, возвращает кортеж из 4 элементов
     адрес сервера, порт, имя пользователя, пароль.
     Выполняет проверку на корректность номера порта.
-    '''
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('addr', default=DEFAULT_IP_ADDRESS, nargs='?')
     parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')
@@ -71,7 +71,8 @@ if __name__ == '__main__':
 
     # Записываем логи
     logger.info(
-        f'Запущен клиент с парамертами: адрес сервера: {server_address} , порт: {server_port}, имя пользователя: {client_name}')
+        f'Запущен клиент с параметрами: адрес сервера: {server_address} , порт: {server_port},'
+        f' имя пользователя: {client_name}')
 
     # Загружаем ключи с файла, если же файла нет, то генерируем новую пару.
     dir_path = os.path.dirname(os.path.realpath(__file__))

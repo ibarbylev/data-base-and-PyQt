@@ -6,8 +6,10 @@ import threading
 import hashlib
 import hmac
 import binascii
+import sys
 from PyQt5.QtCore import pyqtSignal, QObject
 
+sys.path.append('../')
 from common.utils import *
 from common.variables import *
 from common.errors import ServerError

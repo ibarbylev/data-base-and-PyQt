@@ -5,17 +5,16 @@ from sqlalchemy.orm import mapper, sessionmaker
 import os
 
 
-
 class ClientDatabase:
-    '''
+    """
     Класс - оболочка для работы с базой данных клиента.
     Использует SQLite базу данных, реализован с помощью
     SQLAlchemy ORM и используется классический подход.
-    '''
+    """
     class KnownUsers:
-        '''
+        """
         Класс - отображение для таблицы всех пользователей.
-        '''
+        """
         def __init__(self, user):
             self.id = None
             self.username = user

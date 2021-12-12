@@ -19,11 +19,11 @@ logger = logging.getLogger('server')
 
 
 class MessageProcessor(threading.Thread):
-    '''
+    """
     Основной класс сервера. Принимает содинения, словари - пакеты
     от клиентов, обрабатывает поступающие сообщения.
     Работает в качестве отдельного потока.
-    '''
+    """
     port = Port()
 
     def __init__(self, listen_address, listen_port, database):
@@ -140,7 +140,7 @@ class MessageProcessor(threading.Thread):
 
     @login_required
     def process_client_message(self, message, client):
-        '''Метод отбработчик поступающих сообщений.'''
+        """ Метод обработчик поступающих сообщений. """
         logger.debug(f'Разбор сообщения от клиента : {message}')
         # Если это сообщение о присутствии, принимаем и отвечаем
         if ACTION in message and message[ACTION] == PRESENCE and TIME in message and USER in message:
@@ -240,7 +240,7 @@ class MessageProcessor(threading.Thread):
                 self.remove_client(client)
 
     def autorize_user(self, message, sock):
-        '''Метод реализующий авторизцию пользователей.'''
+        """ Метод реализующий авторизацию пользователей. """
         # Если имя пользователя уже занято то возвращаем 400
         logger.debug(f'Start auth process for {message[USER]}')
         if message[USER][ACCOUNT_NAME] in self.names.keys():

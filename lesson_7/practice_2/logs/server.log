@@ -16,3 +16,41 @@
 2021-12-12 18:15:38,379 DEBUG server.py Инициализация парсера аргументов коммандной строки: ['/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_7/practice_2/server.py']
 2021-12-12 18:15:38,381 DEBUG server.py Аргументы успешно загружены.
 2021-12-12 18:15:38,421 INFO core.py Запущен сервер, порт для подключений: 7777 , адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2021-12-12 18:35:57,981 DEBUG decos.py Была вызвана функция main c параметрами () , {}. Вызов из модуля __main__
+2021-12-12 18:35:57,981 DEBUG decos.py Была вызвана функция config_load c параметрами () , {}. Вызов из модуля __main__
+2021-12-12 18:35:57,982 DEBUG decos.py Была вызвана функция arg_parser c параметрами ('7777', '') , {}. Вызов из модуля __main__
+2021-12-12 18:35:57,982 DEBUG server.py Инициализация парсера аргументов коммандной строки: ['/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_7/practice_2/server.py']
+2021-12-12 18:35:57,986 DEBUG server.py Аргументы успешно загружены.
+2021-12-12 18:35:58,025 INFO core.py Запущен сервер, порт для подключений: 7777 , адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2021-12-12 18:47:52,121 INFO core.py Установлено соедение с ПК ('127.0.0.1', 41496)
+2021-12-12 18:47:52,625 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=22, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41496)>,) , {}. Вызов из модуля common.utils
+2021-12-12 18:47:52,625 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1639327672.1330385, 'user': {'account_name': 'test2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo7JGgB92WUY8Klx8+j27\nd/FYxJkP4GVJtA0q2CoS55pP4fUTCYZubo+RINB944Btm8qqUPTZ0vCRnsq1zdaf\nst3C0L0Obd7Z17oqPkMYjtSp/65KwoJ2zyO2164kUzCIJNq18D+2BWYxtmwBDzLQ\ns27Fp92klNd/r41sYobz2KwcsGFbbKLJRNkzFlnxKrK2iU3ELkv1YRTjjhBCckZw\nFwJbk/1fdXO3XwRD5bbf8LWplLu+ICY0zPsgOyJJ/hm1jCx+Rqmj+3F1W079Pqfq\n27EUuZPecvDGSrEmr4i7ATIwM81cAGKyl73NrEQ1+iH+OQaSemhJePDWfYMnwwCG\n3QIDAQAB\n-----END PUBLIC KEY-----'}}
+2021-12-12 18:47:52,628 INFO core.py Клиент ('127.0.0.1', 41496) отключился от сервера.
+2021-12-12 18:48:23,799 INFO core.py Установлено соедение с ПК ('127.0.0.1', 41500)
+2021-12-12 18:48:24,071 INFO core.py Установлено соедение с ПК ('127.0.0.1', 41502)
+2021-12-12 18:48:24,071 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=22, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41500)>,) , {}. Вызов из модуля common.utils
+2021-12-12 18:48:24,071 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1639327703.8133395, 'user': {'account_name': 'test1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwmGdahw0r+1zPraIZzem\n5fCbPyTwl9mpVIEi0u12YLiEU8xz3p5p3ArV9PpFQbjbXlQ5a5PBkrc+ADn4kjPw\nIItw5O8pbKc0+U2Tk1KcBc6YHQn7JubhAUhLBNXDYSRZ/6XoWSpLEXKW0be26YN1\nrkocZ2Fe+okYFoleJ0KNn6vdT4S2CxO13XsXRthWLNB/C7snsGtNC3W+0W2kS5AN\nKApG5yXHbDFJxXxT33B900Hkfc5P0TE6sAA22iff+3LupvD32Ri6cpAjLpNPNaZY\n/UfIhExo4tpqcA9KSqj7wrWFH52c0O99Te3tDL9fe8nEKlkti8LteK11dAk5aZcT\nVwIDAQAB\n-----END PUBLIC KEY-----'}}
+2021-12-12 18:48:24,074 INFO core.py Клиент ('127.0.0.1', 41500) отключился от сервера.
+2021-12-12 18:48:24,575 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=23, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41502)>,) , {}. Вызов из модуля common.utils
+2021-12-12 18:48:24,576 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1639327704.0918145, 'user': {'account_name': 'test2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo7JGgB92WUY8Klx8+j27\nd/FYxJkP4GVJtA0q2CoS55pP4fUTCYZubo+RINB944Btm8qqUPTZ0vCRnsq1zdaf\nst3C0L0Obd7Z17oqPkMYjtSp/65KwoJ2zyO2164kUzCIJNq18D+2BWYxtmwBDzLQ\ns27Fp92klNd/r41sYobz2KwcsGFbbKLJRNkzFlnxKrK2iU3ELkv1YRTjjhBCckZw\nFwJbk/1fdXO3XwRD5bbf8LWplLu+ICY0zPsgOyJJ/hm1jCx+Rqmj+3F1W079Pqfq\n27EUuZPecvDGSrEmr4i7ATIwM81cAGKyl73NrEQ1+iH+OQaSemhJePDWfYMnwwCG\n3QIDAQAB\n-----END PUBLIC KEY-----'}}
+2021-12-12 18:48:24,583 INFO core.py Клиент ('127.0.0.1', 41502) отключился от сервера.
+2021-12-12 18:49:06,232 DEBUG decos.py Была вызвана функция main c параметрами () , {}. Вызов из модуля __main__
+2021-12-12 18:49:06,233 DEBUG decos.py Была вызвана функция config_load c параметрами () , {}. Вызов из модуля __main__
+2021-12-12 18:49:06,233 DEBUG decos.py Была вызвана функция arg_parser c параметрами ('7777', '') , {}. Вызов из модуля __main__
+2021-12-12 18:49:06,233 DEBUG server.py Инициализация парсера аргументов коммандной строки: ['/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_7/practice_2/server.py']
+2021-12-12 18:49:06,235 DEBUG server.py Аргументы успешно загружены.
+2021-12-12 18:49:06,276 INFO core.py Запущен сервер, порт для подключений: 7777 , адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2021-12-12 18:51:33,036 DEBUG decos.py Была вызвана функция main c параметрами () , {}. Вызов из модуля __main__
+2021-12-12 18:51:33,037 DEBUG decos.py Была вызвана функция config_load c параметрами () , {}. Вызов из модуля __main__
+2021-12-12 18:51:33,037 DEBUG decos.py Была вызвана функция arg_parser c параметрами ('7777', '') , {}. Вызов из модуля __main__
+2021-12-12 18:51:33,037 DEBUG server.py Инициализация парсера аргументов коммандной строки: ['/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_7/practice_2/server.py']
+2021-12-12 18:51:33,040 DEBUG server.py Аргументы успешно загружены.
+2021-12-12 18:51:33,094 INFO core.py Запущен сервер, порт для подключений: 7777 , адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2021-12-12 18:51:49,737 INFO core.py Установлено соедение с ПК ('127.0.0.1', 41518)
+2021-12-12 18:51:50,102 INFO core.py Установлено соедение с ПК ('127.0.0.1', 41520)
+2021-12-12 18:51:50,102 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=21, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41518)>,) , {}. Вызов из модуля common.utils
+2021-12-12 18:51:50,102 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1639327909.7599523, 'user': {'account_name': 'test1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwmGdahw0r+1zPraIZzem\n5fCbPyTwl9mpVIEi0u12YLiEU8xz3p5p3ArV9PpFQbjbXlQ5a5PBkrc+ADn4kjPw\nIItw5O8pbKc0+U2Tk1KcBc6YHQn7JubhAUhLBNXDYSRZ/6XoWSpLEXKW0be26YN1\nrkocZ2Fe+okYFoleJ0KNn6vdT4S2CxO13XsXRthWLNB/C7snsGtNC3W+0W2kS5AN\nKApG5yXHbDFJxXxT33B900Hkfc5P0TE6sAA22iff+3LupvD32Ri6cpAjLpNPNaZY\n/UfIhExo4tpqcA9KSqj7wrWFH52c0O99Te3tDL9fe8nEKlkti8LteK11dAk5aZcT\nVwIDAQAB\n-----END PUBLIC KEY-----'}}
+2021-12-12 18:51:50,109 INFO core.py Клиент ('127.0.0.1', 41518) отключился от сервера.
+2021-12-12 18:51:50,611 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=22, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41520)>,) , {}. Вызов из модуля common.utils
+2021-12-12 18:51:50,612 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1639327910.1221132, 'user': {'account_name': 'test2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo7JGgB92WUY8Klx8+j27\nd/FYxJkP4GVJtA0q2CoS55pP4fUTCYZubo+RINB944Btm8qqUPTZ0vCRnsq1zdaf\nst3C0L0Obd7Z17oqPkMYjtSp/65KwoJ2zyO2164kUzCIJNq18D+2BWYxtmwBDzLQ\ns27Fp92klNd/r41sYobz2KwcsGFbbKLJRNkzFlnxKrK2iU3ELkv1YRTjjhBCckZw\nFwJbk/1fdXO3XwRD5bbf8LWplLu+ICY0zPsgOyJJ/hm1jCx+Rqmj+3F1W079Pqfq\n27EUuZPecvDGSrEmr4i7ATIwM81cAGKyl73NrEQ1+iH+OQaSemhJePDWfYMnwwCG\n3QIDAQAB\n-----END PUBLIC KEY-----'}}
+2021-12-12 18:51:50,621 INFO core.py Клиент ('127.0.0.1', 41520) отключился от сервера.

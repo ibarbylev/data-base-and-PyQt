@@ -7,7 +7,7 @@ from subprocess import call
 
 # запускаем приложение
 # и ждем, пока оно не будет закрыто
-# (а Popen не ждет)
+# (а Popen не ждёт)
 # проверяем код возврата
 
 COMMAND = 'notepad.exe' if platform.system().lower() == 'windows' else 'libreoffice'

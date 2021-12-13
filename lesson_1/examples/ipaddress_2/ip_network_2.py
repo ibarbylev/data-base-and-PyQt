@@ -26,3 +26,10 @@ print(list(SUBNET.subnets()))
 # объект-сеть в Python представляется в виде списка ip-адресов, к каждому из которых
 # можно обратиться по индексу
 print(SUBNET[1])
+print('============ Получаем подсети ===============')
+subs = list(SUBNET.subnets())
+print('------ и список адресов каждой подсети ------')
+print('-- подсеть subs[0] = ', subs[0])
+pprint(list(subs[0].hosts()))
+print('-- подсеть subs[1] = ', subs[1])
+pprint(list(subs[1].hosts()))

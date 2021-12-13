@@ -11,7 +11,7 @@ setup(
     options={
         "build_exe": build_exe_options
     },
-    executables=[Executable('server.py',
+    executables=[Executable('server_run.py',
                             base='Win32GUI',
                             targetName='server.exe',
                             )]

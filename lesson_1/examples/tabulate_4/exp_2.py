@@ -1,4 +1,6 @@
-"""Форматирование таблиц в tabulate"""
+"""
+Форматирование таблиц в tabulate
+"""
 
 from tabulate import tabulate
 

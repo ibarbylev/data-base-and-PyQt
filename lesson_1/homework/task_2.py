@@ -30,7 +30,7 @@ def host_range_ping(get_list=False):
         if not end_ip.isnumeric():
             print("Необходимо ввести число")
         else:
-            if (last_oct + int(end_ip)) > 254:  # По условию меняется только последний октет
+            if (last_oct + int(end_ip)) > 255:  # По условию меняется только последний октет
                 print(f"Можем менять только послдений октет, т.е. максимальное число хостов {255 - last_oct}")
             else:
                 break

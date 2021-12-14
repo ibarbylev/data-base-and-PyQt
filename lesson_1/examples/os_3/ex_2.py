@@ -1,12 +1,14 @@
 """Функции модуля os"""
 
 import os
+import platform
+
 # когда нужно переименовать файл или папку
-# os.rename("old_dir", "new_dir")
+os.rename("new_dir", "old_dir")
+os.rename("old_dir", "new_dir")
 
 # Метод os.startfile() позволяет нам «запустить»
 # файл в привязанной к нему программе.
-import platform
 
 if platform.system().lower() == 'windows':
     os.startfile("Сложность алгоритмов.png")
@@ -23,7 +25,7 @@ PATH = "dirs"
 \dirs\d3\f3.txt
 """
 
-# root - очередной внутренний путь к папке включая текущую
+# root - очередной внутренний путь к папке, включая текущую
 # dirs - список папок в каждом пути root
 # files - список файлов в каждом пути root
 for root, dirs, files in os.walk(PATH):

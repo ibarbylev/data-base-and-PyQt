@@ -11,7 +11,7 @@ Python для сетевых инженеров
 import locale
 import socket
 import subprocess
-from ipaddress import ip_address
+from ipaddress import ip_address  # https://docs.python.org/3/howto/ipaddress.html#ip-host-addresses
 
 # Функция ipaddress.ip_address()
 # позволяет создавать объект IPv4Address или IPv6Address

@@ -16,7 +16,7 @@ from ipaddress import ip_address
 hosts_list = ['192.168.8.1', '8.8.8.8', 'yandex.ru']  # список проверяемых хостов
 result = {'Доступные узлы': "", "Недоступные узлы": ""}  # словарь с результатами
 
-DNULL = open(os.devnull, 'w')  # заглшка, чтобы поток не выводился на экран
+DNULL = open(os.devnull, 'w')  # заглушка, чтобы поток не выводился на экран
 # https://stackoverflow.com/questions/52435965/difference-between-os-devnull-and-subprocess-pipe
 
 

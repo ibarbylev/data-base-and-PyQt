@@ -1,7 +1,16 @@
+"""
+Этот пакет требует предварительной установки
+pip install asyncio
+"""
+
 
 from sys import exit, platform
 from ipaddress import ip_address, IPv4Address, IPv6Address
-from asyncio import set_event_loop, run, gather, create_subprocess_shell, subprocess, ProactorEventLoop
+from asyncio import set_event_loop, run, gather, create_subprocess_shell, subprocess
+
+if platform == 'win32':
+    from asyncio import ProactorEventLoop
+
 from tabulate import tabulate
 from itertools import repeat
 
@@ -23,9 +32,9 @@ class AsyncPingHosts:
 
     def _set_addresses_type(self):
         """
-        Установить тип адресов в  значение ipaddress.IPv4Address или ipaddress.IPv6Address,
+        Установить тип адресов в значение ipaddress.IPv4Address или ipaddress.IPv6Address,
         если в качестве аргумента адресов указан список.
-        sys.exit (1) - выход, если перехвачено исключение ValueError.
+        sys.exit(1) - выход, если перехвачено исключение ValueError.
         """
         try:
             if self._is_addresses_is_list():
@@ -62,10 +71,10 @@ class AsyncPingHosts:
         """
         Межплатформенный асинхронный пинг хоста.
         """
-        print('Пожалуйста, подождите, пока не закончится пинг. '
-              'Нужно около 5 сек если все адреса доступны, '
+        print('Пожалуйста, подождите, пока не закончится пинг.\n'
+              'Нужно около 5 сек если все адреса доступны, \n'
               'около 20 секунд или более в противном случае '
-              'в зависимости от количества переданных адресов')
+              '(в зависимости от количества переданных адресов)')
 
         if platform == 'win32':
             # Обратите внимание, что в Windows вы должны установить
@@ -116,6 +125,7 @@ class AsyncPingHosts:
         reachable = list(zip(self.reachable, repeat('reachable')))
         unreachable = list(zip(self.unreachable, repeat('unreachable')))
         return tabulate(reachable + unreachable, headers, tablefmt="github")
+
 
 if __name__ == '__main__':
     # создаем объекты адресов

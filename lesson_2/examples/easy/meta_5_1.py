@@ -19,17 +19,6 @@ print('MyMeta.__bases__: ')
 pprint(MyMeta.__dict__)
 
 
-class MM(MyMeta):
-    pass
-
-
-mm = MM()
-print('mm.x = ', mm.x)
-print('mm.y = ', mm.y)
-print(mm.__class__)
-print(mm.__class__.__bases__)
-
-
 print('=' * 50)
 
 """
@@ -50,3 +39,22 @@ print('MyMeta.__bases__: ')
 pprint(MyMeta2.__dict__)
 
 
+"""
+=================================================================
+Создаём новый класс MM (наследуем из MyMeta)
+и проверяем его атрибуты и свойства
+"""
+print('=' * 50)
+
+
+class MM(MyMeta):
+    pass
+
+
+mm = MM()
+
+
+print('mm.x = ', mm.x)
+print('mm.y = ', mm.y)
+print(mm.__class__)
+print(mm.__class__.__bases__)

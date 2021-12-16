@@ -37,7 +37,7 @@ print(my_public_ip)
 my_local_ip = socket.gethostbyname(socket.gethostname())
 print(my_local_ip)
 
-ip_for_testing = '198.186.1.0'
+ip_for_testing = '192.168.1.0'
 IPV4 = ip_address(ip_for_testing)
 print(type(IPV4))
 print(IPV4)

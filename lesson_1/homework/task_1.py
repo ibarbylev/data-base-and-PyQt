@@ -47,7 +47,7 @@ def host_ping(hosts_list, get_list=False):
         try:
             ipv4 = check_is_ipaddress(host)
         except Exception as e:
-            print({host} - {e}, 'воспринимаю как доменное имя')
+            print(f'{host} - {e} воспринимаю как доменное имя')
             ipv4 = host
         response = subprocess.Popen(["ping", '-c', '1', str(ipv4)], stdout=subprocess.PIPE)
         if response.wait() == 0:

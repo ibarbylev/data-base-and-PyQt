@@ -65,7 +65,7 @@ def host_ping(hosts_list, get_list=False):
         try:
             ipv4 = check_is_ipaddress(host)
         except Exception as e:
-            print({host} - {e}, 'воспринимаю как доменное имя')
+            print(f'{host} - {e} воспринимаю как доменное имя')
             ipv4 = host
 
         thread = threading.Thread(target=ping, args=(ipv4, result, get_list), daemon=True)

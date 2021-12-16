@@ -32,8 +32,13 @@ class Foo(metaclass=upper_attr):  # global __metaclass__ won't work with "object
     bar = 'bip'
 
 
-print(hasattr(Foo, 'bar'))
-print(hasattr(Foo, 'BAR'))
-# print(Foo.bar)
+print("hasattr(Foo, 'bar'): ", hasattr(Foo, 'bar'))
+print("hasattr(Foo, 'BAR'): ", hasattr(Foo, 'BAR'))
+
+try:
+    print(Foo.bar)
+except Exception as e:
+    print(f'Exception: {e}')
+
 print('Foo.BAR =', Foo.BAR)
 pprint(Foo.__dict__)

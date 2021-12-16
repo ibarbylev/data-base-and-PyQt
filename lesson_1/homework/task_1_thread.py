@@ -12,6 +12,7 @@
 import os
 import subprocess
 import time
+import threading
 from ipaddress import ip_address
 from pprint import pprint
 
@@ -35,6 +36,22 @@ def check_is_ipaddress(value):
     return ipv4
 
 
+def ping(ipv4, result, get_list):
+    response = subprocess.Popen(["ping", '-c', '1', str(ipv4)], stdout=DNULL)
+    if response.wait() == 0:
+        result["Доступные узлы"] += f"{str(ipv4)}\n"
+        res = f"{str(ipv4)} - Узел доступен"
+        if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
+            print(res)
+        return res
+    else:
+        result["Недоступные узлы"] += f"{ipv4}\n"
+        res = f"{str(ipv4)} - Узел недоступен"
+        if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
+            print(res)
+        return res
+
+
 def host_ping(hosts_list, get_list=False):
     """
     Проверка доступности хостов
@@ -43,21 +60,21 @@ def host_ping(hosts_list, get_list=False):
     :return словарь результатов проверки, если требуется
     """
     print("Начинаю проверку доступности узлов...")
+    threads = []
     for host in hosts_list:  # проверяем, является ли значение ip-адресом
         try:
             ipv4 = check_is_ipaddress(host)
         except Exception as e:
             print({host} - {e}, 'воспринимаю как доменное имя')
             ipv4 = host
-        response = subprocess.Popen(["ping", '-c', '1', str(ipv4)], stdout=subprocess.PIPE)
-        if response.wait() == 0:
-            result["Доступные узлы"] += f"{str(ipv4)}\n"
-            res_string = f"{str(ipv4)} - Узел доступен"
-        else:
-            result["Недоступные узлы"] += f"{ipv4}\n"
-            res_string = f"{str(ipv4)} - Узел недоступен"
-        if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
-            print(res_string)
+
+        thread = threading.Thread(target=ping, args=(ipv4, result, get_list), daemon=True)
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
+
     if get_list:        # если требуется вернуть словарь (для задачи №3), то возвращаем
         return result
 

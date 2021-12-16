@@ -8,7 +8,11 @@ class Worker:
     def __init__(self, name, surname, hours, rate):
         self.name = name
         self.surname = surname
+        if hours < 0:
+            raise ValueError('This value must be positive!!!')
         self._hours = hours
+        if rate < 0:
+            raise ValueError('This value must be positive!!!')
         self._rate = rate
 
     # Для создания свойства-геттера над свойством ставится аннотация @property
@@ -24,7 +28,7 @@ class Worker:
     def hours(self, value):
         """Сеттер"""
         if value < 0:
-            raise ValueError("Значение часов не может быть отрицательным")
+            raise ValueError('This value must be positive!!!')
         self._hours = value
 
     @property
@@ -36,7 +40,7 @@ class Worker:
     def rate(self, value):
         """Сеттер"""
         if value < 0:
-            raise ValueError("Значение ставки не может быть отрицательным")
+            raise ValueError('This value must be positive!!!')
         self._rate = value
 
     def total_profit(self):

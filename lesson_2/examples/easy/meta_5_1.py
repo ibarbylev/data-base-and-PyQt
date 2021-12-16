@@ -18,6 +18,18 @@ print('MyMeta.__bases__: ', MyMeta.__bases__)
 print('MyMeta.__bases__: ')
 pprint(MyMeta.__dict__)
 
+
+class MM(MyMeta):
+    pass
+
+
+mm = MM()
+print('mm.x = ', mm.x)
+print('mm.y = ', mm.y)
+print(mm.__class__)
+print(mm.__class__.__bases__)
+
+
 print('=' * 50)
 
 """

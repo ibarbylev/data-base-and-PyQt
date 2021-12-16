@@ -13,7 +13,7 @@ know with certainty that they need them, and don’t need an explanation about w
 https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python
 """
 
-# начнем
+# начнём
 AGE = 35
 print(AGE.__class__)
 

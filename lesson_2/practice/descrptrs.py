@@ -1,6 +1,7 @@
 import logging
 logger = logging.getLogger('server')
 
+
 # Дескриптор для описания порта:
 class Port:
     def __set__(self, instance, value):
@@ -10,7 +11,7 @@ class Port:
             logger.critical(
                 f'Попытка запуска сервера с указанием неподходящего порта {value}. Допустимы адреса с 1024 до 65535.')
             exit(1)
-        # Если порт прошел проверку, добавляем его в список атрибутов экземпляра
+        # Если порт прошёл проверку, добавляем его в список атрибутов экземпляра
         instance.__dict__[self.name] = value
 
     def __set_name__(self, owner, name):

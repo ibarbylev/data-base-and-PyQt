@@ -5,6 +5,7 @@ https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python
 Здесь показано, как метакласс делает заглавными все имена атрибутов
 при создании нового класса
 """
+from pprint import pprint
 
 
 def upper_attr(future_class_name, future_class_parents, future_class_attrs):
@@ -34,4 +35,5 @@ class Foo(metaclass=upper_attr):  # global __metaclass__ won't work with "object
 print(hasattr(Foo, 'bar'))
 print(hasattr(Foo, 'BAR'))
 # print(Foo.bar)
-print(Foo.BAR)
+print('Foo.BAR =', Foo.BAR)
+pprint(Foo.__dict__)

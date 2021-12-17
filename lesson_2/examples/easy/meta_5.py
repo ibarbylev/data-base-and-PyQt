@@ -47,6 +47,14 @@ print(NAME.__class__.__class__)
 print(my_func.__class__.__class__)
 print(MC.__class__.__class__)
 
+
+# А что является метаклассом метакласса type?
+print('=' * 50)
+print(AGE.__class__.__class__.__class__)
+print(NAME.__class__.__class__.__class__)
+print(my_func.__class__.__class__.__class__)
+print(MC.__class__.__class__.__class__)
+
 """
 <class 'int'>
 <class 'str'>

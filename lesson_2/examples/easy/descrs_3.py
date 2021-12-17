@@ -47,9 +47,7 @@ class NonNegative:
 
 
 class Worker:
-    """ Делаем атрибуты дескрипторами """
-    # сразу виден недостаток
-    # приходится передавать конструктору класса имя атрибута
+    """ Создаём дескрипторы для атрибутов hours и rate"""
     hours = NonNegative('hours')
     rate = NonNegative('rate')
 

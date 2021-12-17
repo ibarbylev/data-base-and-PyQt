@@ -15,7 +15,7 @@ MyMeta = type('MyMeta', (list,), dict(x=5, y=6))
 print('type(MyMeta):     ', type(MyMeta))
 print('MyMeta.__name__:  ', MyMeta.__name__)
 print('MyMeta.__bases__: ', MyMeta.__bases__)
-print('MyMeta.__bases__: ')
+print('MyMeta.__dict__: ')
 pprint(MyMeta.__dict__)
 
 
@@ -37,7 +37,7 @@ class MyMeta2(list, metaclass=type):
 print('type(MyMeta):     ', type(MyMeta2))
 print('MyMeta.__name__:  ', MyMeta2.__name__)
 print('MyMeta.__bases__: ', MyMeta2.__bases__)
-print('MyMeta.__bases__: ')
+print('MyMeta.__dict__: ')
 pprint(MyMeta2.__dict__)
 
 

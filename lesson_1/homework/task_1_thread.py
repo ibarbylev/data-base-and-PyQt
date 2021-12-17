@@ -10,6 +10,7 @@
 """
 
 import os
+import platform
 import subprocess
 import time
 import threading
@@ -37,7 +38,8 @@ def check_is_ipaddress(value):
 
 
 def ping(ipv4, result, get_list):
-    response = subprocess.Popen(["ping", '-c', '1', str(ipv4)], stdout=DNULL)
+    param = '-n' if platform.system().lower() == 'windows' else '-c'
+    response = subprocess.Popen(["ping", param, '1', str(ipv4)], stdout=subprocess.PIPE)
     if response.wait() == 0:
         result["Доступные узлы"] += f"{str(ipv4)}\n"
         res = f"{str(ipv4)} - Узел доступен"

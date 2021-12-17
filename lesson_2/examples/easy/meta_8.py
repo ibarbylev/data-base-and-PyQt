@@ -9,10 +9,10 @@ class ControlAttrName(type):
     # Вызывается для создания экземпляра класса, перед вызовом __init__
     def __init__(cls, future_class_name, future_class_parents, future_class_attrs):
         """
-          Return a class object, with the list of its attribute turned
-          into uppercase.
+          Метод проверяет наличие атрибутов из списка required_attributes.
+          По умолчанию - ни один из обязательных атрибутов не найден
+          (изначально список not_found_attributes == required_attributes).
         """
-        # pick up any attribute that doesn't start with '__' and uppercase it
         required_attributes = ['x', 'y']
         not_found_attributes = required_attributes
         for attr, v in future_class_attrs.items():
@@ -25,19 +25,10 @@ class ControlAttrName(type):
         super(ControlAttrName, cls).__init__(future_class_name, future_class_parents, future_class_attrs)
 
 
-class Foo(metaclass=ControlAttrName):  # global __metaclass__ won't work with "object" though
+class Foo(metaclass=ControlAttrName):
     x = 5
 
 
 foo = Foo()
 
-# print("hasattr(Foo, 'bar'): ", hasattr(Foo, 'bar'))
-# print("hasattr(Foo, 'BAR'): ", hasattr(Foo, 'BAR'))
-#
-# try:
-#     print(Foo.bar)
-# except Exception as e:
-#     print(f'Exception: {e}')
-#
-# print('Foo.BAR =', Foo.BAR)
-# pprint(Foo.__dict__)
+

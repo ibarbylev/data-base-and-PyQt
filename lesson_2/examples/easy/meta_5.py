@@ -4,6 +4,7 @@
 ЭТО ВЕДЬ КЛАССЫ! ОКАЗЫВАЕТСЯ У КАЖДОГО ИЗ ЭТИХ КЛАССОВ ТОЖЕ ЕСТЬ КЛАСС - СВЕРХКЛАСС
 
 https://realpython.com/python-metaclasses/
+
 Tim Peters, the Python guru who authored the Zen of Python:
 "Metaclasses are deeper magic than 99% of users should ever worry about.
 If you wonder whether you need them, you don’t (the people who actually need them

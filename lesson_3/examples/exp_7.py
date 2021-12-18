@@ -19,16 +19,16 @@ class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    fullname = Column(String)
+    surname = Column(String)
     password = Column(String)
 
-    def __init__(self, name, fullname, password):
+    def __init__(self, name, surname, password):
         self.name = name
-        self.fullname = fullname
+        self.surname = surname
         self.password = password
 
     def __repr__(self):
-        return f'<User({self.name}, {self.fullname}, {self.password})>'
+        return f'<User({self.name}, {self.surname}, {self.password})>'
 
 
 user = User("Иван", "Иванов", "pass_Ivan")

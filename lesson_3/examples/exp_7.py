@@ -1,5 +1,8 @@
-"""ORM с помощью Алхимии. Декларативный стиль"""
-# Для кого-то более понятный и лаконичный
+"""
+ORM с помощью SQLAalchemy.
+ВАРИАНТ 1: ДЕКЛАРАТАВНЫЙ СТИЛЬ"
+"""
+
 
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker

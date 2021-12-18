@@ -1,6 +1,6 @@
 """
 ORM с помощью SQLAalchemy.
-ВАРИАНТ 1: ТРАДИЦИОННОЫЙ СТИЛЬ"
+ВАРИАНТ 1: ТРАДИЦИОННЫЙ СТИЛЬ"
 
 ВНИМАНИЕ! SQLAalchemy требует предварительной установки:
 
@@ -8,8 +8,7 @@ pip install sqlalchemy
 """
 
 import sqlalchemy
-from sqlalchemy import create_engine, Table, Column, \
-    Integer, String, MetaData, ForeignKey
+from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData
 from sqlalchemy.orm import mapper, sessionmaker
 
 print("Версия SQLAlchemy:", sqlalchemy.__version__)  # -> Версия SQLAlchemy: 1.4.26
@@ -28,50 +27,44 @@ engine = create_engine('sqlite:///traditional_style_base.db3', echo=True)
 print(engine)  # -> Engine(sqlite:///traditional_style_base.db3)
 
 # -----------------------------Создание таблиц------------------------------------ #
-METADATA = MetaData()
-users_table = Table('users', METADATA,
+metadata = MetaData()
+users_table = Table('users', metadata,
                     Column('id', Integer, primary_key=True),
                     Column('name', String),
-                    Column('fullname', String),
+                    Column('surname', String),
                     Column('password', String)
                     )
 
-METADATA.create_all(engine)
+metadata.create_all(engine)
 
 
 # ----------------------Определение класса Python для отображения в таблицу--------------------- #
 # т.е. создаём шаблон записи таблицы БД
 
 class User:
-    def __init__(self, name, fullname, password):
+    def __init__(self, name, surname, password):
         self.name = name
-        self.fullname = fullname
+        self.surname = surname
         self.password = password
 
     def __repr__(self):
-        return f'<User({self.name}, {self.fullname}, {self.password})>'
+        return f'<User({self.name}, {self.surname}, {self.password})>'
 
 
 # ---------------------------------Настройка отображения----------------------------------------- #
-# Создание отображения
+# Связываем данные и таблицу с помощью mapper
 mapper(User, users_table)
-USER = User("Вася", "Василий", "qweasdzxc")
-# <User('Вася', 'Василий', 'qweasdzxc'>
-print(USER)  # -> <User(Вася, Василий, qweasdzxc)>
-# None. Как так? мы же создали объект записи и передали значения???
-print(USER.id)  # -> None
-
-# Оказывается мы еще ничего не сохранили. это нужно делать через сессии
 
 # ------------------------------------Cоздание сессии-------------------------------------------- #
 # С помощью конструктора sessionmaker создаем класс-сессия
-SESSION = sessionmaker(bind=ENGINE)
+Session = sessionmaker(bind=engine)
 
-# создаем объект сессии
-SESS_OBJ = SESSION()
+# и далее создаем экзепмляр класса сессия Session
+sess = Session()
 
 # вот теперь все хорошо
 if __name__ == '__main__':
-    SESS_OBJ.add(USER)
-    SESS_OBJ.commit()
-    print(USER.id)  # -> 2
+    user = User("Иван", "Иванов", "pass_Ivan")
+    sess.add(user)
+    sess.commit()
+    print(user.id)  # -> 2

@@ -57,21 +57,21 @@ class ServerDB:
         self.session.query(self.ActiveUsers).delete()
         self.session.commit()
 
-# Функция выполняющяяся при входе пользователя, записывает в базу факт входа
+    # Функция выполняется при входе пользователя, фиксирует в базе сам факт входа
     def user_login(self, username, ip_address, port):
         # Запрос в таблицу пользователей на наличие там пользователя с таким именем
         rez = self.session.query(self.AllUsers).filter_by(login=username)
-        #print(type(rez))
+        # print(type(rez))
         # Если имя пользователя уже присутствует в таблице, обновляем время последнего входа
         if rez.count():
             user = rez.first()
             user.last_conn = datetime.datetime.now()
-        # Если нет, то создаздаём нового пользователя
+        # Если нет, то создаём нового пользователя
         else:
             # Создаем экземпляр класса self.AllUsers, через который передаем данные в таблицу
             user = self.AllUsers(username)
             self.session.add(user)
-            # Комит здесь нужен, чтобы присвоился ID
+            # Коммит здесь нужен, чтобы в db записался ID
             self.session.commit()
 
         # Теперь можно создать запись в таблицу активных пользователей о факте входа.
@@ -87,7 +87,7 @@ class ServerDB:
         # Сохраняем изменения
         self.session.commit()
 
-    # Функция фиксирующая отключение пользователя
+    # Функция фиксирует отключение пользователя
     def user_logout(self, username):
         # Запрашиваем пользователя, что покидает нас
         # получаем запись из таблицы AllUsers
@@ -106,22 +106,22 @@ class ServerDB:
             self.AllUsers.login,
             self.AllUsers.last_conn,
         )
-        # Возвращаем список кортежей
+        # Возвращаем список тюплов
         return query.all()
 
     # Функция возвращает список активных пользователей
     def active_users_list(self):
-        # Запрашиваем соединение таблиц и собираем кортежи имя, адрес, порт, время.
+        # Запрашиваем соединение таблиц и собираем тюплы имя, адрес, порт, время.
         query = self.session.query(
             self.AllUsers.login,
             self.ActiveUsers.ip,
             self.ActiveUsers.port,
             self.ActiveUsers.time_conn
             ).join(self.AllUsers)
-        # Возвращаем список кортежей
+        # Возвращаем список тюплов
         return query.all()
 
-    # Функция возвращающая историю входов по пользователю или всем пользователям
+    # Функция возвращает историю входов по пользователю или по всем пользователям
     def login_history(self, username=None):
         # Запрашиваем историю входа
         query = self.session.query(self.AllUsers.login,

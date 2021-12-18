@@ -1,29 +1,31 @@
-"""ORM с помощью Алхимии. Традиционный стиль"""
+"""
+ORM с помощью SQLAalchemy.
+ВАРИАНТ 1: ТРАДИЦИОННОЫЙ СТИЛЬ"
 
-""" 
-ВНИМАНИЕ!!!!
-Необходима предварительная установка SQL Алхимии: 
+ВНИМАНИЕ! SQLAalchemy требует предварительной установки:
+
 pip install sqlalchemy
 """
 
-from sqlalchemy import __version__, create_engine, Table, Column, \
+import sqlalchemy
+from sqlalchemy import create_engine, Table, Column, \
     Integer, String, MetaData, ForeignKey
 from sqlalchemy.orm import mapper, sessionmaker
 
-print("Версия SQLAlchemy:", __version__)  # -> Версия SQLAlchemy: 1.3.6
+print("Версия SQLAlchemy:", sqlalchemy.__version__)  # -> Версия SQLAlchemy: 1.4.26
 
 # -----------------------Cоздание подключений к БД-------------------------------- #
-# ENGINE = create_engine('sqlite:///:memory:', echo=True)
-ENGINE = create_engine('sqlite:///traditional_style_base.db3', echo=False)
+# ENGINE = create_engine('sqlite:///:memory:', echo=False)
+engine = create_engine('sqlite:///traditional_style_base.db3', echo=True)
 
 # Создание подключения к локальной базе данных PostgreSQL
-# ENGINE_1 = create_engine('postgresql+psycopg2://username:password@localhost:5432/mydb')
+# engine_1 = create_engine('postgresql+psycopg2://username:password@localhost:5432/mydb')
 
 # Создание подключения к удалённой базе данных MySQL
-# ENGINE_2 = create_engine('mysql+pymysql://cookiemonster:chocolatechip@mysql01.monster.internal/cookies',
+# engine_2 = create_engine('mysql+pymysql://cookiemonster:chocolatechip@mysql01.monster.internal/cookies',
 # pool_recycle=3600)
 
-print(ENGINE)  # -> Engine(sqlite:///traditional_style_base.db3)
+print(engine)  # -> Engine(sqlite:///traditional_style_base.db3)
 
 # -----------------------------Создание таблиц------------------------------------ #
 METADATA = MetaData()
@@ -34,7 +36,7 @@ users_table = Table('users', METADATA,
                     Column('password', String)
                     )
 
-METADATA.create_all(ENGINE)
+METADATA.create_all(engine)
 
 
 # ----------------------Определение класса Python для отображения в таблицу--------------------- #

@@ -4,28 +4,28 @@
 import os
 import sqlite3
 
-DB_OBJ = os.path.join(os.path.dirname(__file__), "demo.sqlite")
+db_full_path = os.path.join(os.path.dirname(__file__), "demo.sqlite")
 
 # Создание соединения с базой данных
 # В данном случае это файл базы
-CONN = sqlite3.connect(DB_OBJ)
+connection = sqlite3.connect(db_full_path)
 # CONN = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
 
 # Создаем курсор — это специальный объект,
 # который делает запросы и получает их результаты
-CURSOR = CONN.cursor()
+crs = connection.cursor()
 
 # ---------------------------Запрос на изменение----------------------------- #
 
 # Выполняется INSERT-запрос к базе данных с обычным SQL-синтаксисом
-CURSOR.execute("INSERT INTO Artist VALUES (Null, 'A Aagrh!') ")
+crs.execute("INSERT INTO Artist VALUES (Null, 'A Aagrh!') ")
 
 # Если выполняются изменения в базе данных, необходимо сохранить транзакцию
-CONN.commit()
+connection.commit()
 
 # Проверка результатов
-CURSOR.execute("SELECT Name FROM Artist ORDER BY Name LIMIT 3")
-RESULTS = CURSOR.fetchall()
+crs.execute("SELECT Name FROM Artist ORDER BY Name LIMIT 3")
+RESULTS = crs.fetchall()
 print(RESULTS)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 
 

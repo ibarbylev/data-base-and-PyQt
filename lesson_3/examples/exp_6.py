@@ -67,4 +67,5 @@ if __name__ == '__main__':
     user = User("Иван", "Иванов", "pass_Ivan")
     sess.add(user)
     sess.commit()
-    print(user.id)  # -> 2
+    print(user.id)  # -> 1
+    print(user.name)  # -> Иван

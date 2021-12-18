@@ -55,7 +55,6 @@ class ServerMaker(type):
                         if i.argval not in attrs:
                             # заполняем список атрибутами, использующимися в функциях класса
                             attrs.append(i.argval)
-        print(methods)
         # Если обнаружено использование недопустимого метода connect, вызываем исключение:
         if 'connect' in methods:
             raise TypeError('Использование метода connect недопустимо в серверном классе')

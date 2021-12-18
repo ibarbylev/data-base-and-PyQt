@@ -1,6 +1,6 @@
 """
 ORM с помощью SQLAalchemy.
-ВАРИАНТ 1: ДЕКЛАРАТАВНЫЙ СТИЛЬ"
+ВАРИАНТ 2: ДЕКЛАРАТАВНЫЙ СТИЛЬ"
 """
 
 
@@ -8,14 +8,14 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-ENGINE = create_engine('sqlite:///declarative_style_base.db3', echo=True)
+engine = create_engine('sqlite:///declarative_style_base.db3', echo=True)
 
-# Функция declarative_base(), что определяет новый класс,
-# который мы назвали Base, от которого будут унаследованы все наши ORM-классы.
-BASE = declarative_base()
+# Функция declarative_base(), что определяет новый класс Base,
+# от которого будут унаследованы все наши ORM-классы.
+Base = declarative_base()
 
 
-class User(BASE):
+class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String)
@@ -31,12 +31,12 @@ class User(BASE):
         return f'<User({self.name}, {self.fullname}, {self.password})>'
 
 
-USER = User("Вася", "Василий", "qweasdzxc")
+user = User("Иван", "Иванов", "pass_Ivan")
 
-BASE.metadata.create_all(ENGINE)
-SESSION = sessionmaker(bind=ENGINE)
-SESS_OBJ = SESSION()
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+sess = Session()
 
-SESS_OBJ.add(USER)
-SESS_OBJ.commit()
-print(USER.id)  # -> 2
+sess.add(user)
+sess.commit()
+print(user.id)  # -> 2

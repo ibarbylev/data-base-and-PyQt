@@ -9,7 +9,7 @@ db_full_path = os.path.join(os.path.dirname(__file__), "demo.sqlite")
 # Создание соединения с базой данных
 # В данном случае это файл базы
 connection = sqlite3.connect(db_full_path)
-# CONN = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
+# connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
 
 # Создаем курсор — это специальный объект,
 # который делает запросы и получает их результаты
@@ -25,8 +25,8 @@ connection.commit()
 
 # Проверка результатов
 crs.execute("SELECT Name FROM Artist ORDER BY Name LIMIT 3")
-RESULTS = crs.fetchall()
-print(RESULTS)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
+result = crs.fetchall()
+print(result)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 
 
 # ==============================================================

@@ -9,7 +9,7 @@ db_full_path = os.path.join(os.path.dirname(__file__), "demo.sqlite")
 # Создание соединения с базой данных
 # В данном случае это файл базы
 connection = sqlite3.connect(db_full_path)
-# connect = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
+# connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
 
 # Создаем курсор — это специальный объект,
 # который делает запросы и получает их результаты

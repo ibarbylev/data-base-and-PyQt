@@ -168,7 +168,8 @@ def main():
         print(f'Клиентский модуль запущен с именем: {client_name}')
 
     logger.info(
-        f'Запущен клиент с парамертами: адрес сервера: {server_address} , порт: {server_port}, имя пользователя: {client_name}')
+        f'Запущен клиент с парамертами: адрес сервера: {server_address} , '
+        f'порт: {server_port}, имя пользователя: {client_name}')
 
     # Инициализация сокета и сообщение серверу о нашем появлении
     try:
@@ -189,21 +190,22 @@ def main():
         exit(1)
     except (ConnectionRefusedError, ConnectionError):
         logger.critical(
-            f'Не удалось подключиться к серверу {server_address}:{server_port}, конечный компьютер отверг запрос на подключение.')
+            f'Не удалось подключиться к серверу {server_address}:{server_port}, '
+            f'конечный компьютер отверг запрос на подключение.')
         exit(1)
     else:
-        # Если соединение с сервером установлено корректно, запускаем клиенский процесс приёма сообщний
-        module_reciver = ClientReader(client_name , transport)
+        # Если соединение с сервером установлено корректно, запускаем клиентский процесс приёма сообщений
+        module_reciver = ClientReader(client_name, transport)
         module_reciver.daemon = True
         module_reciver.start()
 
         # затем запускаем отправку сообщений и взаимодействие с пользователем.
-        module_sender = ClientSender(client_name , transport)
+        module_sender = ClientSender(client_name, transport)
         module_sender.daemon = True
         module_sender.start()
         logger.debug('Запущены процессы')
 
-        # Watchdog основной цикл, если один из потоков завершён, то значит или потеряно соединение или пользователь
+        # Watchdog основной цикл, если один из потоков завершён, то значит или потеряно соединение, или пользователь
         # ввёл exit. Поскольку все события обработываются в потоках, достаточно просто завершить цикл.
         while True:
             time.sleep(1)

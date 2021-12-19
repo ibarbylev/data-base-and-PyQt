@@ -1,4 +1,5 @@
 import socket
+import sys
 import time
 import logging
 import json
@@ -8,6 +9,7 @@ import hmac
 import binascii
 from PyQt5.QtCore import pyqtSignal, QObject
 
+sys.path.append('../')
 from common.utils import *
 from common.variables import *
 from common.errors import ServerError

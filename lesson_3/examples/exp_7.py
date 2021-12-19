@@ -31,12 +31,13 @@ class User(Base):
         return f'<User({self.name}, {self.surname}, {self.password})>'
 
 
-user = User("Иван", "Иванов", "pass_Ivan")
-
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 sess = Session()
 
-sess.add(user)
-sess.commit()
-print(user.id)  # -> 2
+
+if __name__ == '__main__':
+    user = User("Иван", "Иванов", "pass_Ivan")
+    sess.add(user)
+    sess.commit()
+    print(user.id)  # -> 2

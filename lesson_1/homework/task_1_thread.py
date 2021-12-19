@@ -39,10 +39,10 @@ def check_is_ipaddress(value):
 
 def ping(ipv4, result, get_list):
     param = '-n' if platform.system().lower() == 'windows' else '-c'
-    response = subprocess.Popen(["ping", param, '1', str(ipv4)], stdout=subprocess.PIPE)
+    response = subprocess.Popen(["ping", param, '1', '-w', '1', str(ipv4)], stdout=subprocess.PIPE)
     if response.wait() == 0:
-        result["Доступные узлы"] += f"{str(ipv4)}\n"
-        res = f"{str(ipv4)} - Узел доступен"
+        result["Доступные узлы"] += f"{ipv4}\n"
+        res = f"{ipv4} - Узел доступен"
         if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
             print(res)
         return res

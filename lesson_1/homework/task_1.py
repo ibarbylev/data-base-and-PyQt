@@ -52,13 +52,13 @@ def host_ping(hosts_list, get_list=False):
             ipv4 = host
 
         param = '-n' if platform.system().lower() == 'windows' else '-c'
-        response = subprocess.Popen(["ping", param, '1', str(ipv4)], stdout=subprocess.PIPE)
+        response = subprocess.Popen(["ping", param, '1', '-w', '1', str(ipv4)], stdout=subprocess.PIPE)
         if response.wait() == 0:
-            result["Доступные узлы"] += f"{str(ipv4)}\n"
-            res_string = f"{str(ipv4)} - Узел доступен"
+            result["Доступные узлы"] += f"{ipv4}\n"
+            res_string = f"{ipv4} - Узел доступен"
         else:
             result["Недоступные узлы"] += f"{ipv4}\n"
-            res_string = f"{str(ipv4)} - Узел недоступен"
+            res_string = f"{ipv4} - Узел недоступен"
         if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
             print(res_string)
     if get_list:        # если требуется вернуть словарь (для задачи №3), то возвращаем

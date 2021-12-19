@@ -52,7 +52,10 @@ if os.path.exists(os.path.join(NEW_PATH, 'my_dir')):
 # но сначала проверяем, существует ли этот файл
 # ВАЖНО! для этой операции необходимы права root
 if not os.path.exists(os.path.join(NEW_PATH, 'test.txt')):
-    os.mknod("test.txt")
+    if platform.system().lower() == 'linux':
+        os.mknod("test.txt")
+    else:
+        open("test.txt", 'w').close()
     print('The file "test.txt" was created!')
 
 # удаление файла

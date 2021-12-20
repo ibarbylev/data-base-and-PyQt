@@ -35,19 +35,19 @@ class Worker:
         return self.hours * self.rate
 
 
-OBJ = Worker('Иван', 'Иванов', 10, 100)
-print(OBJ.total_profit())
+iiv = Worker('Иван', 'Иванов', 10, 100)
+print(iiv.total_profit())
 
-OBJ.hours = 10
-OBJ.rate = 100
-print(OBJ.total_profit())
+iiv.hours = 10
+iiv.rate = 100
+print(iiv.total_profit())
 
 # работает, как надо
-# OBJ = Worker('Иван', 'Иванов', -10, 100)
+# iiv = Worker('Иван', 'Иванов', -10, 100)
 # print(OBJ.total_profit())
 
-# OBJ.hours = 10
-# OBJ.rate = -100
+# iiv.hours = 10
+# iiv.rate = -100
 # print(OBJ.total_profit())
 
 # работает, как требуется

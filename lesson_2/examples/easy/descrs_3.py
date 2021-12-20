@@ -61,24 +61,24 @@ class Worker:
         return self.hours * self.rate
 
 
-OBJ = Worker('Иван', 'Иванов', 10, 100)
-print(OBJ.total_profit())
+iiv = Worker('Иван', 'Иванов', 10, 100)
+print(iiv.total_profit())
 
-OBJ.hours = 10
-OBJ.rate = 100
-print(OBJ.__dict__)
-print(OBJ.total_profit())
-del OBJ.rate
-print(OBJ.__dict__)
+iiv.hours = 10
+iiv.rate = 100
+print(iiv.__dict__)
+print(iiv.total_profit())
+del iiv.rate
+print(iiv.__dict__)
 
-# OBJ = Worker('Иван', 'Иванов', -10, 100)
-# print(OBJ.total_profit())
+# iiv = Worker('Иван', 'Иванов', -10, 100)
+# print(iiv.total_profit())
 
-# OBJ.hours = 10
-# OBJ.rate = -100
-# print(OBJ.total_profit())
+# iiv.hours = 10
+# iiv.rate = -100
+# print(iiv.total_profit())
 
 # теперь проблема решена
-# один класс NonNegative делает нужный атрибут дескриптором
+# один класс NonNegative делает нужный атрибут дескриптором,
 # но эта версия протокола дескриптора - устаревшая
 # с версии Python 3.6 появилась новая

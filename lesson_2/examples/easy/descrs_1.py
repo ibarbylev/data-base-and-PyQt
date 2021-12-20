@@ -14,21 +14,21 @@ class Worker:
         return self.hours * self.rate
 
 
-OBJ = Worker('Иван', 'Иванов', 10, 100)
-print(OBJ.total_profit())
+iiv = Worker('Иван', 'Иванов', 10, 100)
+print(iiv.total_profit())
 
-OBJ.hours = 10
-OBJ.rate = 100
-print(OBJ.total_profit())
+iiv.hours = 10
+iiv.rate = 100
+print(iiv.total_profit())
 
 # теперь попробуем присвоить какому-либо из атрибутов отрицательное значение
 
-OBJ = Worker('Иван', 'Иванов', -10, 100)
-print(OBJ.total_profit())
+iiv = Worker('Иван', 'Иванов', -10, 100)
+print(iiv.total_profit())
 
-OBJ.hours = 10
-OBJ.rate = -100
-print(OBJ.total_profit())
+iiv.hours = 10
+iiv.rate = -100
+print(iiv.total_profit())
 
-# проблема очевидна: значение атрибута при присвоении не проходит валидацию
-# следовательно скрипт может отрабатывать некорректно
+# проблема очевидна: значение атрибута при присвоении не проходит валидацию,
+# следовательно, скрипт может отрабатывать некорректно

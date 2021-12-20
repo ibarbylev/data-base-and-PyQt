@@ -48,22 +48,22 @@ class Worker:
         return self.hours * self.rate
 
 
-OBJ = Worker('Иван', 'Иванов', 10, 100)
-print(OBJ.total_profit())
+iiv = Worker('Иван', 'Иванов', 10, 100)
+print(iiv.total_profit())
 
-OBJ.hours = 10
-OBJ.rate = 100
-print(OBJ.total_profit())
+iiv.hours = 10
+iiv.rate = 100
+print(iiv.total_profit())
 
 # проблема вроде решена?
 # увы, но нет
 # сеттер здесь не сработает
-# OBJ = Worker('Иван', 'Иванов', -10, 100)
-# print(OBJ.total_profit())
+# iiv = Worker('Иван', 'Иванов', -10, 100)
+# print(iiv.total_profit())
 
-# а здесь вроде решена
+# а здесь вроде решена,
 # но не будем же мы на каждый атрибут делать геттер и сеттер
 # это избыточность кода, т.е. проблема в целом не решена
-# OBJ.hours = 10
-# OBJ.rate = -100
-# print(OBJ.total_profit())
+# iiv.hours = 10
+# iiv.rate = -100
+# print(iiv.total_profit())

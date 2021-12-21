@@ -14,11 +14,7 @@ from exp_6 import User, sess
 
 # create
 user_2 = User("Пётр", "Петров", "pass_Petrov")
-user_3 = user_2
-user_4 = user_2
 sess.add(user_2)
-sess.add(user_3)
-sess.add(user_4)
 sess.commit()
 
 # # Retrieve

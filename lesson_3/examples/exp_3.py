@@ -19,21 +19,27 @@ crs = connection.cursor()
 # --------------------------Подстановка значений в запрос------------------------- #
 # Такая задача требуется очень часто. Как ее решить?
 
-# 1. C подстановкой по порядку на места знаков вопросов:
+# 1. С подстановкой по порядку на места знаков вопросов:
 crs.execute("SELECT Name FROM Artist ORDER BY Name LIMIT ?", '2')
 result = crs.fetchall()
 print(result)  # -> [('A Cor Do Som',), ('AC/DC',)]
 
-# 2. C использованием именованных замен:
+# 2. С использованием именованных замен:
 crs.execute("SELECT Name from Artist ORDER BY Name LIMIT :limit", {"limit": 2})
 result = crs.fetchall()
 print(result)  # -> [('A Cor Do Som',), ('AC/DC',)]
 
 # 3. С использованием подстановки через %:
-crs.execute("SELECT Name FROM Artist ORDER BY Name LIMIT %s" % '2')
+crs.execute("SELECT Name FROM Artist ORDER BY Name LIMIT %s" % 2)
 result = crs.fetchall()
 print(result)  # -> [('A Cor Do Som',), ('AC/DC',)]
 
 
 # Вариант 1 - параметризованный запрос защитит нас от SQL-инъекций
 # лучше исп-ть его
+
+# ====================== Пример SQL-инъекции ======================
+# sql_injection = '2; DROP TABLE Artist'
+# crs.executescript("SELECT Name FROM Artist ORDER BY Name LIMIT %s" % sql_injection)
+# result = crs.fetchall()
+# print(result)  # -> []

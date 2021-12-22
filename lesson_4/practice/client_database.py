@@ -95,35 +95,35 @@ class ClientDatabase:
             self.session.add(user_row)
         self.session.commit()
 
-    # Функция сохраняющяя сообщения
+    # Функция сохраняет сообщения
     def save_message(self, from_user, to_user, message):
         message_row = self.MessageHistory(from_user, to_user, message)
         self.session.add(message_row)
         self.session.commit()
 
-    # Функция возвращающяя контакты
+    # Функция возвращает контакты
     def get_contacts(self):
         return [contact[0] for contact in self.session.query(self.Contacts.name).all()]
 
-    # Функция возвращающяя список известных пользователей
+    # Функция возвращает список известных пользователей
     def get_users(self):
         return [user[0] for user in self.session.query(self.KnownUsers.username).all()]
 
-    # Функция проверяющяя наличие пользователя в известных
+    # Функция проверяет наличие пользователя в таблице Известных Пользователей
     def check_user(self, user):
         if self.session.query(self.KnownUsers).filter_by(username=user).count():
             return True
         else:
             return False
 
-    # Функция проверяющяя наличие пользователя контактах
+    # Функция проверяет наличие пользователя в таблице Контактов
     def check_contact(self, contact):
         if self.session.query(self.Contacts).filter_by(name=contact).count():
             return True
         else:
             return False
 
-    # Функция возвращающая историю переписки
+    # Функция возвращает историю переписки
     def get_history(self, from_who=None, to_who=None):
         query = self.session.query(self.MessageHistory)
         if from_who:

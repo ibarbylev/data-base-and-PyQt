@@ -33,7 +33,7 @@ print(result)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 
 # А можно ли выполнить несколько запросов за раз???
 
-# CURSOR.execute("""
+# crs.execute("""
 #     INSERT INTO Artist VALUES (Null, 'A Aagrh!');
 #     INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
 # """)
@@ -49,8 +49,8 @@ print(result)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 # Вариант есть!
 
 
-# CURSOR.executescript("""
-#     INSERT INTO Artist VALUES (Null, 'A Aagrh!');
-#     INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
-# """)
+crs.executescript("""
+    INSERT INTO Artist VALUES (Null, 'A Aagrh!');
+    INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
+""")
 

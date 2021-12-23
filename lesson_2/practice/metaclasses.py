@@ -8,6 +8,9 @@ import dis
 
 
 # Метакласс для проверки соответствия сервера:
+from pprint import pprint
+
+
 class ServerMaker(type):
     def __init__(cls, clsname, bases, clsdict):
         # clsname - экземпляр метакласса - Server
@@ -23,9 +26,12 @@ class ServerMaker(type):
         # 'process_client_message': <function Server.process_client_message at 0x000000DACCE3E598>}
 
         # Список методов, которые используются в функциях класса:
-        methods = []
+        methods = []    # получаем с помощью 'LOAD_GLOBAL'
+        # Обычно методы, обёрнутые декораторами попадают
+        # не в 'LOAD_GLOBAL', а в 'LOAD_METHOD'
+        methods_2 = []  # получаем с помощью 'LOAD_METHOD'
         # Атрибуты, используемые в функциях классов
-        attrs = []
+        attrs = []      # получаем с помощью 'LOAD_ATTR'
         # перебираем ключи
         for func in clsdict:
             # Пробуем
@@ -51,10 +57,21 @@ class ServerMaker(type):
                         if i.argval not in methods:
                             # заполняем список методами, использующимися в функциях класса
                             methods.append(i.argval)
+                    elif i.opname == 'LOAD_METHOD':
+                        if i.argval not in methods_2:
+                            # заполняем список атрибутами, использующимися в функциях класса
+                            methods_2.append(i.argval)
                     elif i.opname == 'LOAD_ATTR':
                         if i.argval not in attrs:
                             # заполняем список атрибутами, использующимися в функциях класса
                             attrs.append(i.argval)
+        print(20*'-', 'methods', 20*'-')
+        pprint(methods)
+        print(20*'-', 'methods_2', 20*'-')
+        pprint(methods_2)
+        print(20*'-', 'attrs', 20*'-')
+        pprint(attrs)
+        print(50*'-')
         # Если обнаружено использование недопустимого метода connect, вызываем исключение:
         if 'connect' in methods:
             raise TypeError('Использование метода connect недопустимо в серверном классе')

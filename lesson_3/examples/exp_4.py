@@ -22,7 +22,7 @@ print(fetch)
 print(list(fetch))
 print('=' * 50)
 
-# Извлечеие элементов из crs с помощью цикла for
+# Извлечение элементов из crs с помощью цикла for
 for row in crs.execute('SELECT Name FROM Artist ORDER BY Name LIMIT 3'):
     print(row)
 

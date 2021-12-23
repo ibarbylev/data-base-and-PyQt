@@ -49,8 +49,8 @@ print(result)  # -> [('A Aagrh!',), ('A Cor Do Som',), ('AC/DC',)]
 # Вариант есть!
 
 
-crs.executescript("""
-    INSERT INTO Artist VALUES (Null, 'A Aagrh!');
-    INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
-""")
+# crs.executescript("""
+#     INSERT INTO Artist VALUES (Null, 'A Aagrh!');
+#     INSERT INTO Artist VALUES (Null, 'A Aagrh-2!');
+# """)
 

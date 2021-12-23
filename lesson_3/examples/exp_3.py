@@ -39,7 +39,7 @@ print(result)  # -> [('A Cor Do Som',), ('AC/DC',)]
 # лучше исп-ть его
 
 # ====================== Пример SQL-инъекции ======================
-sql_injection = '2; DROP TABLE Artist'
-crs.executescript("SELECT Name FROM Artist ORDER BY Name LIMIT %s" % sql_injection)
-result = crs.fetchall()
-print(result)  # -> []
+# sql_injection = '2; DROP TABLE Artist'
+# crs.executescript("SELECT Name FROM Artist ORDER BY Name LIMIT %s" % sql_injection)
+# result = crs.fetchall()
+# print(result)  # -> []

@@ -200,7 +200,7 @@ class ConfigWindow(QDialog):
         self.save_btn = QPushButton('Сохранить', self)
         self.save_btn.move(190, 220)
 
-        # Кнапка закрытия окна
+        # Кнопка закрытия окна
         self.close_button = QPushButton('Закрыть', self)
         self.close_button.move(275, 220)
         self.close_button.clicked.connect(self.close)
@@ -210,21 +210,20 @@ class ConfigWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = MainWindow()
-    ex.statusBar().showMessage('Test Statusbar Message')
-    test_list = QStandardItemModel(ex)
+    main_window = MainWindow()
+    main_window.statusBar().showMessage('Test Statusbar Message')
+    test_list = QStandardItemModel(main_window)
     test_list.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес', 'Порт', 'Время подключения'])
     test_list.appendRow(
         [QStandardItem('test1'), QStandardItem('192.198.0.5'), QStandardItem('23544'), QStandardItem('16:20:34')])
     test_list.appendRow(
         [QStandardItem('test2'), QStandardItem('192.198.0.8'), QStandardItem('33245'), QStandardItem('16:22:11')])
-    ex.active_clients_table.setModel(test_list)
-    ex.active_clients_table.resizeColumnsToContents()
+    main_window.active_clients_table.setModel(test_list)
+    main_window.active_clients_table.resizeColumnsToContents()
     app.exec_()
 
     # ----------------------------------------------------------
     # app = QApplication(sys.argv)
-    # message = QMessageBox
     # dial = ConfigWindow()
     #
     # app.exec_()

@@ -32,8 +32,8 @@ def create_stat_model(database):
     hist_list = database.message_history()
 
     # Объект модели данных:
-    list = QStandardItemModel()
-    list.setHorizontalHeaderLabels(
+    list_table = QStandardItemModel()
+    list_table.setHorizontalHeaderLabels(
         ['Имя Клиента', 'Последний раз входил', 'Сообщений отправлено', 'Сообщений получено'])
     for row in hist_list:
         user, last_seen, sent, recvd = row
@@ -45,8 +45,8 @@ def create_stat_model(database):
         sent.setEditable(False)
         recvd = QStandardItem(str(recvd))
         recvd.setEditable(False)
-        list.appendRow([user, last_seen, sent, recvd])
-    return list
+        list_table.appendRow([user, last_seen, sent, recvd])
+    return list_table
 
 
 # Класс основного окна

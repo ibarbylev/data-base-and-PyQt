@@ -169,7 +169,7 @@ class ConfigWindow(QDialog):
         # Поле для ввода имени файла
         self.db_file = QLineEdit(self)
         self.db_file.move(200, 66)
-        self.db_file.setFixedSize(150 , 20)
+        self.db_file.setFixedSize(150, 20)
 
         # Метка с номером порта
         self.port_label = QLabel('Номер порта для соединений:', self)
@@ -197,8 +197,8 @@ class ConfigWindow(QDialog):
         self.ip.setFixedSize(150, 20)
 
         # Кнопка сохранения настроек
-        self.save_btn = QPushButton('Сохранить' , self)
-        self.save_btn.move(190 , 220)
+        self.save_btn = QPushButton('Сохранить', self)
+        self.save_btn.move(190, 220)
 
         # Кнапка закрытия окна
         self.close_button = QPushButton('Закрыть', self)
@@ -209,21 +209,38 @@ class ConfigWindow(QDialog):
 
 
 if __name__ == '__main__':
-    '''
-    app = QApplication(sys.argv)
-    ex = MainWindow()
-    ex.statusBar().showMessage('Test Statusbar Message')
-    test_list = QStandardItemModel(ex)
-    test_list.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес', 'Порт', 'Время подключения'])
-    test_list.appendRow([QStandardItem('1'), QStandardItem('2'), QStandardItem('3')])
-    test_list.appendRow([QStandardItem('4'), QStandardItem('5'), QStandardItem('6')])
-    ex.active_clients_table.setModel(test_list)
-    ex.active_clients_table.resizeColumnsToContents()
-    print('JKJKJK')
-    app.exec_()
-    print('END')'''
+    # app = QApplication(sys.argv)
+    # ex = MainWindow()
+    # ex.statusBar().showMessage('Test Statusbar Message')
+    # test_list = QStandardItemModel(ex)
+    # test_list.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес', 'Порт', 'Время подключения'])
+    # test_list.appendRow([QStandardItem('1'), QStandardItem('2'), QStandardItem('3')])
+    # test_list.appendRow([QStandardItem('4'), QStandardItem('5'), QStandardItem('6')])
+    # ex.active_clients_table.setModel(test_list)
+    # ex.active_clients_table.resizeColumnsToContents()
+    # print('JKJKJK')
+    # app.exec_()
+    # print('END')
+
+    # ----------------------------------------------------------
+
+    # app = QApplication(sys.argv)
+    # message = QMessageBox
+    # dial = ConfigWindow()
+    #
+    # app.exec_()
+    # ----------------------------------------------------------
     app = QApplication(sys.argv)
     message = QMessageBox
-    dial = ConfigWindow()
+    dial = HistoryWindow()
+    test_list = QStandardItemModel(dial)
+    test_list.setHorizontalHeaderLabels(
+        ['Имя Клиента', 'Последний раз входил', 'Отправлено', 'Получено'])
+    test_list.appendRow(
+        [QStandardItem('test1'), QStandardItem('Fri Dec 12 16:20:34 2020'), QStandardItem('2'), QStandardItem('3')])
+    test_list.appendRow(
+        [QStandardItem('test2'), QStandardItem('Fri Dec 12 16:23:12 2020'), QStandardItem('8'), QStandardItem('5')])
+    dial.history_table.setModel(test_list)
+    dial.history_table.resizeColumnsToContents()
 
     app.exec_()

@@ -209,38 +209,37 @@ class ConfigWindow(QDialog):
 
 
 if __name__ == '__main__':
-    # app = QApplication(sys.argv)
-    # ex = MainWindow()
-    # ex.statusBar().showMessage('Test Statusbar Message')
-    # test_list = QStandardItemModel(ex)
-    # test_list.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес', 'Порт', 'Время подключения'])
-    # test_list.appendRow([QStandardItem('1'), QStandardItem('2'), QStandardItem('3')])
-    # test_list.appendRow([QStandardItem('4'), QStandardItem('5'), QStandardItem('6')])
-    # ex.active_clients_table.setModel(test_list)
-    # ex.active_clients_table.resizeColumnsToContents()
-    # print('JKJKJK')
-    # app.exec_()
-    # print('END')
+    app = QApplication(sys.argv)
+    ex = MainWindow()
+    ex.statusBar().showMessage('Test Statusbar Message')
+    test_list = QStandardItemModel(ex)
+    test_list.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес', 'Порт', 'Время подключения'])
+    test_list.appendRow(
+        [QStandardItem('test1'), QStandardItem('192.198.0.5'), QStandardItem('23544'), QStandardItem('16:20:34')])
+    test_list.appendRow(
+        [QStandardItem('test2'), QStandardItem('192.198.0.8'), QStandardItem('33245'), QStandardItem('16:22:11')])
+    ex.active_clients_table.setModel(test_list)
+    ex.active_clients_table.resizeColumnsToContents()
+    app.exec_()
 
     # ----------------------------------------------------------
-
     # app = QApplication(sys.argv)
     # message = QMessageBox
     # dial = ConfigWindow()
     #
     # app.exec_()
-    # ----------------------------------------------------------
-    app = QApplication(sys.argv)
-    message = QMessageBox
-    dial = HistoryWindow()
-    test_list = QStandardItemModel(dial)
-    test_list.setHorizontalHeaderLabels(
-        ['Имя Клиента', 'Последний раз входил', 'Отправлено', 'Получено'])
-    test_list.appendRow(
-        [QStandardItem('test1'), QStandardItem('Fri Dec 12 16:20:34 2020'), QStandardItem('2'), QStandardItem('3')])
-    test_list.appendRow(
-        [QStandardItem('test2'), QStandardItem('Fri Dec 12 16:23:12 2020'), QStandardItem('8'), QStandardItem('5')])
-    dial.history_table.setModel(test_list)
-    dial.history_table.resizeColumnsToContents()
 
-    app.exec_()
+    # ----------------------------------------------------------
+    # app = QApplication(sys.argv)
+    # window = HistoryWindow()
+    # test_list = QStandardItemModel(window)
+    # test_list.setHorizontalHeaderLabels(
+    #     ['Имя Клиента', 'Последний раз входил', 'Отправлено', 'Получено'])
+    # test_list.appendRow(
+    #     [QStandardItem('test1'), QStandardItem('Fri Dec 12 16:20:34 2020'), QStandardItem('2'), QStandardItem('3')])
+    # test_list.appendRow(
+    #     [QStandardItem('test2'), QStandardItem('Fri Dec 12 16:23:12 2020'), QStandardItem('8'), QStandardItem('5')])
+    # window.history_table.setModel(test_list)
+    # window.history_table.resizeColumnsToContents()
+    #
+    # app.exec_()

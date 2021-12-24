@@ -85,6 +85,7 @@ class ClientDatabase:
     # Функция удаления контакта
     def del_contact(self, contact):
         self.session.query(self.Contacts).filter_by(name=contact).delete()
+        self.session.commit()
 
     # Функция добавления известных пользователей.
     # Пользователи получаются только с сервера, поэтому таблица очищается.

@@ -7,7 +7,7 @@ import logging
 import select
 import time
 import threading
-import configparser
+import configparser   # https://docs.python.org/3/library/configparser.html
 import logs.config_server_log
 from errors import IncorrectDataRecivedError
 from common.variables import *

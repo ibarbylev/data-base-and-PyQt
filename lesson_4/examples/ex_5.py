@@ -4,7 +4,7 @@ import sys
 from PyQt5 import QtWidgets
 
 
-def on_clicked(my_param):
+def on_clicked():
     print("Кнопка нажата. Функция on_clicked")
 
 
@@ -21,21 +21,24 @@ class MyClass:
         print("Кнопка нажата. Метод MyClass.on_clicked()")
 
 
-OBJ = MyClass()
-APP = QtWidgets.QApplication(sys.argv)
-BUTTON = QtWidgets.QPushButton("Нажми меня")
+obj = MyClass(5)
+app = QtWidgets.QApplication(sys.argv)
+button = QtWidgets.QPushButton("Нажми меня")
 
 # В качестве обработчика назначается функция
-BUTTON.clicked.connect(lambda: on_clicked('текст'))
+button.clicked.connect(on_clicked)
+
+# В качестве обработчика назначается результат выполнения функции
+button.clicked.connect(lambda: on_clicked())
 
 # В качестве обработчика назначается метод объекта
-BUTTON.clicked.connect(OBJ.on_clicked)
+button.clicked.connect(obj.on_clicked)
 
 # В качестве обработчика назначается экземпляр класса
-BUTTON.clicked.connect(MyClass(10))
+button.clicked.connect(MyClass(10))
 
 # В качестве обработчика назначается lambda-функция
-BUTTON.clicked.connect(lambda: MyClass(5)())
+button.clicked.connect(lambda: MyClass(5)())
 
-BUTTON.show()
-sys.exit(APP.exec_())
+button.show()
+sys.exit(app.exec_())

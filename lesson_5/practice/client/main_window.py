@@ -26,8 +26,7 @@ class ClientMainWindow(QMainWindow):
         self.transport = transport
 
         # Загружаем конфигурацию окна из дизайнера
-        self.ui = Ui_MainClientWindow()
-        self.ui.setupUi(self)
+        self.ui = Ui_MainClientWindow.setupUi(self)
 
         # Кнопка "Выход"
         self.ui.menu_exit.triggered.connect(qApp.exit)

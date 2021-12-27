@@ -235,17 +235,19 @@ class ClientMainWindow(QMainWindow):
                     self.set_active_user()
             else:
                 print('NO')
-                # Раз нету,спрашиваем хотим ли добавить юзера в контакты.
-                if self.messages.question(self, 'Новое сообщение', \
-                                          f'Получено новое сообщение от {sender}.\n Данного пользователя нет в вашем контакт-листе.\n Добавить в контакты и открыть чат с ним?',
-                                          QMessageBox.Yes,
-                                          QMessageBox.No) == QMessageBox.Yes:
+                # Раз нет, спрашиваем хотим ли добавить юзера в контакты.
+                if self.messages.question(self, 'Новое сообщение',
+                              f'Получено новое сообщение от {sender}.\n '
+                              f'Данного пользователя нет в вашем контакт-листе.\n'
+                              f' Добавить в контакты и открыть чат с ним?',
+                              QMessageBox.Yes,
+                              QMessageBox.No) == QMessageBox.Yes:
                     self.add_contact(sender)
                     self.current_chat = sender
                     self.set_active_user()
 
     # Слот потери соединения
-    # Выдаёт сообщение о ошибке и завершает работу приложения
+    # Выдаёт сообщение об ошибке и завершает работу приложения
     @pyqtSlot()
     def connection_lost(self):
         self.messages.warning(self, 'Сбой соединения', 'Потеряно соединение с сервером. ')

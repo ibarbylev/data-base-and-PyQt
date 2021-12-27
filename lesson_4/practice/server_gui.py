@@ -64,11 +64,11 @@ class MainWindow(QMainWindow):
         # Кнопка обновить список клиентов
         self.refresh_button = QAction('Обновить список', self)
 
-        # Кнопка настроек сервера
-        self.config_btn = QAction('Настройки сервера', self)
-
         # Кнопка вывести историю сообщений
         self.show_history_button = QAction('История клиентов', self)
+
+        # Кнопка настроек сервера
+        self.config_btn = QAction('Настройки сервера', self)
 
         # Статусбар
         # dock widget
@@ -88,12 +88,12 @@ class MainWindow(QMainWindow):
 
         # Надпись о том, что ниже список подключённых клиентов
         self.label = QLabel('Список подключённых клиентов:', self)
-        self.label.setFixedSize(240, 15)
-        self.label.move(10, 25)
+        self.label.setFixedSize(400, 15)
+        self.label.move(10, 35)
 
         # Окно со списком подключённых клиентов.
         self.active_clients_table = QTableView(self)
-        self.active_clients_table.move(10, 45)
+        self.active_clients_table.move(10, 55)
         self.active_clients_table.setFixedSize(780, 400)
 
         # Последним параметром отображаем окно.

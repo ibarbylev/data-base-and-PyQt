@@ -8,10 +8,12 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_SliderDialog(object):
     def setupUi(self, SliderDialog):
         SliderDialog.setObjectName("SliderDialog")
         SliderDialog.resize(240, 45)
+
         self.horizontalSlider = QtWidgets.QSlider(SliderDialog)
         self.horizontalSlider.setGeometry(QtCore.QRect(20, 10, 160, 19))
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)

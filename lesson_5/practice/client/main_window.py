@@ -256,3 +256,13 @@ class ClientMainWindow(QMainWindow):
     def make_connection(self, trans_obj):
         trans_obj.new_message.connect(self.message)
         trans_obj.connection_lost.connect(self.connection_lost)
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    from database import ClientDatabase
+    database = ClientDatabase('test1')
+    from transport import ClientTransport
+    transport = ClientTransport(7777, '127.0.0.1', database, 'test1')
+    window = ClientMainWindow(database, transport)
+    sys.exit(app.exec_())

@@ -15,7 +15,7 @@ from PyQt5.QtSql import QSqlQuery, QSqlDatabase
 
 # Открытие базы данных SQLite
 con1 = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-db_path = '/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_5/examples/demo.sqlite'
+db_path = '/lesson_5/examples/exp_7/demo.sqlite'
 con1.setDatabaseName(db_path)
 print(con1.isOpen())
 con1.open()

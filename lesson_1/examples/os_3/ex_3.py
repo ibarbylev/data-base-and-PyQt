@@ -10,7 +10,7 @@ import os
 
 FILE_PATH = os.path.join(os.path.dirname(os.path.realpath('__file__')), 'ex_3.py')
 print('FILE_PATH = ', FILE_PATH)
-# FILE_PATH = '/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_1/examples/os_3/ex_3.py'
+# FILE_PATH = '/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_1/examples/os_3/ex_5.py'
 basename_for_FILE_PATH = os.path.basename(FILE_PATH)
 print('basename_for_FILE_PATH =', basename_for_FILE_PATH)
 
@@ -20,7 +20,7 @@ print('basename_for_FILE_PATH =', basename_for_FILE_PATH)
 # который вы обрабатываете в данный момент. Как и в случае с лог-файлом, упомянутым выше.
 
 dirname_for_FILE_PATH = os.path.dirname(os.path.abspath('__file__'))
-# "/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_1/examples/os_3/ex_3.py")
+# "/home/su/Projects/GeekBrains/data-base-and-PyQt/lesson_1/examples/os_3/ex_5.py")
 print('dirname_for_FILE_PATH = ', dirname_for_FILE_PATH)
 
 # Функция exists говорит нам, существует ли файл, или нет.

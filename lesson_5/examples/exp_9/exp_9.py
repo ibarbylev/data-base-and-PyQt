@@ -42,8 +42,7 @@ MODEL.setHeaderData(1, QtCore.Qt.Horizontal, 'Название')
 MODEL.setHeaderData(2, QtCore.Qt.Horizontal, 'Телефон')
 MODEL.setHeaderData(3, QtCore.Qt.Horizontal, 'Адрес')
 
-# Задаем для таблицы только что созданную модель
-VBOX_OBJ = QVBoxLayout()
+# Создаём модель таблицы для формы и связываем её с данными
 TV_OBJ = QTableView()
 TV_OBJ.setModel(MODEL)
 
@@ -53,6 +52,9 @@ TV_OBJ.setColumnWidth(1, 150)
 TV_OBJ.setColumnWidth(2, 60)
 TV_OBJ.setColumnWidth(3, 130)
 
+# Задаем модель вертикального бокса для добавления кнопок
+# https://doc.qt.io/qt-5/qvboxlayout.html
+VBOX_OBJ = QVBoxLayout()
 VBOX_OBJ.addWidget(TV_OBJ)
 
 BTN_ADD = QPushButton("&Добавить запись")

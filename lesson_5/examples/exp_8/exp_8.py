@@ -19,7 +19,7 @@ CONN.setDatabaseName('test.sqlite3')
 CONN.open()
 
 # Создаем модель
-T_QUERY = QSqlQueryModel(parent=T_WIND)
+T_QUERY = QSqlQueryModel()
 T_QUERY.setQuery("SELECT * FROM vendors ORDER BY name")
 # Задаем заголовки для столбцов модели
 T_QUERY.setHeaderData(1, QtCore.Qt.Horizontal, 'Название')

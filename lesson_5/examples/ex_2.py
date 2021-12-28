@@ -4,8 +4,8 @@ import sys
 from PyQt5.QtWidgets import QApplication, QPushButton
 
 
-def on_clicked(perm):
-    print("Вы нажали кнопку. Выполнена функция on_clicked()")
+def on_clicked(param):
+    print(f"Вы нажали кнопку. Выполнена функция on_clicked() с параметром {param}")
 
 
 class HandClass:

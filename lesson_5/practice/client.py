@@ -31,7 +31,8 @@ def arg_parser():
     # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         logger.critical(
-            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. Допустимы адреса с 1024 до 65535. Клиент завершается.')
+            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. '
+            f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
         exit(1)
 
     return server_address, server_port, client_name
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     # Создаём клиентокое приложение
     client_app = QApplication(sys.argv)
 
-    # Если имя пользователя не было указано в командной строке то запросим его
+    # Если имя пользователя не было указано в командной строке, то запросим его
     if not client_name:
         start_dialog = UserNameDialog()
         client_app.exec_()
@@ -58,7 +59,8 @@ if __name__ == '__main__':
 
     # Записываем логи
     logger.info(
-        f'Запущен клиент с парамертами: адрес сервера: {server_address} , порт: {server_port}, имя пользователя: {client_name}')
+        f'Запущен клиент с парамертами: адрес сервера: {server_address} , '
+        f'порт: {server_port}, имя пользователя: {client_name}')
 
     # Создаём объект базы данных
     database = ClientDatabase(client_name)

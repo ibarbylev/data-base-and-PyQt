@@ -21,16 +21,16 @@ class HandClass:
         print("Вы нажали кнопку. Выполнен метод HandClass.on_clicked()")
 
 
-HC_OBJ = HandClass()
+obj = HandClass()
 APP = QApplication(sys.argv)
-BTN = QPushButton("Нажмите")
+button = QPushButton("Нажмите")
+button.show()
 # Обработчик-функция
-BTN.clicked.connect(lambda: on_clicked(6))
+button.clicked.connect(lambda: on_clicked(6))
 # Обработчик-метод класса
-BTN.clicked.connect(HC_OBJ.on_clicked)
+button.clicked.connect(obj.on_clicked)
 # Обработчик-ссылка на экземпляр класса
-BTN.clicked.connect(HandClass(10))
+button.clicked.connect(HandClass(10))
 # Обработчик-анонимная функция
-BTN.clicked.connect(lambda: HandClass(5)())
-BTN.show()
+button.clicked.connect(lambda: HandClass(5)())
 sys.exit(APP.exec_())

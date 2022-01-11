@@ -97,9 +97,10 @@ def echo_handler(client_sock):
         return
     while True:
         msg = client_sock.recv(4096)
+        print(msg)
         if not msg:
             break
-        client_sock.sendall(msg)
+        client_sock.send(msg)
 
 
 def echo_server(address):

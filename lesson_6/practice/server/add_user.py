@@ -90,6 +90,9 @@ class RegisterUser(QDialog):
 
 if __name__ == '__main__':
     app = QApplication([])
-    app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
-    dial = RegisterUser(None)
+    from database import ServerStorage
+    database = ServerStorage('../server_database.db3')
+    from core import MessageProcessor
+    server = MessageProcessor('127.0.0.1', 7777, database)
+    dial = RegisterUser(database, server)
     app.exec_()

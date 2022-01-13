@@ -290,16 +290,16 @@ class MessageProcessor(threading.Thread):
             client_digest = binascii.a2b_base64(ans[DATA])
             # Если ответ клиента корректный, то сохраняем его в список
             # пользователей.
-            if RESPONSE in ans and ans[RESPONSE] == 511 and hmac.compare_digest(
-                    digest, client_digest):
+            if RESPONSE in ans and ans[RESPONSE] == 511 and \
+                    hmac.compare_digest(digest, client_digest):
                 self.names[message[USER][ACCOUNT_NAME]] = sock
                 client_ip, client_port = sock.getpeername()
                 try:
                     send_message(sock, RESPONSE_200)
                 except OSError:
                     self.remove_client(message[USER][ACCOUNT_NAME])
-                # добавляем пользователя в список активных и если у него изменился открытый ключ
-                # сохраняем новый
+                # добавляем пользователя в список активных и,
+                # если у него изменился открытый ключ, то сохраняем новый
                 self.database.user_login(
                     message[USER][ACCOUNT_NAME],
                     client_ip,

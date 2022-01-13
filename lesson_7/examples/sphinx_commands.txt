@@ -1,2 +1,4 @@
+pip install sphinx - установка пакета
+
 sphinx-quickstart - создание нового сфинкс-проекта
 make html - запуск сборки

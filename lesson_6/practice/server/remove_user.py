@@ -54,3 +54,14 @@ class DelUserDialog(QDialog):
         # Рассылаем клиентам сообщение о необходимости обновить справочники
         self.server.service_update_lists()
         self.close()
+
+
+if __name__ == '__main__':
+    app = QApplication([])
+    from database import ServerStorage
+    database = ServerStorage('../server_database.db3')
+    from core import MessageProcessor
+    server = MessageProcessor('127.0.0.1', 7777, database)
+    dial = DelUserDialog(database, server)
+    dial.show()
+    app.exec_()

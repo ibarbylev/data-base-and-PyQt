@@ -7,11 +7,11 @@ build_exe_options = {
 setup(
     name="mess_client",
     version="0.8.8",
-    description="mess_server",
+    description="mess_client",
     options={
         "build_exe": build_exe_options
     },
-    executables=[Executable('client_run.py',
+    executables=[Executable('client.py',
                             base='Win32GUI',
                             targetName='server_dist.exe',
                             )]

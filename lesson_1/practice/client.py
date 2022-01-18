@@ -12,7 +12,7 @@ from errors import IncorrectDataRecivedError, ReqFieldMissingError, ServerError
 from decos import log
 
 # Инициализация клиентского логера
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 
 
 # Функция создаёт словарь с сообщением о выходе.

@@ -36,9 +36,9 @@ print('rows data: ', result.all())
 # sess.commit()
 #
 # # Delete
-# print('count before delete: ', result.count())
-# print('rows before delete: ', result.all())
-# result.delete()
+# print('count before delete_example: ', result.count())
+# print('rows before delete_example: ', result.all())
+# result.delete_example()
 # sess.commit()
 
 """

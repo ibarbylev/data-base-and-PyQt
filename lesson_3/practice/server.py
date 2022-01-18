@@ -17,7 +17,7 @@ from metaclasses import ServerMaker
 from server_database import ServerStorage
 
 # Инициализация логирования сервера.
-logger = logging.getLogger('server')
+logger = logging.getLogger('server_dist')
 
 
 # Парсер аргументов коммандной строки.

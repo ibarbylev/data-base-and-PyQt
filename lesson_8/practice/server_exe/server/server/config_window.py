@@ -118,7 +118,7 @@ class ConfigWindow(QDialog):
                 self.config['SETTINGS']['Default_port'] = str(port)
                 dir_path = os.getcwd()
                 dir_path = os.path.join(dir_path, '..')
-                with open(f"{dir_path}/{'server+++.ini'}", 'w') as conf:
+                with open(f"{dir_path}/{'server_dist+++.ini'}", 'w') as conf:
                     self.config.write(conf)
                     message.information(
                         self, 'OK', 'Настройки успешно сохранены!')

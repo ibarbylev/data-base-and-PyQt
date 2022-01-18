@@ -22,7 +22,7 @@ from server_gui import MainWindow, gui_create_model, HistoryWindow, create_stat_
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 # Инициализация логирования сервера.
-logger = logging.getLogger('server')
+logger = logging.getLogger('server_dist')
 
 # Флаг, что был подключён новый пользователь, нужен чтобы не мучать BD
 # постоянными запросами на обновление
@@ -238,7 +238,7 @@ def main():
     config = configparser.ConfigParser()
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    config.read(f"{dir_path}/{'server.ini'}")
+    config.read(f"{dir_path}/{'server_dist.ini'}")
 
     # Загрузка параметров командной строки, если нет параметров, то задаём
     # значения по умоланию.

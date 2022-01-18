@@ -12,7 +12,7 @@ from common.utils import *
 from decos import log
 
 # Инициализация логирования сервера.
-logger = logging.getLogger('server')
+logger = logging.getLogger('server_dist')
 
 
 # Обработчик сообщений от клиентов, принимает словарь - сообщение от клиента, проверяет корректность, отправляет

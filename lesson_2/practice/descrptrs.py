@@ -1,5 +1,5 @@
 import logging
-logger = logging.getLogger('server')
+logger = logging.getLogger('server_dist')
 
 
 # Дескриптор для описания порта:

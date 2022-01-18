@@ -14,7 +14,7 @@ from decos import log
 from metaclasses import ClientMaker
 
 # Инициализация клиентского логера
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 
 
 # Класс формировки и отправки сообщений на сервер и взаимодействия с пользователем.

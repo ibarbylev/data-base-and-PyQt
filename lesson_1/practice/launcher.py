@@ -8,7 +8,7 @@ while True:
     if action == 'q':
         break
     elif action == 's':
-        process.append(subprocess.Popen('python server_run.py', creationflags=subprocess.CREATE_NEW_CONSOLE))
+        process.append(subprocess.Popen('python server_script.py.py', creationflags=subprocess.CREATE_NEW_CONSOLE))
         process.append(subprocess.Popen('python client_run.py -n test1', creationflags=subprocess.CREATE_NEW_CONSOLE))
         process.append(subprocess.Popen('python client_run.py -n test2', creationflags=subprocess.CREATE_NEW_CONSOLE))
         process.append(subprocess.Popen('python client_run.py -n test3', creationflags=subprocess.CREATE_NEW_CONSOLE))

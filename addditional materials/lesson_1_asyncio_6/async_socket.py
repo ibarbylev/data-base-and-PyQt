@@ -14,16 +14,16 @@ client_socket.setblocking(False)
 async def server_work():
     client, address = await server_socket.accept()
     msg = await client.recv(1024)
-    print('msg from client: ', msg.decode('utf-8'))
-    client.send('Hi, client!'.encode('utf-8'))
+    print('msg from client_dist: ', msg.decode('utf-8'))
+    client.send('Hi, client_dist!'.encode('utf-8'))
     client.close()
 
 
 async def client_work():
     client_socket.connect(('127.0.0.1', 7777))
-    client_socket.send('Hi, server'.encode('utf-8'))
+    client_socket.send('Hi, server_dist'.encode('utf-8'))
     msg = await client_socket.recv(1024)
-    print('msg from server: ', msg.decode('utf-8'))
+    print('msg from server_dist: ', msg.decode('utf-8'))
     client_socket.close()
 
 

@@ -14,7 +14,7 @@ from metaclasses import ClientMaker
 from client_database import ClientDatabase
 
 # Инициализация клиентского логера
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 
 # Объект блокировки сокета и работы с базой данных
 sock_lock = threading.Lock()

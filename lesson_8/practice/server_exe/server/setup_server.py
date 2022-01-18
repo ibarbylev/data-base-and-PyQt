@@ -2,7 +2,7 @@ import sys
 from cx_Freeze import setup, Executable
 
 build_exe_options = {
-    "packages": ["common", "logs", "server", "unit_tests"],
+    "packages": ["common", "logs", "server_dist", "unit_tests"],
 }
 setup(
     name="mess_server",
@@ -11,8 +11,8 @@ setup(
     options={
         "build_exe": build_exe_options
     },
-    executables=[Executable('server_run.py',
+    executables=[Executable('server_script.py.py',
                             # base='Win32GUI',
-                            targetName='server.exe',
+                            targetName='server_dist.exe',
                             )]
 )

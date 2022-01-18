@@ -14,7 +14,7 @@ from descrptrs import Port
 from metaclasses import ServerMaker
 
 # Инициализация логирования сервера.
-logger = logging.getLogger('server')
+logger = logging.getLogger('server_dist')
 
 
 # Парсер аргументов коммандной строки.

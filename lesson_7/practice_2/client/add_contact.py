@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QLabel, QComboBox, QPushButton
 import logging
 
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 
 
 class AddContactDialog(QDialog):

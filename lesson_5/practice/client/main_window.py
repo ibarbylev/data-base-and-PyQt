@@ -14,7 +14,7 @@ from client.transport import ClientTransport
 from client.start_dialog import UserNameDialog
 from common.errors import ServerError
 
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 
 
 # Класс основного окна

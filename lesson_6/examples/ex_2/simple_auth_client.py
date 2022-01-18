@@ -40,7 +40,7 @@ sock.connect(('localhost', 9999))
 # проходим аутентификацию
 client_authenticate(sock, SECRET_KEY)
 
-sock.send(b'Hello, my secure server!')
+sock.send(b'Hello, my secure server_dist!')
 resp = sock.recv(4096)
 
 print(f'Сервер ответил: {resp.decode()}')

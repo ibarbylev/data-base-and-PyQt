@@ -12,7 +12,7 @@ from common.variables import *
 from common.errors import ServerError
 
 # Логер и объект блокировки для работы с сокетом.
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 socket_lock = threading.Lock()
 
 

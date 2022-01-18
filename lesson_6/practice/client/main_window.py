@@ -15,7 +15,7 @@ from client.del_contact import DelContactDialog
 from common.errors import ServerError
 from common.variables import *
 
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 
 
 class ClientMainWindow(QMainWindow):

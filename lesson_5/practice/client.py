@@ -13,7 +13,7 @@ from client.main_window import ClientMainWindow
 from client.start_dialog import UserNameDialog
 
 # Инициализация клиентского логера
-logger = logging.getLogger('client')
+logger = logging.getLogger('client_dist')
 
 
 # Парсер аргументов коммандной строки

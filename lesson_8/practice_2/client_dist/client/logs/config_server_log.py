@@ -15,7 +15,7 @@ server_formatter = logging.Formatter('%(asctime)s %(levelname)s %(filename)s %(m
 
 # Подготовка имени файла для логирования
 path = os.path.dirname(os.path.abspath(__file__))
-path = os.path.join(path, 'server.log')
+path = os.path.join(path, 'server_dist.log')
 
 # создаём потоки вывода логов
 steam = logging.StreamHandler(sys.stderr)

@@ -31,16 +31,16 @@ from ipaddress import ip_address  # https://docs.python.org/3/howto/ipaddress.ht
 # Finding Your Public IP Address
 proc = subprocess.Popen('curl -sS ifconfig.me/ip'.split(), stdout=subprocess.PIPE)
 my_public_ip = proc.stdout.read().decode(locale.getpreferredencoding())
-print(my_public_ip)
+print('my_public_ip = ', my_public_ip)
 
 # Finding Your Local IP Address
 my_local_ip = socket.gethostbyname(socket.gethostname())
-print(my_local_ip)
+print('my_local_ip = ', my_local_ip)
 
 ip_for_testing = '192.168.1.0'
 IPV4 = ip_address(ip_for_testing)
 print(type(IPV4))
-print(IPV4)
+print('IPV4 = ', IPV4)
 
 # набор специальных методов и атрибутов
 # 127.0.0.1 — это адрес интернет-протокола loopback (IP),
@@ -48,22 +48,22 @@ print(IPV4)
 # соединения с тем же компьютером, который используется конечным пользователем.
 # is_loopback - возвращает True, если находит loopback-адрес
 # https://ru.wikipedia.org/wiki/Loopback
-print(IPV4.is_loopback)
+print('IPV4 is_loopback = ', IPV4.is_loopback)
 
 # is_multicast - возвращает True, если находит multicast-адрес
 # групповой адрес адрес, определяющий группу станций локальной сети,
 # одновременно получающих сообщение
 # https://ru.wikipedia.org/wiki/Мультивещание
-print(IPV4.is_multicast)
+print('IPV4 is_multicast = ', IPV4.is_multicast)
 
 # is_reserved - возвращает True, если находит IETF-зарезервированный адрес
 # Инжене́рный сове́т Интерне́та (англ. Internet Engineering Task Force, IETF) —
 # открытое международное сообщество проектировщиков, учёных, сетевых операторов и провайдеров,
 # созданное IAB в 1986 году и занимающееся развитием протоколов и архитектуры Интернета.
 # Зарезервированные адреса -
-# это диапазон адресов ,зарезервированный и закреплённый для использования в частной сети.
+# это диапазон адресов, зарезервированный и закреплённый для использования в частной сети.
 # Зарезервированные адреса не могут использоваться для доступа к сети интернет.
-print(IPV4.is_reserved)
+print('IPV4 is_reserved = ', IPV4.is_reserved)
 
 # is_private - возвращает True, если адрес выделен для частных сетей
 # Частный IP-адрес[1][2] (англ. private IP address), также называемый внутренним,
@@ -73,9 +73,9 @@ print(IPV4.is_reserved)
 # провайдеры всё чаще раздают своим абонентам именно внутрисетевые адреса,
 # а не внешние, при этом один внешний айпи выдаётся нескольким клиентам.
 # https://ru.wikipedia.org/wiki/%D0%A7%D0%B0%D1%81%D1%82%D0%BD%D1%8B%D0%B9_IP-%D0%B0%D0%B4%D1%80%D0%B5%D1%81
-print('is_private: ', IPV4.is_private)
+print('IPV4 is_private = ', IPV4.is_private)
 
-# операции с объектами-адресами
+# операции с (над) объектами-адресами
 IP1 = ip_address('192.168.1.0')
 IP2 = ip_address('192.168.1.255')
 
@@ -85,13 +85,14 @@ if IP2 > IP1:
 
 # конвертация ip-адреса в строку
 print(str(IP1))
+print(f'{IP1}')
 
 # конвертация ip-адреса в целое число
 # 192.168.1.0 --> 3232235776
 print(int(IP1))
 
 # альтернативный способ вычисления ip-адреса как целого числа
-address_bytes = [int(x) for x in '192.168.1.0'.split('.')]
+address_bytes = [int(x) for x in '192.168.1.0'.split('.')]  # [192, 168, 1, 0]
 ip_int = (
     address_bytes[0] * (256 ** 3) +
     address_bytes[1] * (256 ** 2) +

@@ -12,9 +12,8 @@
 #
 import os
 import sys
-# sys.path.insert(0, os.path.abspath('.'))
 
-path = os.path.dirname(os.path.abspath('../../launcher.py'))
+path = os.path.dirname(os.path.dirname(os.path.abspath('__file__')))
 sys.path.insert(0, path)
 
 
@@ -33,8 +32,10 @@ release = 'beta 0.9'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc'
-
+extensions = [
+    'sphinx.ext.duration',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

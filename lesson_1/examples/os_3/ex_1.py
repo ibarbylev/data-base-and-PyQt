@@ -9,10 +9,10 @@ from pprint import pprint
 # ‘posix’, ‘nt’, ‘os2’, ‘ce’, ‘java’, ‘riscos’
 # ответ: nt для Windows
 
-print(os.name)
+print('os.name = ', os.name)
 
-# дает вам полезную информацию, такую как количество процессоров
-# , тип ОЗУ, имя компьютера, и так далее
+# дает вам полезную информацию, такую как: количество процессоров
+# тип ОЗУ, имя компьютера, и так далее
 print(os.environ)
 pprint(list(os.environ.keys()))
 

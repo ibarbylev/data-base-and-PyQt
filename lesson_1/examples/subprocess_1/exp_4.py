@@ -1,4 +1,4 @@
-"""Связь с дочерним процессом"""
+"""Связь с дочерним процессом с помощью метода communicate()"""
 import platform
 from subprocess import Popen, PIPE, STDOUT
 import chardet

@@ -26,7 +26,7 @@ DNULL = open(os.devnull, 'w')  # заглушка, чтобы поток не в
 def check_is_ipaddress(value):
     """
     Проверка является ли введённое значение IP адресом
-    :param value: присланные значения
+    :param value: присланные значения,
     :return ipv4: полученный ip адрес из переданного значения
         Exception ошибка при невозможности получения ip адреса из значения
     """
@@ -39,7 +39,8 @@ def check_is_ipaddress(value):
 
 def ping(ipv4, result, get_list):
     param = '-n' if platform.system().lower() == 'windows' else '-c'
-    response = subprocess.Popen(["ping", param, '1', '-w', '1', str(ipv4)], stdout=subprocess.PIPE)
+    response = subprocess.Popen(["ping", param, '1', '-w', '1', str(ipv4)],
+                                stdout=subprocess.PIPE)
     if response.wait() == 0:
         result["Доступные узлы"] += f"{ipv4}\n"
         res = f"{ipv4} - Узел доступен"

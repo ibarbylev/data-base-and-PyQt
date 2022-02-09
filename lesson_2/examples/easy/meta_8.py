@@ -14,7 +14,7 @@ class ControlAttrName(type):
           (изначально список not_found_attributes == required_attributes).
         """
         required_attributes = ['x', 'y']
-        not_found_attributes = required_attributes
+        not_found_attributes = required_attributes.copy()
         for attr, v in future_class_attrs.items():
             if attr in required_attributes:
                 not_found_attributes.remove(attr)
@@ -22,7 +22,9 @@ class ControlAttrName(type):
         if not_found_attributes:
             raise AttributeError(f"Not found attributes: {', '.join(not_found_attributes)}")
 
-        super(ControlAttrName, cls).__init__(future_class_name, future_class_parents, future_class_attrs)
+        super(ControlAttrName, cls).__init__(future_class_name,
+                                             future_class_parents,
+                                             future_class_attrs)
 
 
 class Foo(metaclass=ControlAttrName):

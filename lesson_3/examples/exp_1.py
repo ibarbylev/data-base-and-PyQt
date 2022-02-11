@@ -21,8 +21,11 @@ crs.execute("SELECT Name FROM Artist ORDER BY Name LIMIT 3")
 
 # метод .fetchall() позволяет получить все данные сразу в виде списка
 # в котором каждая строка таблицы Artist представлена отдельным тюплом
-results = crs.fetchall()  # [('A Aagrh!',), ('A Aagrh!',), ('A Aagrh!',)]
+results = crs.fetchall()
 print(results)
+"""
+# [('A Cor Do Som',), ('AC/DC',), ('Aaron Copland & London Symphony Orchestra',)]
+"""
 
 # повторное обращение к объекту cursor вернёт пустой список,
 # т.к. результаты запроса уже обработаны

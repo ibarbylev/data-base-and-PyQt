@@ -238,7 +238,7 @@ def main():
     config = configparser.ConfigParser()
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    config.read(f"{dir_path}/{'server_dist.ini'}")
+    config.read(f"{dir_path}/{'server.ini'}")
 
     # Загрузка параметров командной строки, если нет параметров, то задаём
     # значения по умоланию.

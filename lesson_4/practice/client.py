@@ -37,7 +37,8 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
             ACCOUNT_NAME: self.account_name
         }
 
-    # Функция запрашивает кому отправить сообщение и само сообщение, и отправляет полученные данные на сервер.
+    # Функция запрашивает кому отправить сообщение и само сообщение,
+    # и отправляет полученные данные на сервер.
     def create_message(self):
         to = input('Введите получателя сообщения: ')
         message = input('Введите сообщение для отправки: ')
@@ -45,7 +46,8 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
         # Проверим, что получатель существует
         with database_lock:
             if not self.database.check_user(to):
-                logger.error(f'Попытка отправить сообщение незарегистрированому получателю: {to}')
+                logger.error(f'Попытка отправить сообщение '
+                             f'незарегистрированому получателю: {to}')
                 return
 
         message_dict = {
@@ -116,7 +118,8 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
                 self.print_history()
 
             else:
-                print('Команда не распознана, попробойте снова. help - вывести поддерживаемые команды.')
+                print('Команда не распознана, попробойте снова. '
+                      'help - вывести поддерживаемые команды.')
 
     # Функция, выводящяя справку по использованию.
     def print_help(self):
@@ -135,15 +138,18 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
             if ask == 'in':
                 history_list = self.database.get_history(to_who=self.account_name)
                 for message in history_list:
-                    print(f'\nСообщение от пользователя: {message[0]} от {message[3]}:\n{message[2]}')
+                    print(f'\nСообщение от пользователя: {message[0]} '
+                          f'от {message[3]}:\n{message[2]}')
             elif ask == 'out':
                 history_list = self.database.get_history(from_who=self.account_name)
                 for message in history_list:
-                    print(f'\nСообщение пользователю: {message[1]} от {message[3]}:\n{message[2]}')
+                    print(f'\nСообщение пользователю: {message[1]} '
+                          f'от {message[3]}:\n{message[2]}')
             else:
                 history_list = self.database.get_history()
                 for message in history_list:
-                    print(f'\nСообщение от пользователя: {message[0]}, пользователю {message[1]} '
+                    print(f'\nСообщение от пользователя: {message[0]},'
+                          f' пользователю {message[1]} '
                           f'от {message[3]}\n{message[2]}')
 
     # Функция изменеия контактов
@@ -164,12 +170,13 @@ class ClientSender(threading.Thread, metaclass=ClientMaker):
                     self.database.add_contact(edit)
                 with sock_lock:
                     try:
-                        add_contact(self.sock , self.account_name, edit)
+                        add_contact(self.sock, self.account_name, edit)
                     except ServerError:
                         logger.error('Не удалось отправить информацию на сервер.')
 
 
-# Класс-приёмник сообщений с сервера. Принимает сообщения, выводит в консоль, сохраняет в базу.
+# Класс-приёмник сообщений с сервера.
+# Принимает сообщения, выводит в консоль, сохраняет в базу.
 class ClientReader(threading.Thread, metaclass=ClientMaker):
     def __init__(self, account_name, sock, database):
         self.account_name = account_name
@@ -177,11 +184,13 @@ class ClientReader(threading.Thread, metaclass=ClientMaker):
         self.database = database
         super().__init__()
 
-    # Основной цикл приёмника сообщений, принимает сообщения, выводит в консоль. Завершается при потере соединения.
+    # Основной цикл приёмника сообщений, принимает сообщения, выводит в консоль.
+    # Завершается при потере соединения.
     def run(self):
         while True:
             # Отдыхаем секунду и снова пробуем захватить сокет.
-            # если не сделать тут задержку, то второй поток может достаточно долго ждать освобождения сокета.
+            # Если не сделать тут задержку,
+            # то второй поток может достаточно долго ждать освобождения сокета.
             time.sleep(1)
             with sock_lock:
                 try:
@@ -196,23 +205,33 @@ class ClientReader(threading.Thread, metaclass=ClientMaker):
                         logger.critical(f'Потеряно соединение с сервером.')
                         break
                 # Проблемы с соединением
-                except (ConnectionError, ConnectionAbortedError, ConnectionResetError, json.JSONDecodeError):
+                except (ConnectionError,
+                        ConnectionAbortedError,
+                        ConnectionResetError,
+                        json.JSONDecodeError):
                     logger.critical(f'Потеряно соединение с сервером.')
                     break
                 # Если пакет корретно получен выводим в консоль и записываем в базу.
                 else:
-                    if ACTION in message and message[ACTION] == MESSAGE and SENDER in message and DESTINATION in message \
-                            and MESSAGE_TEXT in message and message[DESTINATION] == self.account_name:
-                        print(f'\n Получено сообщение от пользователя {message[SENDER]}:\n{message[MESSAGE_TEXT]}')
+                    if ACTION in message and message[ACTION] == MESSAGE \
+                            and SENDER in message \
+                            and DESTINATION in message \
+                            and MESSAGE_TEXT in message \
+                            and message[DESTINATION] == self.account_name:
+                        print(f'\n Получено сообщение от пользователя '
+                              f'{message[SENDER]}:\n{message[MESSAGE_TEXT]}')
                         # Захватываем работу с базой данных и сохраняем в неё сообщение
                         with database_lock:
                             try:
-                                self.database.save_message(message[SENDER], self.account_name, message[MESSAGE_TEXT])
+                                self.database.save_message(message[SENDER],
+                                                           self.account_name,
+                                                           message[MESSAGE_TEXT])
                             except Exception as e:
                                 print(e)
                                 logger.error('Ошибка взаимодействия с базой данных')
 
-                        logger.info(f'Получено сообщение от пользователя {message[SENDER]}:\n{message[MESSAGE_TEXT]}')
+                        logger.info(f'Получено сообщение от пользователя '
+                                    f'{message[SENDER]}:\n{message[MESSAGE_TEXT]}')
                     else:
                         logger.error(f'Получено некорректное сообщение с сервера: {message}')
 
@@ -231,8 +250,8 @@ def create_presence(account_name):
     return out
 
 
-# Функция разбирает ответ сервера на сообщение о присутствии, возращает 200 если все ОК или генерирует исключение при\
-# ошибке.
+# Функция разбирает ответ сервера на сообщение о присутствии,
+# возвращает 200 если все ОК или генерирует исключение при ошибке.
 @log
 def process_response_ans(message):
     logger.debug(f'Разбор приветственного сообщения от сервера: {message}')
@@ -318,7 +337,7 @@ def user_list_request(sock, username):
         raise ServerError
 
 
-# Функция удаления пользователя из контакт листа
+# Функция удаления пользователя из списка контактов
 def remove_contact(sock, username, contact):
     logger.debug(f'Создание контакта {contact}')
     req = {
@@ -336,7 +355,8 @@ def remove_contact(sock, username, contact):
     print('Удачное удаление')
 
 
-# Функция инициализатор базы данных. Запускается при запуске, загружает данные в базу с сервера.
+# Функция инициализатор базы данных.
+# Запускается при запуске, загружает данные в базу с сервера.
 def database_load(sock, database, username):
     # Загружаем список известных пользователей
     try:
@@ -370,7 +390,8 @@ def main():
         print(f'Клиентский модуль запущен с именем: {client_name}')
 
     logger.info(
-        f'Запущен клиент с параметрами: адрес сервера: {server_address} , порт: {server_port}, '
+        f'Запущен клиент с параметрами: '
+        f'адрес сервера: {server_address} , порт: {server_port}, '
         f'имя пользователя: {client_name}')
 
     # Инициализация сокета и сообщение серверу о нашем появлении
@@ -392,7 +413,8 @@ def main():
         logger.error(f'При установке соединения сервер вернул ошибку: {error.text}')
         exit(1)
     except ReqFieldMissingError as missing_error:
-        logger.error(f'В ответе сервера отсутствует необходимое поле {missing_error.missing_field}')
+        logger.error(f'В ответе сервера отсутствует необходимое поле '
+                     f'{missing_error.missing_field}')
         exit(1)
     except (ConnectionRefusedError, ConnectionError):
         logger.critical(
@@ -405,7 +427,8 @@ def main():
         database = ClientDatabase(client_name)
         database_load(transport, database, client_name)
 
-        # Если соединение с сервером установлено корректно, запускаем поток взаимодействия с пользователем
+        # Если соединение с сервером установлено корректно,
+        # запускаем поток взаимодействия с пользователем
         module_sender = ClientSender(client_name, transport, database)
         module_sender.daemon = True
         module_sender.start()
@@ -416,8 +439,10 @@ def main():
         module_receiver.daemon = True
         module_receiver.start()
 
-        # Watchdog основной цикл, если один из потоков завершён, то значит или потеряно соединение или пользователь
-        # ввёл exit. Поскольку все события обработываются в потоках, достаточно просто завершить цикл.
+        # Watchdog основной цикл, если один из потоков завершён,
+        # то значит или потеряно соединение, или пользователь ввёл exit.
+        # Поскольку все события обработываются в потоках,
+        # то достаточно просто завершить цикл.
         while True:
             time.sleep(1)
             if module_receiver.is_alive() and module_sender.is_alive():

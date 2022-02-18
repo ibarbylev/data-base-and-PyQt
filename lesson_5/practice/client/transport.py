@@ -126,7 +126,7 @@ class ClientTransport(threading.Thread, QObject):
                 and message[DESTINATION] == self.username:
             logger.debug(f'Получено сообщение от пользователя {message[SENDER]}:'
                          f'{message[MESSAGE_TEXT]}')
-            self.database.save_message(message[SENDER] , 'in' , message[MESSAGE_TEXT])
+            self.database.save_message(message[SENDER], 'in', message[MESSAGE_TEXT])
             self.new_message.emit(message[SENDER])
 
     # Функция, обновляющая контакт - лист с сервера

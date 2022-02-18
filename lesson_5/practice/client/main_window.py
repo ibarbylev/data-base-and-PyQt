@@ -61,7 +61,8 @@ class ClientMainWindow(QMainWindow):
     # Деактивировать поля ввода
     def set_disabled_input(self):
         # Надпись  - получатель.
-        self.ui.label_new_message.setText('Для выбора получателя дважды кликните на нем в окне контактов.')
+        self.ui.label_new_message.setText('Для выбора получателя '
+                                          'дважды кликните на нем в окне контактов.')
         self.ui.text_message.clear()
         if self.history_model:
             self.history_model.clear()
@@ -227,9 +228,10 @@ class ClientMainWindow(QMainWindow):
         else:
             # Проверим есть ли такой пользователь у нас в контактах:
             if self.database.check_contact(sender):
-                # Если есть, спрашиваем и желании открыть с ним чат и открываем при желании
-                if self.messages.question(self, 'Новое сообщение', \
-                                          f'Получено новое сообщение от {sender}, открыть чат с ним?', QMessageBox.Yes,
+                # Если есть, спрашиваем о желании открыть с ним чат и открываем при желании
+                if self.messages.question(self, 'Новое сообщение',
+                                          f'Получено новое сообщение от {sender}, '
+                                          f'открыть чат с ним?', QMessageBox.Yes,
                                           QMessageBox.No) == QMessageBox.Yes:
                     self.current_chat = sender
                     self.set_active_user()

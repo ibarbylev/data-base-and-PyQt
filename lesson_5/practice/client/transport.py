@@ -235,6 +235,8 @@ class ClientTransport(threading.Thread, QObject):
                     message = get_message(self.transport)
                 except OSError as err:
                     if err.errno:
+                        # выход по таймауту вернёт номер ошибки err.errno равный None
+                        # поэтому, при выходе по таймауту мы сюда попросту не попадём
                         logger.critical(f'Потеряно соединение с сервером.')
                         self.running = False
                         self.connection_lost.emit()

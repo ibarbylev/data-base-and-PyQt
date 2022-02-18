@@ -23,8 +23,8 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 # Инициализация логирования сервера.
 logger = logging.getLogger('server_dist')
 
-# Флаг что был подключён новый пользователь,
-# нужен чтобы не мучать BD постоянными запросами на обновление
+# Флаг сигнализирует от том, что был подключён новый пользователь.
+# Нужен для того, чтобы не мучать BD постоянными запросами на обновление
 new_connection = False
 conflag_lock = threading.Lock()
 
@@ -46,7 +46,7 @@ class Server(threading.Thread, metaclass=ServerMaker):
     port = Port()
 
     def __init__(self, listen_address, listen_port, database):
-        # Параментры подключения
+        # Параметры подключения
         self.addr = listen_address
         self.port = listen_port
 
@@ -131,8 +131,8 @@ class Server(threading.Thread, metaclass=ServerMaker):
             for message in self.messages:
                 try:
                     self.process_message(message, send_data_lst)
-                except (ConnectionAbortedError, ConnectionError, ConnectionResetError,
-                        ConnectionRefusedError):
+                except (ConnectionAbortedError, ConnectionError,
+                        ConnectionResetError, ConnectionRefusedError):
                     logger.info(f'Связь с клиентом с именем {message[DESTINATION]} была потеряна')
                     self.clients.remove(self.names[message[DESTINATION]])
                     self.database.user_logout(message[DESTINATION])
@@ -304,7 +304,7 @@ def main():
     main_window.active_clients_table.resizeColumnsToContents()
     main_window.active_clients_table.resizeRowsToContents()
 
-    # Функция обновляющяя список подключённых, проверяет флаг подключения,
+    # Функция, обновляющая список подключённых, проверяет флаг подключения,
     # и если надо обновляет список
     def list_update():
         global new_connection

@@ -50,7 +50,8 @@ if __name__ == '__main__':
     if not client_name:
         start_dialog = UserNameDialog()
         client_app.exec_()
-        # Если пользователь ввёл имя и нажал ОК, то сохраняем ведённое и удаляем объект, инааче выходим
+        # Если пользователь ввёл имя и нажал ОК, то сохраняем ведённое и удаляем объект.
+        # Иначе - выходим
         if start_dialog.ok_pressed:
             client_name = start_dialog.client_name.text()
             del start_dialog

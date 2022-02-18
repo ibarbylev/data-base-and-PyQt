@@ -16,7 +16,7 @@ logger = logging.getLogger('client_dist')
 socket_lock = threading.Lock()
 
 
-# Класс - Траннспорт, отвечает за взаимодействие с сервером
+# Класс - Транспорт, отвечает за взаимодействие с сервером
 class ClientTransport(threading.Thread, QObject):
     # Сигналы новое сообщение и потеря соединения
     new_message = pyqtSignal(str)
@@ -78,7 +78,8 @@ class ClientTransport(threading.Thread, QObject):
 
         logger.debug('Установлено соединение с сервером')
 
-        # Посылаем серверу приветственное сообщение и получаем ответ что всё нормально или ловим исключение.
+        # Посылаем серверу приветственное сообщение и получаем ответ,
+        # что всё нормально или ловим исключение.
         try:
             with socket_lock:
                 send_message(self.transport, self.create_presence())
@@ -87,7 +88,7 @@ class ClientTransport(threading.Thread, QObject):
             logger.critical('Потеряно соединение с сервером!')
             raise ServerError('Потеряно соединение с сервером!')
 
-        # Раз всё хорошо, сообщение о установке соединения.
+        # Если всё хорошо, сообщение об установке соединения.
         logger.info('Соединение с сервером успешно установлено.')
 
     # Функция, генерирующая приветственное сообщение для сервера
@@ -102,7 +103,8 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug(f'Сформировано {PRESENCE} сообщение для пользователя {self.username}')
         return out
 
-    # Функция обрабатывающяя сообщения от сервера. Ничего не возращает. Генерирует исключение при ошибке.
+    # Функция, обрабатывающая сообщения от сервера. Ничего не возвращает.
+    # Генерирует исключение при ошибке.
     def process_server_ans(self, message):
         logger.debug(f'Разбор сообщения от сервера: {message}')
 
@@ -116,16 +118,20 @@ class ClientTransport(threading.Thread, QObject):
                 logger.debug(f'Принят неизвестный код подтверждения {message[RESPONSE]}')
 
         # Если это сообщение от пользователя добавляем в базу, даём сигнал о новом сообщении
-        elif ACTION in message and message[ACTION] == MESSAGE and SENDER in message and DESTINATION in message \
-                and MESSAGE_TEXT in message and message[DESTINATION] == self.username:
-            logger.debug(f'Получено сообщение от пользователя {message[SENDER]}:{message[MESSAGE_TEXT]}')
+        elif ACTION in message \
+                and message[ACTION] == MESSAGE \
+                and SENDER in message \
+                and DESTINATION in message \
+                and MESSAGE_TEXT in message \
+                and message[DESTINATION] == self.username:
+            logger.debug(f'Получено сообщение от пользователя {message[SENDER]}:'
+                         f'{message[MESSAGE_TEXT]}')
             self.database.save_message(message[SENDER] , 'in' , message[MESSAGE_TEXT])
             self.new_message.emit(message[SENDER])
 
-
-    # Функция обновляющая контакт - лист с сервера
+    # Функция, обновляющая контакт - лист с сервера
     def contacts_list_update(self):
-        logger.debug(f'Запрос контакт листа для пользователся {self.name}')
+        logger.debug(f'Запрос контакт листа для пользователя {self.name}')
         req = {
             ACTION: GET_CONTACTS,
             TIME: time.time(),
@@ -218,10 +224,10 @@ class ClientTransport(threading.Thread, QObject):
             logger.info(f'Отправлено сообщение для пользователя {to}')
 
     def run(self):
-        logger.debug('Запущен процесс - приёмник собщений с сервера.')
+        logger.debug('Запущен процесс - приёмник сообщений с сервера.')
         while self.running:
-            # Отдыхаем секунду и снова пробуем захватить сокет.
-            # если не сделать тут задержку, то отправка может достаточно долго ждать освобождения сокета.
+            # Отдыхаем секунду и снова пробуем захватить сокет. Если не сделать тут задержку,
+            # то отправка может достаточно долго ждать освобождения сокета.
             time.sleep(1)
             with socket_lock:
                 try:
@@ -233,7 +239,8 @@ class ClientTransport(threading.Thread, QObject):
                         self.running = False
                         self.connection_lost.emit()
                 # Проблемы с соединением
-                except (ConnectionError, ConnectionAbortedError, ConnectionResetError, json.JSONDecodeError, TypeError):
+                except (ConnectionError, ConnectionAbortedError,
+                        ConnectionResetError, json.JSONDecodeError, TypeError):
                     logger.debug(f'Потеряно соединение с сервером.')
                     self.running = False
                     self.connection_lost.emit()

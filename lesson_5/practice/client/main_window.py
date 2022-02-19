@@ -75,7 +75,8 @@ class ClientMainWindow(QMainWindow):
     # Заполняем историю сообщений.
     def history_list_update(self):
         # Получаем историю сортированную по дате
-        list_messages = sorted(self.database.get_history(self.current_chat), key=lambda item: item[3])
+        list_messages = sorted(self.database.get_history(self.current_chat),
+                               key=lambda item: item[3])
         # Если модель не создана, создадим.
         if not self.history_model:
             self.history_model = QStandardItemModel()
@@ -205,7 +206,6 @@ class ClientMainWindow(QMainWindow):
             return
         try:
             self.transport.send_message(self.current_chat, message_text)
-            pass
         except ServerError as err:
             self.messages.critical(self, 'Ошибка', err.text)
         except OSError as err:

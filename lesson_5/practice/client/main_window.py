@@ -47,7 +47,7 @@ class ClientMainWindow(QMainWindow):
         self.contacts_model = None
         self.history_model = None
         self.messages = QMessageBox()
-        self.current_chat = None
+        self.current_chat = None  # Текущий контакт с которым идёт обмен сообщениями
         self.ui.list_messages.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.ui.list_messages.setWordWrap(True)
 
@@ -75,7 +75,7 @@ class ClientMainWindow(QMainWindow):
     # Заполняем историю сообщений.
     def history_list_update(self):
         # Получаем историю сортированную по дате
-        list = sorted(self.database.get_history(self.current_chat), key=lambda item: item[3])
+        list_messages = sorted(self.database.get_history(self.current_chat), key=lambda item: item[3])
         # Если модель не создана, создадим.
         if not self.history_model:
             self.history_model = QStandardItemModel()
@@ -83,7 +83,7 @@ class ClientMainWindow(QMainWindow):
         # Очистим от старых записей
         self.history_model.clear()
         # Берём не более 20 последних записей.
-        length = len(list)
+        length = len(list_messages)
         start_index = 0
         if length > 20:
             start_index = length - 20
@@ -91,7 +91,7 @@ class ClientMainWindow(QMainWindow):
         # сообщения выравниванием и разным фоном.
         # Записи в обратном порядке, поэтому выбираем их с конца и не более 20
         for i in range(start_index, length):
-            item = list[i]
+            item = list_messages[i]
             if item[1] == 'in':
                 mess = QStandardItem(f'Входящее от {item[3].replace(microsecond=0)}:\n {item[2]}')
                 mess.setEditable(False)
@@ -196,7 +196,7 @@ class ClientMainWindow(QMainWindow):
                 self.current_chat = None
                 self.set_disabled_input()
 
-    # Функция отправки собщения пользователю.
+    # Функция отправки сообщения пользователю.
     def send_message(self):
         # Текст в поле, проверяем что поле не пустое затем забирается сообщение и поле очищается
         message_text = self.ui.text_message.toPlainText()

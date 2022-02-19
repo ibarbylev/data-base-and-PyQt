@@ -18,7 +18,9 @@ class AddContactDialog(QDialog):
 
         self.setFixedSize(350, 120)
         self.setWindowTitle('Выберите контакт для добавления:')
+        # Удаляем диалог, если окно было закрыто преждевременно
         self.setAttribute(Qt.WA_DeleteOnClose)
+        # Делаем это окно модальным (т.е. поверх других)
         self.setModal(True)
 
         self.selector_label = QLabel('Выберите контакт для добавления:', self)
@@ -58,7 +60,7 @@ class AddContactDialog(QDialog):
         # Добавляем список возможных контактов
         self.selector.addItems(users_list - contacts_list)
 
-    # Обновлялка возможных контактов. Обновляет таблицу известных пользователей,
+    # Обновляет таблицу известных пользователей (забирает с сервера),
     # затем содержимое предполагаемых контактов
     def update_possible_contacts(self):
         try:

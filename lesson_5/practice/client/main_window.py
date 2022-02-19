@@ -51,7 +51,7 @@ class ClientMainWindow(QMainWindow):
         self.ui.list_messages.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.ui.list_messages.setWordWrap(True)
 
-        # Даблклик по листу контактов отправляется в обработчик
+        # Double click по списку контактов отправляется в обработчик
         self.ui.list_contacts.doubleClicked.connect(self.select_active_user)
 
         self.clients_list_update()
@@ -87,7 +87,8 @@ class ClientMainWindow(QMainWindow):
         start_index = 0
         if length > 20:
             start_index = length - 20
-        # Заполнение модели записями, так-же стоит разделить входящие и исходящие выравниванием и разным фоном.
+        # Заполнение модели записями, так же стоит разделить входящие и исходящие
+        # сообщения выравниванием и разным фоном.
         # Записи в обратном порядке, поэтому выбираем их с конца и не более 20
         for i in range(start_index, length):
             item = list[i]
@@ -105,17 +106,17 @@ class ClientMainWindow(QMainWindow):
                 self.history_model.appendRow(mess)
         self.ui.list_messages.scrollToBottom()
 
-    # Функция обработчик даблклика по контакту
+    # Функция обработчик double click по контакту
     def select_active_user(self):
-        # Выбранный пользователем (даблклик) находится в выделеном элементе в QListView
+        # Выбранный пользователем контакт находится в выделенном элементе в QListView
         self.current_chat = self.ui.list_contacts.currentIndex().data()
         # вызываем основную функцию
         self.set_active_user()
 
-    # Функция устанавливающяя активного собеседника
+    # Функция, устанавливающая активного собеседника
     def set_active_user(self):
         # Ставим надпись и активируем кнопки
-        self.ui.label_new_message.setText(f'Введите сообщенние для {self.current_chat}:')
+        self.ui.label_new_message.setText(f'Введите сообщение для {self.current_chat}:')
         self.ui.btn_clear.setDisabled(False)
         self.ui.btn_send.setDisabled(False)
         self.ui.text_message.setDisabled(False)
@@ -123,7 +124,7 @@ class ClientMainWindow(QMainWindow):
         # Заполняем окно историю сообщений по требуемому пользователю.
         self.history_list_update()
 
-    # Функция обновляющяя контакт лист
+    # Функция, обновляющая контакт-лист
     def clients_list_update(self):
         contacts_list = self.database.get_contacts()
         self.contacts_model = QStandardItemModel()
@@ -146,7 +147,7 @@ class ClientMainWindow(QMainWindow):
         self.add_contact(new_contact)
         item.close()
 
-    # Функция добавляющяя контакт в базы
+    # Функция, добавляющая контакт в БД
     def add_contact(self, new_contact):
         try:
             self.transport.add_contact(new_contact)
@@ -172,7 +173,7 @@ class ClientMainWindow(QMainWindow):
         remove_dialog.btn_ok.clicked.connect(lambda: self.delete_contact(remove_dialog))
         remove_dialog.show()
 
-    # Функция обработчик удаления контакта, сообщает на сервер, обновляет таблицу контактов
+    # Функция-обработчик удаления контакта: сообщает на сервер, обновляет таблицу контактов
     def delete_contact(self, item):
         selected = item.selector.currentText()
         try:

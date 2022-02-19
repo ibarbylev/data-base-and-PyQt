@@ -30,7 +30,7 @@ class UserNameDialog(QDialog):
 
         self.show()
 
-    # Обработчик кнопки ОК, если поле вводе не пустое, ставим флаг и завершаем приложение.
+    # Обработчик кнопки ОК, если поле ввода не пустое, ставим флаг и завершаем приложение.
     def click(self):
         if self.client_name.text():
             self.ok_pressed = True

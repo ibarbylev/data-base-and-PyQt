@@ -3,6 +3,7 @@
 
 import os
 import sqlite3
+from pprint import pprint
 
 
 def create_db(db_file):
@@ -46,12 +47,12 @@ def sql_injection_1(user_id):
     curr.execute(week_select_1 + (user_id))
     res = curr.fetchall()
     print('Результат первой уязвимой строки с запросом: ')
-    print(res)
+    pprint(res)
 
     curr.execute(week_select_1_2.format(user_id))
     res = curr.fetchall()
     print('Результат первой модифицированной уязвимой строки с запросом: ')
-    print(res)
+    pprint(res)
     conn.close()
 
 

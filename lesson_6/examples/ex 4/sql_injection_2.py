@@ -3,6 +3,8 @@
 
 import os
 import sqlite3
+from pprint import pprint
+
 from sql_injection_1 import create_db
 
 
@@ -19,7 +21,7 @@ def sql_injection_2(user_id, user_login):
     curr.execute(week_select_2.format(user_id, user_login))
     res = curr.fetchall()
     print('Результат второй уязвимой строки с запросом: ')
-    print(res)
+    pprint(res)
     conn.close()
 
 

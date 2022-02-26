@@ -13,8 +13,8 @@ def sql_injection_3(user_id):
 
     conn = sqlite3.connect(db_file)
     curr = conn.cursor()
-    curr.execute(week_select_3.format(user_id))
-    # curr.executescript(week_select_3.format(user_id))
+    # curr.execute(week_select_3.format(user_id))
+    curr.executescript(week_select_3.format(user_id))
     res = curr.fetchall()
     print('Результат третьей уязвимой строки с запросом: ')
     print(res)

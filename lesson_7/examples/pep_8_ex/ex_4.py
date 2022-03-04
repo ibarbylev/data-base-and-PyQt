@@ -12,9 +12,11 @@ x = x*2 - 1
 hypot2 = x*x + y*y
 c = (a+b) * (a-b)
 
+
 # правильно
 def complex(real, imag=0.0):
     return magic(r=real, i=imag)
+
 
 # неправильно
 def complex(real, imag = 0.0):

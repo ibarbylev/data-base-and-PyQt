@@ -14,7 +14,7 @@ from pprint import pprint
 
 SUBNET = ip_network('80.0.1.0/28')
 BA = SUBNET.broadcast_address
-print(BA)
+print('широковещательный адрес данной сети', BA)
 
 # просмотр всех хостов для объекта-сети - метод hosts()
 pprint(list(SUBNET.hosts()))

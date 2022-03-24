@@ -17,7 +17,7 @@ from ipaddress import ip_address  # https://docs.python.org/3/howto/ipaddress.ht
 # позволяет создавать объект IPv4Address или IPv6Address
 
 # создание IPv4-адреса
-# протокол версии ip4 используется в старых виндовсах (до хр )
+# протокол версии ip4 используется в старых windows (до хр)
 # а ip6 в висте и дальше, это для настройки сети и интернета
 
 """
@@ -51,7 +51,7 @@ print('IPV4 = ', IPV4)
 print('IPV4 is_loopback = ', IPV4.is_loopback)
 
 # is_multicast - возвращает True, если находит multicast-адрес
-# групповой адрес адрес, определяющий группу станций локальной сети,
+# групповой адрес, определяющий группу станций локальной сети,
 # одновременно получающих сообщение
 # https://ru.wikipedia.org/wiki/Мультивещание
 print('IPV4 is_multicast = ', IPV4.is_multicast)

@@ -14,11 +14,11 @@ from subprocess import Popen
 А после закрытия приложения - возвращается код возврата. 
 '''
 
-COMMAND = 'regedit.exe' if platform.system().lower() == 'windows' else 'libreoffice'
+command = 'regedit.exe' if platform.system().lower() == 'windows' else 'libreoffice'
 
 
 # и это = ждать закрытия приложения
-process = Popen(COMMAND)
+process = Popen(command)
 code = process.wait()
 
 print(process)

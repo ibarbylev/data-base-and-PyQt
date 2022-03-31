@@ -13,7 +13,7 @@ from sqlalchemy.orm import mapper, sessionmaker
 
 print("Версия SQLAlchemy:", sqlalchemy.__version__)  # -> Версия SQLAlchemy: 1.4.26
 
-# -----------------------Cоздание подключений к БД-------------------------------- #
+# -----------------------Создание подключений к БД-------------------------------- #
 # ENGINE = create_engine('sqlite:///:memory:', echo=False)
 engine = create_engine('sqlite:///traditional_style_base.db3', echo=True)
 
@@ -55,11 +55,11 @@ class User:
 # Связываем данные и таблицу с помощью mapper
 mapper(User, users_table)
 
-# ------------------------------------Cоздание сессии-------------------------------------------- #
+# ------------------------------------Создание сессии-------------------------------------------- #
 # С помощью конструктора sessionmaker создаем класс-сессия
 Session = sessionmaker(bind=engine)
 
-# и далее создаем экзепмляр класса сессия Session
+# и далее создаем экземпляр класса сессия Session
 sess = Session()
 
 # вот теперь все хорошо

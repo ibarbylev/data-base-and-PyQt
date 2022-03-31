@@ -104,7 +104,8 @@ class ServerStorage:
             # Создаём экземпляр класса self.AllUsers, через который передаём данные в таблицу
             user = self.AllUsers(username)
             self.session.add(user)
-            # Комит здесь нужен, чтобы присвоился ID
+            # Коммит здесь нужен для того, чтобы создать нового пользователя,
+            # id которого будет использовано для добавления в таблицу активных пользователей
             self.session.commit()
 
         # Теперь можно создать запись в таблицу активных пользователей о факте входа.
@@ -112,7 +113,6 @@ class ServerStorage:
         new_active_user = self.ActiveUsers(user.id, ip_address, port, datetime.datetime.now())
         self.session.add(new_active_user)
 
-        # и сохранить в истории входов
         # Создаём экземпляр класса self.LoginHistory, через который передаём данные в таблицу
         history = self.LoginHistory(user.id, datetime.datetime.now(), ip_address, port)
         self.session.add(history)

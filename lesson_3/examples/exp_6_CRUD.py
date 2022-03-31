@@ -3,7 +3,7 @@
 необходимо овладеть операциями CRUD:
 
 C - Create
-R - Retrieve
+R - Retrieve/Read
 U - Update
 D - Delete
 

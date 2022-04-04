@@ -8,10 +8,10 @@ from PyQt5.QtWidgets import QWidget, QApplication, qApp
 from PyQt5 import uic
 
 
-APP = QApplication(sys.argv)
-WINDOW_OBJ = QWidget()
-UI = uic.loadUi('test.ui', WINDOW_OBJ)
+app = QApplication(sys.argv)
+window_obj = QWidget()
+UI = uic.loadUi('test.ui', window_obj)
 UI.btnQuit.clicked.connect(qApp.quit)
-WINDOW_OBJ.show()
+window_obj.show()
 
-sys.exit(APP.exec_())
+sys.exit(app.exec_())

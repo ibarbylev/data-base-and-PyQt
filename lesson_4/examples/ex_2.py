@@ -9,10 +9,10 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, qApp
 import test
 
-APP = QApplication(sys.argv)
-WINDOW_OBJ = QWidget()
-UI = test.Ui_Form()
-UI.setupUi(WINDOW_OBJ)
-UI.btnQuit.clicked.connect(qApp.quit)
-WINDOW_OBJ.show()
-sys.exit(APP.exec_())
+app = QApplication(sys.argv)
+window_obj = QWidget()
+ui = test.Ui_Form()
+ui.setupUi(window_obj)
+ui.btnQuit.clicked.connect(qApp.quit)
+window_obj.show()
+sys.exit(app.exec_())

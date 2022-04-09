@@ -49,6 +49,7 @@ if __name__ == '__main__':
     window = DelContactDialog(database)
     # при подключении контакты удаляются, а затем добавляются с сервера
     # поэтому для проверки сами вручную добавляем контакт для списка удаления
+    database.add_contact('test1')
     database.add_contact('test2')
     print(database.get_contacts())
     window.selector.addItems(sorted(database.get_contacts()))

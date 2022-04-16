@@ -32,7 +32,7 @@ class EvilPayload:
         Запустим на машине клиента безобидный Notepad (или другой редактор)
         """
 
-        os.system("echo You've been hacked by Evil Pickle!!! > evil_msg.txt")
+        os.system("echo 'You have been hacked by Evil Pickle!!!' > evil_msg.txt")
 
         if platform.system() == 'Linux':
             python_path = sys.executable

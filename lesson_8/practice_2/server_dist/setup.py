@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name="py_mess_server",
-      version="0.0.13",
+      version="0.3.5",
       description="Mess Client",
       author="Ivan Ivanov",
       author_email="iv.iv@yandex.ru",

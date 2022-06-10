@@ -48,6 +48,7 @@ class MessageProcessor(threading.Thread):
         self.running = True
 
         # Словарь содержащий сопоставленные имена и соответствующие им сокеты.
+        # {'test1': <socket.socket fd=25, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52420)>}
         self.names = dict()
 
         # Конструктор предка

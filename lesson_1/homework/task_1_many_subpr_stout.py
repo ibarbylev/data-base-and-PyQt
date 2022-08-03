@@ -21,13 +21,14 @@ def host_ping(hosts_list, get_list=False) -> result:
 
     for process in processes:
         code = process.wait()
-        new_ip = process.stdout.read().decode(ENCODING).split()[1]
+        out = process.stdout.read().decode(ENCODING).split()
+        current_ip = f'{out[1]} {out[2]}'
         if code == 0:
-            result['Reachable'] += new_ip
-            print('Reachable', new_ip) if not get_list else None
+            result['Reachable'] += current_ip
+            print('Reachable', current_ip) if not get_list else None
         else:
-            result['Unreachable'] += new_ip
-            print('Unreachable', new_ip) if not get_list else None
+            result['Unreachable'] += current_ip
+            print('Unreachable', current_ip) if not get_list else None
 
     if get_list:
         return result

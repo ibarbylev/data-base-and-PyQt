@@ -1,6 +1,6 @@
 """
 In this example run multiple subprocesses simultaneously.
-And get ip address from method Popen.args
+And ip address is getting from method Popen.args.
 """
 
 import platform

@@ -1,11 +1,14 @@
 """
 In this example run multiple subprocesses simultaneously.
-And get ip address from method Popen.args
+And ip address is getting from stdout.
 """
 
 import locale
 import platform
+import socket
 from subprocess import Popen, PIPE
+from ipaddress import ip_address
+from task_1 import check_is_ipaddress
 
 ENCODING = locale.getpreferredencoding()
 result = {'Reachable': "", "Unreachable": ""}

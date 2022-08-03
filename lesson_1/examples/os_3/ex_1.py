@@ -24,7 +24,7 @@ else:
 
 # какой путь вы в данный момент используете
 print('current directory: ', os.getcwd())
-path_dir = os.path.dirname(os.path.abspath('__file__'))
+path_dir = os.path.dirname(os.path.abspath(__file__))
 print('current directory for a specific file: ', path_dir)
 
 # изменяем текущий путь

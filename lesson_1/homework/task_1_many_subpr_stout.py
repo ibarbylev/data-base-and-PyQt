@@ -20,7 +20,7 @@ def host_ping(hosts_list, get_list=False) -> result:
     """
     param = '-n' if platform.system().lower() == 'windows' else '-c'
     args = [['ping', param, '1', '-w', '1', ip] for ip in hosts_list]
-    processes = [Popen(args, stdout=PIPE, stderr=PIPE) for args in args]
+    processes = [Popen(arg, stdout=PIPE, stderr=PIPE) for arg in args]
 
     for process in processes:
         code = process.wait()

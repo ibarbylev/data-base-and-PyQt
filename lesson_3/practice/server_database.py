@@ -41,8 +41,10 @@ class ServerStorage:
         # pool_recycle - по умолчанию соединение с БД через 8 часов простоя обрывается
         # Чтобы этого не случилось необходимо добавить pool_recycle=7200 (переустановка
         #    соединения через каждые 2 часа)
-        self.database_engine = create_engine(SERVER_DATABASE, echo=False, pool_recycle=7200)
-
+        self.database_engine = create_engine(SERVER_DATABASE,
+                                             echo=False,
+                                             pool_recycle=7200,
+                                             connect_args={'check_same_thread': False})
         # Создаём объект MetaData
         self.metadata = MetaData()
 

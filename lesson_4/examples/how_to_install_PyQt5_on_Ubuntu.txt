@@ -15,6 +15,12 @@ https://stackoverflow.com/questions/27591207/pycharm-4-wont-open-qt-designer-on-
 
 --------------------------------------------------------------
 
+install for macOS:
+
+https://stackoverflow.com/questions/46542326/installing-pyqt5-incl-qt-designer-on-macos-sierra
+
+--------------------------------------------------------------
+
 transform *.ui --> *.py
 
 pyuic5 test.ui -o test.py

@@ -41,6 +41,8 @@ class ServerStorage:
         # pool_recycle - по умолчанию соединение с БД через 8 часов простоя обрывается
         # Чтобы этого не случилось необходимо добавить pool_recycle=7200 (переустановка
         #    соединения через каждые 2 часа)
+        # connect_args={'check_same_thread': False}) для того, чтобы не возникало конфликта
+        # при доступе к БД из разных потоков: потока класса Server и основного потока
         self.database_engine = create_engine(SERVER_DATABASE,
                                              echo=False,
                                              pool_recycle=7200,

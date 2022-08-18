@@ -36,6 +36,8 @@ class ProgressClass(QDialog):
         slider_object.changed_value.connect(self.get_slider_value)
 
     # Создаем Qt-слот
+    # Зачем нам нужен декоратор @pyqtSlot()
+    # https://stackoverflow.com/questions/40325953/why-do-i-need-to-decorate-connected-slots-with-pyqtslot
     @pyqtSlot(int)
     def get_slider_value(self, val):
         self.ui.progressBar.setValue(val)

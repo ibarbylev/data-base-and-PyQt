@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QDialog, QPushButton, QTableView
+from PyQt5.QtWidgets import QDialog, QPushButton, QTableView, QApplication
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt
 
@@ -55,3 +55,12 @@ class StatWindow(QDialog):
         self.stat_table.setModel(list)
         self.stat_table.resizeColumnsToContents()
         self.stat_table.resizeRowsToContents()
+
+
+if __name__ == '__main__':
+    app = QApplication([])
+    from database import ServerStorage
+    database = ServerStorage('../server_database.db3')
+    wnd = StatWindow(database)
+    wnd.show()
+    app.exec_()

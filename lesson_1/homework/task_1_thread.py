@@ -17,6 +17,9 @@ import threading
 from ipaddress import ip_address
 from pprint import pprint
 
+
+SHARED_RESOURCE_LOCK = threading.Lock()
+
 result = {'Доступные узлы': "", "Недоступные узлы": ""}  # словарь с результатами
 
 DNULL = open(os.devnull, 'w')  # заглушка, чтобы поток не выводился на экран
@@ -42,17 +45,19 @@ def ping(ipv4, result, get_list):
     response = subprocess.Popen(["ping", param, '1', '-w', '1', str(ipv4)],
                                 stdout=subprocess.PIPE)
     if response.wait() == 0:
-        result["Доступные узлы"] += f"{ipv4}\n"
-        res = f"{ipv4} - Узел доступен"
-        if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
-            print(res)
-        return res
+        with SHARED_RESOURCE_LOCK:
+            result["Доступные узлы"] += f"{ipv4}\n"
+            res = f"{ipv4} - Узел доступен"
+            if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
+                print(res)
+            return res
     else:
-        result["Недоступные узлы"] += f"{ipv4}\n"
-        res = f"{str(ipv4)} - Узел недоступен"
-        if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
-            print(res)
-        return res
+        with SHARED_RESOURCE_LOCK:
+            result["Недоступные узлы"] += f"{ipv4}\n"
+            res = f"{str(ipv4)} - Узел недоступен"
+            if not get_list:  # если результаты не надо добавлять в словарь, значит отображаем
+                print(res)
+            return res
 
 
 def host_ping(hosts_list, get_list=False):

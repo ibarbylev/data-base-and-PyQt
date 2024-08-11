@@ -11,7 +11,7 @@ click==8.0.3
 colorama==0.4.4
 crypto==1.4.1
 cryptography==36.0.0
-cx-Freeze==6.8.2
+cx-Freeze==7.2.0
 docutils==0.17.1
 gitdb==4.0.9
 GitPython==3.1.24
